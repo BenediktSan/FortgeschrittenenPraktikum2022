@@ -1,20 +1,20 @@
-all: build/Protokoll_.pdf
+all: build/Protokoll_70.pdf
 
 
 
 #hier Python-Skripte
 
 
-build/plots/plot1.pdf:	|build
-	python python/.py
+# build/plots/plot1.pdf:	|build
+#	python python/.py
 
 
 
 # hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-build/Protokoll_.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex build/plots/plot1.pdf| build
-	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_.tex
-	biber build/Protokoll_.bcf
-	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_.tex
+build/Protokoll_70.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex | build
+	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_70.tex
+	biber build/Protokoll_70.bcf
+	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_70.tex
 
 
 build:
