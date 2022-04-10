@@ -1,8 +1,40 @@
+\section{Zielsetzung}
+
 \section{Theorie}
+	
+	\subsection{Vakuum}
 
-    \subsection{Zielsetzung}
+	\subsection{Arten der Vakuumerzeugung}
 
-       
+		\subsubsection{Drehschieberpumpe}
+
+		\subsubsection{Turbomolekularpumpe}
+
+	\subsection{Saugvermögen}
+
+		\begin{equation}
+			S = \frac{\text{d}V}{\text{d}t}
+		\end{equation}
+
+		\subsubsection{Messung der p(t)-Kurve}
+
+			\begin{equation}
+				p \cdot V = \text{const}
+			\end{equation}
+
+			\begin{equation}
+				\frac{\text{d}V}{\text{d}t} = S = - \frac{V}{p} \frac{\text{d}p}{\text{d}t}
+			\end{equation}
+
+			\begin{equation}
+				p(t) = p_0 \text{exp}\left( - \frac{S}{V_0}t \right)
+			\end{equation}
+				
+			\begin{equation}
+				p(t) = p_0 \text{exp}\left( - \frac{S}{V_0}t \right)
+			\end{equation}
+
+\section{Vorbereitung}      
 Vorbereitung: \\
 \\
 	1. Definition des Vakuums:\\
@@ -90,18 +122,81 @@ Vorbereitung: \\
 		\\
 	   "virtuelles" Leck:\\
 	   	-Prozesse die das Vakuum reduzieren, jedoch von außen nicht messbar sind.\\
-		- Ausgasung/Desorption/rückstände//
+		- Ausgasung/Desorption/rückstände\\
 \\
 	7. Methoden der Vakuumerzeugung:\\
 		Funktionsweise von:\\
 \\
 		Drehschieberpumpe:\\
-			-Das Volumen der Pumpkammer wird durch einen zylindrischen Rotor und 2 Drehschieber die durch Federn an die Wand gedrückt werden, das Volumen in drei Bereiche geteilt. //
-			-Wenn der Rotor nun rotiert, wird gleichzeitig in einem Bereich neues Gas aus dem Rezipenten gezogen und in einem Anderem Bereich wird das Gas komprimiert und an einem Überdruckventil ausgegeben.//
-			-p = o,5 * $10^{-1}$ mbar (Feinvakuum)
-			-es liegt viskose laminare Stömung vor, der Innendurchmesser der Rohre kann also klein sein//
-			//
-		Turbomolekularpumpe://
+	   Druckeinheiten:\\
+	   	-Technischer Atmospährendruck atm = kp/$cm^2$ = 98,0665 kPa \\
+		-Bar bar = 100kPa about equals 1at\\
+		-Torr, Druck von eimem Millimeter Quecksilber mmHg= 1/760 atm\\
+		-1 Meter Wassersäule mWS = 0,1atm = 9.8kPa\\
+\\
+	   Teilchenzahldichte:\\
+	   	- Anzahl an Teilchen pro Volumen, n oder C\\
+\\
+	   Teilchengeschwindigkeit:\\
+		-Die durchschnittliche Geschwindigkeit von Teilchen?\\
+\\
+	   mittlere freie Weglänge:\\
+	   	- Durchschnittliche Länge die ein Teilchen zwischen 2 Kollisionen fliegt\\
+\\
+	4. Laminare Strömung:\\
+		-Eine Strömung ohne sichtbare Turbulenzen/Verwirblungen\\
+		-Das Fluid strömt in Schichten\\
+\\
+	   molekulare Strömung:\\
+		- die mittlere freie Weglänge ist deutlich größer als der Durchmesser der Strömung\\
+		- Konstanter Fluss bei gleichem Druck\\
+\\
+	   Leitwert:\\
+		-Maß des Widerstandes beim Fluss eines Fluides durch ein Kabel analog zur elektrischen Leitfähigkeit?\\ 
+\\
+	5. Gasstrom: \\
+		-Fluss an Gass also Materie sehr geringer Dichte?\\
+\\
+	   Saugleistung:\\
+		-dpV/dt, das auf die Stoffmenge bezogene Durchlassvermögen\\
+\\
+	   Saugvermögen:\\
+	   	-Volumen pro Zeit bei Umgebungsdruck = 1bar und 20 Grad Celsius\\
+\\
+	   effektives Saugvermögen einer Vakuumpumpe:\\
+	   	-Das effektive Saugvermögen ist das Saugvermögen um einen Gewissen Faktor verringert, dieser berechnet sich aus dem Verhältnis des Druckes am Vakuumbehälter und dem Ansaugstutzen oder durch:\\
+			S(eff) = S/(1 + S/L) mit dem Leitwert L\\
+\\
+	   Leitwert eines Rohres:\\
+		- (pi * $d^4$)/(256 * eta *l) * (p1+p2) Laminar:\\
+\\
+	6. Adsorption:\\
+		-Wenn Materie sich an der Oberfäche von Materialien \\ 
+\\
+	   Absorption:\\
+		-Wenn Materie/EM-Wellen in Materie aufgenommen werden\\
+\\
+	   Desorption:\\
+		-Wenn Materie die Oberfläche eines Festkörpers verlässt, bzw aus der Flüssigen in die Gasphase übergeht\\
+		-Umkehrprozess der Sorption\\
+\\
+	   Diffusion:\\
+		-Der Prozess wenn ohne äußere Einwirkungen ein Konzentrationsunterschied sich ausgleicht.\\
+		\\
+	   "virtuelles" Leck:\\
+	   	-Prozesse die das Vakuum reduzieren, jedoch von außen nicht messbar sind.\\
+		- Ausgasung/Desorption/rückstände\\
+\\
+	7. Methoden der Vakuumerzeugung:\\
+		Funktionsweise von:\\
+\\
+		Drehschieberpumpe:\\
+			-Das Volumen der Pumpkammer wird durch einen zylindrischen Rotor und 2 Drehschieber die durch Federn an die Wand gedrückt werden, das Volumen in drei Bereiche geteilt. \\
+			-Wenn der Rotor nun rotiert, wird gleichzeitig in einem Bereich neues Gas aus dem Rezipenten gezogen und in einem Anderem Bereich wird das Gas komprimiert und an einem Überdruckventil ausgegeben.\\
+			-p = o,5 * $10^{-1}$ mbar (Feinvakuum)\\
+			-es liegt viskose laminare Stömung vor, der Innendurchmesser der Rohre kann also klein sein\\
+			\\
+		Turbomolekularpumpe:\\
 			-mehstufige Turbine mit schaufelähnlichen Scheiben rotiert sehr schnell, ungefähr die mittlere thermische Geschwindigkeit der Teilchen.\\
 			-die Teilchen werden beschleunigt und durch Abprallen an den Strator-Schaufeln durch die Pumpe geleitet.\\
 			-Probleme bei leichten Gasen da die thermische Geschwindigkeit bereits sehr hoch ist\\
@@ -126,14 +221,3 @@ Vorbereitung: \\
 					-Messgenauigkeit/Messpunkte werden durch ein eternes magnetfeld erhöht\\
 					\\
 			Glühkathode:\\
-				-Bayard-Alpert-Vakuummeter:\\
-					-Hoch und Ultrahochvakuum\\
-					-Elektronenquelle ist eine Glühkathode\\
-					-die beschleunigten Elektronen ionisieren Gasteilchen welche dann einen weiteren Strom erzeugen.\\
-					-Stromstärke ist also Maß für das Vakuum.\\
-
-
-	---> Auf Druckbereiche beachten!
-	---> Vor-, und Nachteile beachten!
-
-
