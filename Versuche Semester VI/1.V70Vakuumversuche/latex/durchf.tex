@@ -5,26 +5,32 @@
 	Dazu wird getestet ob die Drehschieberpumpe innerhalb von maximal 10 Minuten in der lage ist einen Enddruck $P_\text{E}$ von 0,03 mbar bis 0,05 mbar zu erzeugen. 
 	Ist dem nicht so, muss die Anlage auf undichte Stellen überprüft werden.
 	Weiterhin wird dann mit dem bereits vorhandenen Vorvakuum, die Turbopumpe eingeschalten. 
-	Um Wasseranlagen zu entfernen un ... vorzubeugen wird die Anlage auch einmal mit einem Heißluftfön erhitzt.
-	Die Turbopumpe sollte einen Druckb von $2 \cdot 10^{-5}$ mbar bis $8 \cdot 1o^{-5}$ mbar erzeugen können.
+	Um Wasseranlagen zu entfernen und Desorption vorzubeugen wird die Anlage auch einmal mit einem Heißluftfön erhitzt.
+	Die Turbopumpe sollte dann in der lage sein einen Druckb von $2 \cdot 10^{-5}$ mbar bis $8 \cdot 1o^{-5}$ mbar zu erzeugen.
 
 	\subsection{Messungen Zur Drehschieberpumpe}
+
 		Sobald bestätigt wurde, dass der Pumpstand ausreichend dicht ist, können Evakueirungskurven aufgenommen und Leckratenmessungen durchgeführt werden.
 
 		\subsubsection{Evakuierungskurve}
 
-			Zunächste kommt, dass "abschiebern" der Turbopumpe, dazu wird V1 und V5 geschlossen und V2 sowie V4 geöffnet.
-			Dann wird bei bereits laufender Drehschieberpumpe der Rezipient belüftet indem für ca. 5 Sekunden D1 und V3 geöffnet wird. 
-			Sobald der Rezipient wieder dicht ist, kann dann der Druckabfall als Funktion der Zeit vermssen werden, dazu bieten sich Messzeiten von 180-300 Sekunden an.
-			Bei dieser Messung sollte eine Enddruck von $P_\text{E}$ von zwischen 0,04 mbar und 0,06 mbar erreicht werden.
-			Diese Messung wird dann 5-mal wiederholt.
+			Zunächste muss nun die Turbompumpe abgeschalten werden um Schäden an der Pumpe zu verhinden und das Vakuum wieder auf den Druckbereich der Drehschieberpumpe reduziert werden.
+			Dann wird die Drehschieberpumpe abgeschoben und der Rezipient belüftet indem für ca. 5 Sekunden D1 und V3 geöffnet wird bis wieder Normaldruck in dem Rezipienten herscht. 
+			Sobald der Rezipient wieder dicht ist, wird der Zugang zu der Drehschieberpumpe geöffnet und der Druckabfall als Funktion der Zeit vermessen. 
+			Dazu werden für eine gesamt Messzeit von $\SI{600}{\second}$ alle $\SI{10}{\second}$ der Druck an dem Digitalen Vakuummeter{ref} abgelesen.
+			Bei dieser Messung sollte eine Enddruck von $P_\text{E}$ von zwischen 0,1 mbar und 0,08 mbar erreicht werden.
+			Diese Messung wird dann 3-mal wiederholt.
 
-		\subsubsection{Saugvermögen}
+		\subsubsection{Leckratenmessung}
 
-			Um das Saugvermögen $S$ der Pumpe zu bestimmen, wird eine Leckratenmessung durchgeführt. 
-			Dazu wird mittels des Nadelventils ein Gleichgewichtsdruck $p_\text{g}$ eingestellt und dann bei weithin offenem Dosierventil die Pumpe vom System abgeschoben. 
-			Den darauf folgenen Druckanstieg wird dann als Funktion der Zeit gemessen. 
-			Diese Messung wird mit 4 Gleichgeichtsdrücken $p_\text{g}$ = 0,1;0,4;0,8 und 1,0 mbar und jeweils 3 Messreihen durchgeführt.
+		 	Die Leckratenmessung wird durchgeführt indem mittels des Nadelventils ein Gleichgewichtsdruck $p_\text{g}$ eingestellt und dann bei weithin offenem Dosierventil die Pumpe vom System abgeschoben wird.
+			Den darauf folgenen Druckanstieg wird dann als Funktion der Zeit über $\SI{300}{\second}$ in $\SI{10}{\second}$ Abständen gemessen, 
+			Diese Messung wird mit 4 Gleichgeichtsdrücken $p_\text{g} = 0,4; 10; 40; \SI{80}{\milli\bar}$ und jeweils 3 Messreihen durchgeführt.
+
+	\subsection{Messung zur Turbopumpe}
+
+		Die Messungen zu der Turbopumpe laufen analog zu denen der Drehschieberpumpe. 
+		Es ist nnur darauf zu Achten, dass bevor die Turbopumpe eingeschalten wird, bereits eine Vorvakuum von mindestens $\SI{10e-1}{\milli\bar}$ mit der Drehschieberpumpe erzeugt wurde.
 
 
   
