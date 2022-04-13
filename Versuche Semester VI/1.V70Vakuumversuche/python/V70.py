@@ -110,7 +110,7 @@ turbo_vent_p_3 = np.array([495, 12.8, 4.36, 3.58, 3.4, 3.26, 3.16, 3.09, 3.02, 2
 
 ##Gleichgewicht 1 e-4 mbar
 
-turbo_leck_1_1 = np.array([1.01, 2,51, 3.78, 4.99, 6.15, 7.44, 9.16, 11, 13, 14.7, 16.3, 18.2, 20.2]) * 10**(-4)
+turbo_leck_1_1 = np.array([1.01, 2.51, 3.78, 4.99, 6.15, 7.44, 9.16, 11, 13, 14.7, 16.3, 18.2, 20.2]) * 10**(-4)
 
 turbo_leck_1_2 = np.array([1.03, 2.58, 3.86, 5.04, 6.18, 7.54, 9.28, 11, 13.1, 14.7, 16.4, 18.3, 20.2]) * 10**(-4)
 
@@ -158,6 +158,26 @@ def mittel(a,b,c):
 
 dreh_p = mittel(dreh_p_1, dreh_p_2, dreh_p_2)
 print(dreh_p[1])
+
+table = (turbo_leck_1_1.T, turbo_leck_1_2.T, turbo_leck_1_3.T)
+np.transpose(table)
+headers = ("A", "B", "C")
+print(dreh_leck_1_1.T)
+print(table)
+#print(tabulate(table, headers, tablefmt="latex"))
+
+table ={'alpha1': turbo_leck_1_1, 'alphag': turbo_leck_1_2,  'delg':turbo_leck_1_3, 'delr':mittel(turbo_leck_1_1, turbo_leck_1_2, turbo_leck_1_3)}
+#print("\n ",tabulate (table, tablefmt="latex"))
+
+
+def printer(a):
+    n = 2
+    title = "Messreihe "
+    table = {title.join("1") : a[0]}
+    for i in range(1,n):
+        table ={table[0] ,{title.join("1" ) : a[i]}}
+    print("\n", tabulate(table, tablefmt = "latex_raw"))
+
 
 ########Grafiken########
 
