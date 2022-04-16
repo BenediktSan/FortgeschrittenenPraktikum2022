@@ -8,6 +8,8 @@ import scipy.constants as const
 import sympy
 import os
 from tabulate import tabulate
+from uncertainties.unumpy import (nominal_values as noms, std_devs as stds)
+
 
 if os.path.exists("build") == False:
     os.mkdir("build")
@@ -26,16 +28,16 @@ if os.path.exists("build/plots") == False:
 t_1 = np.arange(0,610,10)
 t_1 = np.append(t_1,1000)
 ### Drehschieber p_t MEssung alle 10s 
-#als endwert 2.1e-2 einfügen
+#als endwert 2.1e-2 einfügen   DONE evtl 5e-2
 
 dreh_p_1 = np.array([995.1, 644, 479, 358, 265, 201, 147, 103, 75, 55, 40.2, 29.9, 21.5, 15.1, 10.8, 7.9, 5.9, 4.5, 3.5, 2.8, 2.2, 1.9, 1.6, 1.4, 1.2, 1, 0.93, 0.83, 0.76, 0.68, 0.63, 
-                    0.59, 0.54, 0.5, 0.47, 0.44, 0.41, 0.39, 0.37, 0.35, 0.33, 0.31, 0.30, 0.28, 0.27, 0.26, 0.25, 0.24, 0.23, 0.21, 0.21, 0.2, 0.19, 0.18, 0.17, 0.17, 0.16, 0.16, 0.15, 0.15, 0.14,0.021 ])
+                    0.59, 0.54, 0.5, 0.47, 0.44, 0.41, 0.39, 0.37, 0.35, 0.33, 0.31, 0.30, 0.28, 0.27, 0.26, 0.25, 0.24, 0.23, 0.21, 0.21, 0.2, 0.19, 0.18, 0.17, 0.17, 0.16, 0.16, 0.15, 0.15, 0.14,0.05 ])
 
 dreh_p_2 = np.array([995.4, 640, 439, 327, 236, 177, 131, 95, 69.8, 51, 36.7, 26.4, 19.1, 14, 10, 7.3, 5.5, 4.2, 3.2, 2.6, 2.1, 1.6, 1.5, 1.3, 1.2, 0.99, 0.91, 0.82, 0.74, 0.67, 0.62,
-                    0.57, 0.53, 0.5, 0.46, 0.43, 0.41, 0.39, 0.36, 0.35, 0.33, 0.31, 0.3, 0.28, 0.27, 0.26, 0.25, 0.24, 0.23, 0.22, 0.21, 0.20, 0.2, 0.19, 0.18, 0.18, 0.17, 0.16, 0.16, 0.15, 0.15,0.021 ])
+                    0.57, 0.53, 0.5, 0.46, 0.43, 0.41, 0.39, 0.36, 0.35, 0.33, 0.31, 0.3, 0.28, 0.27, 0.26, 0.25, 0.24, 0.23, 0.22, 0.21, 0.20, 0.2, 0.19, 0.18, 0.18, 0.17, 0.16, 0.16, 0.15, 0.15,0.05 ])
 
 dreh_p_3 = np.array([989.7, 640, 477, 357, 266, 196, 144, 108, 76.9, 56.2, 41.1, 30.3, 21.4, 15.5, 11.3, 8.5, 6.1, 4.6, 3.6, 2.9, 2.3, 1.9, 1.6, 1.4, 1.2, 1.1, 0.94, 0.86, 0.77, 0.70, 0.64, 0.6, 0.55,
-                    0.51, 0.47, 0.44, 0.42, 0.4, 0.38, 0.35, 0.33, 0.32, 0.3, 0.29, 0.28, 0.27, 0.25, 0.24, 0.23, 0.23, 0.21, 0.21, 0.2, 0.19, 0.18, 0.18, 0.17, 0.16, 0.16, 0.15, 0.15,0.021])
+                    0.51, 0.47, 0.44, 0.42, 0.4, 0.38, 0.35, 0.33, 0.32, 0.3, 0.29, 0.28, 0.27, 0.25, 0.24, 0.23, 0.23, 0.21, 0.21, 0.2, 0.19, 0.18, 0.18, 0.17, 0.16, 0.16, 0.15, 0.15,0.05])
 
 
 ### Drehschieber Leckrate alle 10s bis 200s (Arrayelement 20 ; :21)
@@ -85,7 +87,7 @@ dreh_leck_4_3 = np.array([80, 115.9, 143.1, 170, 196.8, 225.9, 253, 280, 307.2, 
 
 ### Turbomolekular p(t)  kurve  200s alle 10s 
 
-# als endwert 1 e-5 einfügen
+# als endwert 1 e-5 einfügen  DONE
 
 turbo_pump_p_1 = np.array([166, 7.8, 3.3, 2.72, 2.54, 2.42, 2.33, 2.25, 2.2, 2.16, 2.12,
                             2.09, 2.06, 2.03, 2.01, 1.98, 1.96, 1.94, 1.92, 1.91, 1.9, 1]) * 10**(-5)
@@ -147,28 +149,8 @@ turbo_leck_4_3 = np.array([0.504, 1.36, 2.14, 2.86, 3.52, 4.14, 4.76, 5.37, 5.98
 
 #####RECHNUNGEN#######
 
-### Werte mitteln
 
-
-def mittel(a,b,c):
-    arr = unp.uarray(np.zeros(np.size(a)),np.zeros(np.size(a)))
-    for i in range(0,np.size(a)):
-        arr[i] = unc.ufloat(np.mean([a[i], b[i], c[i]]), np.std([a[i], b[i], c[i]])/ np.sqrt(np.size(3)))
-    return arr
-
-dreh_p = mittel(dreh_p_1, dreh_p_2, dreh_p_2)
-print(dreh_p[1])
-
-table = (turbo_leck_1_1.T, turbo_leck_1_2.T, turbo_leck_1_3.T)
-np.transpose(table)
-headers = ("A", "B", "C")
-print(dreh_leck_1_1.T)
-print(table)
-#print(tabulate(table, headers, tablefmt="latex"))
-
-table ={'alpha1': turbo_leck_1_1, 'alphag': turbo_leck_1_2,  'delg':turbo_leck_1_3, 'delr':mittel(turbo_leck_1_1, turbo_leck_1_2, turbo_leck_1_3)}
-#print("\n ",tabulate (table, tablefmt="latex"))
-
+### Trash
 
 def printer(a):
     n = 2
@@ -178,32 +160,121 @@ def printer(a):
         table ={table[0] ,{title.join("1" ) : a[i]}}
     print("\n", tabulate(table, tablefmt = "latex_raw"))
 
+### Funktionen
+
+
+def mittel(a,b,c):
+    arr = unp.uarray(np.zeros(np.size(a)),np.zeros(np.size(a)))
+    for i in range(0,np.size(a)):
+        arr[i] = unc.ufloat(np.mean([a[i], b[i], c[i]]), np.std([a[i], b[i], c[i]])/ np.sqrt(np.size(3)))
+    return arr
+
+def lin(t,a,b):
+    return a * t + b
+
+def logstuff(a, grenz_1, grenz_2):
+    return unp.log((a[grenz_1:grenz_2]-a[-1])/(a[0]-a[-1]))
+
+
+def plot_lin(t,params_1, params_2, params_3,name,mess,grenz_1, grenz_2):
+
+
+    t_fine = np.linspace(t[0],t[ -1],1000)
+
+
+    
+    plt.figure()
+    plt.errorbar(t[0:-1], noms(logstuff(mess,0, np.size(mess)-1)), yerr= stds(logstuff(mess, 0, np.size(mess)-1)), fmt='rx',label= "Messdaten")
+    plt.plot(t_fine[0:250], lin(t_fine[0:250],*params_1),label="Fit #1") #Fit bereich 1
+    plt.plot(t_fine[150:330], lin(t_fine[150:330], *params_2), label = "Fit #2")
+    plt.plot(t_fine[230:700], lin(t_fine[230:700], *params_3), label = "Fit #3")
+    #plt.yscale('log')
+    plt.xlabel(r"$t [s]$")
+    plt.ylabel(r"$\ln(\frac{p-p_{end}}{p_{start}-p_{end}})$")
+    #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+    #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+    plt.tight_layout()
+    plt.legend()
+    plt.savefig("build/plots/"+ name +".pdf")
+
+
+
+def pressure(a,b,c,name):
+    grenz_1 = 21 #wilkürliche, hier deklarierte, Grenzen für die einzelnen fits
+    grenz_2 = 35 #gemeint sind dabei die Arrayelementindices (also OHNE element 35)
+
+
+    mean = mittel(a,b,c)
+    time = np.arange(0, (np.size(a)-1)*10,10)
+    time = np.append(time,1000)
+
+    # für den ersten Bereich
+
+    params_1, cov_1 = curve_fit(lin, time[:grenz_1], noms(logstuff(mean, 0, grenz_1)))
+
+    cov_1 = np.sqrt(np.diag(cov_1))
+    print("Die Ergebnisse des ersten Fits:\n",f"m = {params_1[0]:.3f} \pm {cov_1[0]:.4f} \t n = {params_1[1]:.3f} \pm {cov_1[0]:.4f}")
+
+
+    # für den zweiten Bereich
+
+    params_2, cov_2 = curve_fit(lin, time[grenz_1:grenz_2], noms(logstuff(mean, grenz_1, grenz_2)))
+
+    cov_2 = np.sqrt(np.diag(cov_2))
+    print("Die Ergebnisse des zweiten Fits:\n",f"m = {params_2[0]:.3f} \pm {cov_2[0]:.4f} 1/s \t n = {params_2[1]:.3f} \pm {cov_2[0]:.4f}")
+
+
+
+    # für den dritten Bereich
+
+    params_3, cov_3 = curve_fit(lin, time[grenz_2:np.size(mean)-1], noms(logstuff(mean, grenz_2, np.size(mean)-1)))
+
+    cov_3 = np.sqrt(np.diag(cov_3))
+    print("Die Ergebnisse des dritten Fits:\n",f"m = {params_3[0]:.3f} \pm {cov_3[0]:.4f} \t n = {params_3[1]:.3f} \pm {cov_3[0]:.4f}")
+
+
+
+
+    plot_lin(time, params_1,params_2, params_3, name, mean, grenz_1, grenz_2)
+
+
+
+
+###Tabellen
+
+table1 ={'Messreihe 1': dreh_p_1, 'Messreihe 2': dreh_p_2,  'Messreihe 3':dreh_p_3, 'gemittelte Messwerte': mittel(dreh_p_1, dreh_p_2, dreh_p_3)}
+table2 ={'alpha1': turbo_leck_1_1 *10**3, 'alphag': turbo_leck_1_2*10**3,  'delg':turbo_leck_1_3*10**3, 'delr':mittel(turbo_leck_1_1, turbo_leck_1_2, turbo_leck_1_3)*10**3}
+
+#print("\n ",tabulate (table1, tablefmt="latex"))
+
+#Auswertung
+
+
+print("########## AUSWERTUNG DREHSCHIEBER DRUCKKURVE: ###############\n\n")
+pressure(dreh_p_1,dreh_p_2, dreh_p_3,"plot_dreh_p")
+
+
+
+
+print("\n\n########## AUSWERTUNG TURBOPUMPE DRUCKKURVE: ###############\n\n")
+pressure(turbo_vent_p_1, turbo_vent_p_2, turbo_vent_p_3,"plot_turbo_vent_p")
+
+pressure(turbo_pump_p_1, turbo_pump_p_2, turbo_pump_p_3,"plot_turbo_p")
+
 
 ########Grafiken########
 
 
-plt.figure()
-plt.plot(t_1,(dreh_p_1),"x",label="Messwerte")
-#plt.errorbar(x, unp.nominal_values(y), yerr=unp.std_devs(y), fmt='rx')
-#plt.plot(x,func(x,omega0) )
-plt.yscale('log')
-plt.xlabel(r"$t [s]$")
-plt.ylabel(r"$p$")
-#plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
-#plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
-plt.tight_layout()
-plt.legend()
-plt.savefig("build/plots/plot1.pdf")
-
-plt.figure()
-plt.plot(t_1[:21],dreh_leck_1_1,"x",label="Messwerte")
-#plt.errorbar(x, unp.nominal_values(y), yerr=unp.std_devs(y), fmt='rx')
-#plt.plot(x,func(x,omega0) )
+#plt.figure()
+#plt.plot(t_1,(dreh_p_1),"x",label="Messwerte")
+##plt.errorbar(x, unp.nominal_values(y), yerr=unp.std_devs(y), fmt='rx')
+##plt.plot(x,func(x,omega0) )
 #plt.yscale('log')
-plt.xlabel(r"$t [s]$")
-plt.ylabel(r"$p$")
-#plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
-#plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
-plt.tight_layout()
-plt.legend()
-plt.savefig("build/plots/plot2.pdf")
+#plt.xlabel(r"$t [s]$")
+#plt.ylabel(r"$p$")
+##plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+##plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+#plt.tight_layout()
+#plt.legend()
+#plt.savefig("build/plots/plot1.pdf")
+
