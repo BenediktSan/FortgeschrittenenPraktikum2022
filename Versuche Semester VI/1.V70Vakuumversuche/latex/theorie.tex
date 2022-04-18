@@ -1,14 +1,103 @@
 \section{Zielsetzung}
 
+	In diesem Versuch werden allgemeine theoretische Begriffe in Verbindung mit Vakuumina erläutert.
+	Experimentiell wird das Saugvermögen einer Drehschieberpumpe und einer Turbomolekularpumpe bestimmt.
+	Dazu werden jeweils einige Evakurierungskurven aufgenommen und Leckratenmessungen durchgeführt.
+
 \section{Theorie}
 	
 	\subsection{Vakuum}
+		
+		Allgemein wird von einem Vakuum gesprochen, sobald der Druck innerhalb eines Gefäßes niedriger als sein Umgebungsdruck ist.
+		Da der niedrigste auf der Erde vorkommende Atmosphärendruck in großer Höhe bei $p = \SI{300}{\milli\bar}$ liegt, wird ab dann von einem Vakuum gesprochen.
+		Es ist in diesem Versuch eine gute Annäherung wenn wir bei dem vorliegendem Gas von idealem Gas sprechen. 
+		Dies bedeutet, dass jegliche Wechselwirkungen zwischen Teilchen nur durch vollkommen elastische Stöße passieren und die Gasteilchen keine Ausdehnung haben.
+		Wenn dies angenommen wird, kann das Gas auch mit der Idalen Gasgleichung
+		\begin{equation}
+			p \cdot V = N \cdot \text{K}_\text{b} \cdot T
+		\end{equation}
+		beschreiben werden.
+		Hier is $p$ der Druck,$V$ das Volumen, $N$ die Teilchenzahl, $\text{K}_\text{b}$ die Boltzmann Konstante und $T$ die Temperatur. 
+		Ein SPezialfall dieser Gleichung ist das \textit{Gesetz von Boyle-Mariotte}, dieses besagt, dass bei konstanter Temperatur
+		\begin{equation}
+			p \approx V^{-1}
+		\end{equation}
+		ist.
 
-	\subsection{Arten der Vakuumerzeugung}
+	\subsection{Fachbegriffe}
 
-		\subsubsection{Drehschieberpumpe}
+		\subsubsection{mittlere freie Weglänge}(nach Quelle \cite{wiki:mfW})
+		
+			die \textit{mittlere freie Weglänge} beschreibt die durschnittliche Fluglänge eines Gasteilchens zwischen zwei Kollisonen mit anderen Gasteilchen.
 
+		\subsubsection{Sorption}(nach Quelle \cite{wiki:sor})
+			
+			Bezeichnet den Vorgang einer Anreicherung eines Stoffes. 
+			Hier beschreibt die Absorption, wenn der Stoff innerhalb einer Phase aufgenommen wird, zum Beispiel die Aufnahame einer Elektromagnetischenwelle.
+			Adsorption ist im Gegensatz zur Absortion die Analgerung auf der Oberfläche oder Grenzfläche eines Stoffes.
+
+		\subsubsection{Desorption}
+
+			Im Gegensatz du der Sorption, beschreibt die Desoprtion den Prozess bei dem Atome oder Moleküle die Oberfläche eines Festkörpers verlassen und in die Gasphase übergehen.
+
+	\subsection{Vakuumbereiche}(nach Quelle \cite{pfeiffer:grund})
+
+		Physikalisch sind mehrere Vakuumbereiche definiert, da die verschiedenen Dichten zu stark unterschiedlichem Gasverhalten führen. 
+
+		\subsubsection{Grobvakuum}
+			Im ersten Druckbereich wird von einem Grobvakuum gesprochen, dieser ist zwischen $\SI{103}{\milli\bar}$ und $\SI{1}{\milli\bar}$ definiert.
+			In diesem Bereich findet findet allgemein Viskose Strömung statt, in der der Großteil der Stöße zwischen den Gasteilchen untereinander und nicht mit der Gefäßwand stattfinden.
+			Es muss jedoch abhängig von der Teilchengeschwindigkeit, der Teilchendichte und der Gefäßgröße zwischen laminarer oder turbolenter Strömung unterschieden. 
+			%hier könnten noch Formeln und weitere Informationen zu den Strömungsarten eingefögt werden
+
+		\subsubsection{Feinvakuum}
+
+			Das Feinvakuum ist zwischen $\SI{1}{\milli\bar}$ und $\SI{e-3}{\milli\bar}$ definiert, hier findet Knudsen-Strömung statt.
+
+		\subsubsection{Hoch und Ultrahochvakuum} 
+			Es wird ab einem Druck von $\SI{e-3}{\milli\bar}$ bis $\SI{e-7}{\milli\bar}$ von Hochvakuum gesprochen, von Ultrahochvakuum ist ab $\SI{-7}{\milli\bar}$ die Rede.		
+			In diesen beiden Druckbereichen findet nur noch Molekulare-Strömung statt.
+			Dies bedeutet, dass die Teilchen untereinander fast nicht mehr Wechselwirken, mathematisch ist hier die mittlere freie Weglänge größer als die Weite des Stömungskanal.
+		\\
+		Diese unterscheidlichen Stömungsarten haben hohe relavanz bei praktischen Anwendungen da zum Beispiel das effektive Saugvermögen von Vakuumpumpen beeinträchtigt wird.
+		Im Grobvakuum ist es wichtig einen großen Leitungsdurchmesser einzubauen, damit laminare Stömung sicher gestellt ist,
+		im Ultrahochvakuum reichen relativ kleine Leitungsurchmesser jedoch wieder aus.
+
+	\subsection{Arten der Vakuumerzeugung}(nach Quelle \cite{peiffer})
+		
+		Vakuumpumpen können sich stark in ihrer Funktionsweise abhängig vom Arbeitsbereich unterscheiden.		
+		Der größte Unterschied liegt zwischen gasbindenden und gasfördenden Vakuumpumpen, wobei sich gasfördernde Pumpen noch einmal in in verdrängende und kinetische Pumpen unterteilen.
+		Gasbindende Vakuumpumpen funktionieren durch Sorption indem Gasteilchen von der Pumpe aufgenommen werden, dieses Prinzip ergibt erst bei bereits sehr gutem Vakuum Sinn.  Gasfördernde Vakuum födern Gas durch abgeschlossene Volumen die koprimiert werden oder sich ausdehnen.
+		Kinetische Pumpen erhöhen das Vakuum indem Gasteilchen in richtung der Pumprichtung beschleunigt werden.
+		Auch dieses Vakuumerzeugungsprinzip hat bei Atmosphärendruck einige Probleme und benötigt ein Vorvakuum.
+
+		\subsubsection{Drehschiebervakuumpumpe} 
+						
+			\begin{figure}
+				\centering
+				\includegraphics[width=0.5\linewidth]{"latex/images/Drehschieber.png"}
+				\caption{Der schematische Aufbau einer Drehschiebervakuumpumpe}
+				\label{fig:dreh}
+			\end{figure} Die Drehschieberpumpe ist eine Rotationsverdrängerpumpe. 
+			Sie besteht aus dem Gehäause (1), dem eingebauten Rotor(2), den mit Flieh- und Federkraft radial bewegten Schiebern(3) und dem Ein- bzw. Auslass(4). 
+			Das Innere des Arbeitsraumes(5) wird durch den Stator, den Rotor und die Schieber in mehrere Bereiche eingeteilt. 
+			Diese Saugen beim neues Gas aus dem Rezipienten und erhöhen dessen Vakuum wenn sie expandieren.
+			Sobald das Volumen dann wieder vom Rezipienten getrennt ist, wird es komprimiert um dann Gas durch den Auslass zu drücken.
+			Eine zweistufige Drehschieberpumpe kann Drücke bis zu $\SI{5e-4}{\milli\bar}$ erreichen, in diesem Versuch wird jedoch nur eine einstufige Pumpe mit einem Enddruck von $p = \SI{2.1 e-2}{\milli\bar}$ benutzt.
+			Ein Nachteil der Drehschieberpumpe ist, dass unter anderem zum abschließen der Kammern, Öl verwendet wird.
+			Mittels Desorption können daher Moleküle aus dem Öl in das Gas übergehen und dieses Verunreinigen.	 
+
+			\cite{pfeiffer}
 		\subsubsection{Turbomolekularpumpe}
+		
+			\cite{pfeiffer}
+			Turbomolekularpumpen sind Turbinenähnliche kinetische Vakuumpumpen. 
+			In dem Gehäuse ist ein mehrstufiger, Roter mit Schaufeln.
+			Weiterhin sind zwischen den Rotorscheiben ebenfalls beschaufelte Statorscheiben mit spiegelverkehrter Symmetrie zu den Rotorscheiben.
+			Die Rotor schreiben drehen sich nun mit bis zu $\SI{1500}{\hertz}$, damit die Schaufeln eine Rotationsgeschwindigkeit ähnlich der mittleren Teilchgeschwindigkeit haben. 
+			Durch Wechselwirkung mit den Rotor und Statorschaufeln werden die Gasteilchen in Pumprichtung beschleunigt.
+			Eine Vorraussetzung für diese Funktionsweise, ist, dass in der Pumpe Molekulareströmung vorliegt.
+			  						
 
 	\subsection{Saugvermögen}
 
@@ -59,60 +148,16 @@
 		\subsubsection{Pennin-Vakuummeter}
 
 		\subsubsection{Bayard-Alpert-Vakuummeter}
-			
+		
+		\subsection{Piezo-Vakuumeter}
+
+
 \section{Vorbereitung}      
 Vorbereitung: \\
-\\
-	1. Definition des Vakuums:\\
-		-keine festen Objekte oder Flüssigkeiten,\\
-                -extrem wenig Gas und extrem niedriger Gasdruck\\
-                -"geringer Druck innerhalb eines Gefäßes als außerhalb (Atmosphärensruck)"\\
-                -niedriger als 300mbar <- niedrister auf der Erdoberfläche vorkommende Atmosphärendruck\\
-\\
-	2. Ideales Gas:\\
-		-Vielzahl von Teilchen in ungeordneter Bewegung\\
-		-Wechselwirkung nur durch harte, elastische Stöße\\
-\\
-	   Boyle-Mariottesches Gesetz:\\
-		-konstante Teilchenzahl N, ideales Gas, konstante Temperatur, -> Druck oder Volumenänderung => isotherme Zustandsänderung\\
-		 \-> Volumen V ist anti proportional zum Druck p => P * V = const \\
-\\
-	   Zustandsgleichung für idealee Gase:\\
-		- p * V = N * kB * T\\
-\\
-	   erwateter Zusammenhang zwischen Druck und Zeit für Evakuierungskurve und Leckratenmessung:\\
-	   	- Die "Evakuierungsrate" nimmt exponentiell mit der Zeit ab somit steigt der Druck logarithmisch\\
-		- Der durch ein Leck Druck nimmt exponentiell ab\\
-\\
-	3. Druck:\\
-		-Druck ist die Kraft auf eine Fläche\\
 \\
 	   Partialdruck:\\
 	   	-Der Druck der in einem Gasgemisch durch eine einzelne/oder mehrere Komponente entsteht\\
 		-Setzt sich zum Gesamtdruck additativ zusammen\\
-\\
-	   Druckeinheiten:\\
-	   	-Technischer Atmospährendruck atm = kp/$cm^2$ = 98,0665 kPa \\
-		-Bar bar = 100kPa about equals 1at\\
-		-Torr, Druck von eimem Millimeter Quecksilber mmHg= 1/760 atm\\
-		-1 Meter Wassersäule mWS = 0,1atm = 9.8kPa\\
-\\
-	   Teilchenzahldichte:\\
-	   	- Anzahl an Teilchen pro Volumen, n oder C\\
-\\
-	   Teilchengeschwindigkeit:\\
-		-Die durchschnittliche Geschwindigkeit von Teilchen?\\
-\\
-	   mittlere freie Weglänge:\\
-	   	- Durchschnittliche Länge die ein Teilchen zwischen 2 Kollisionen fliegt\\
-\\
-	4. Laminare Strömung:\\
-		-Eine Strömung ohne sichtbare Turbulenzen/Verwirblungen\\
-		-Das Fluid strömt in Schichten\\
-\\
-	   molekulare Strömung:\\
-		- die mittlere freie Weglänge ist deutlich größer als der Durchmesser der Strömung\\
-		- Konstanter Fluss bei gleichem Druck\\
 \\
 	   Leitwert:\\
 		-Maß des Widerstandes beim Fluss eines Fluides durch ein Kabel analog zur elektrischen Leitfähigkeit?\\ 
