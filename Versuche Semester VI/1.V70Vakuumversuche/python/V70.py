@@ -47,7 +47,7 @@ dreh_p_3 = np.array([989.7, 640, 477, 357, 266, 196, 144, 108, 76.9, 56.2, 41.1,
 dreh_leck_1_1 = np.array([0.39, 1.3, 1.4, 1.5, 1.6, 1.6, 1.7, 1.8, 1.9, 1.9, 2, 
                         2.1, 2.1, 2.2, 2.3, 2.3, 2.4, 2.5, 2.6, 2.7, 2.7 ])
     
-dreh_leck_1_2 = np.array([0.39, 1.4, 1.5, 1.6, 1.6, 1.7, 1.8, 1.9, 1.9, 2, 
+dreh_leck_1_2 = np.array([0.39, 1.4, 1.5, 1.5, 1.6, 1.6, 1.7, 1.8, 1.9, 1.9, 2, 
                         2.1, 2.2, 2.2, 2.3, 2.4, 2.5, 2.5, 2.6, 2.7, 2.8])
 
 dreh_leck_1_3 = np.array([0.39, 1.3, 1.4, 1.5, 1.6, 1.6, 1.7, 1.8, 1.9, 1.9, 2,
@@ -62,7 +62,7 @@ dreh_leck_2_2 = np.array([10, 19.3, 23.1, 26.8, 30.3, 34.2, 38, 41.5, 45.5, 48.9
                         56, 60.5, 63.8, 67.5, 71.5, 75, 78.8, 82.8, 86.6, 90.2 ])
 
 dreh_leck_2_3 = np.array([10, 19.2, 22.9, 26.8, 30.4, 34.1, 37.8, 41.6, 45.3, 49.1, 
-                        52.8, 56.6, 60.3, 64, 68.1, 71.1, 75.2, 79.2, 82.6, 90.1])
+                        52.8, 56.6, 60.3, 64, 68.1, 71.1, 75.2, 79.2, 82.6, 86.2, 90.1])
 
 ## 40mbar Gleichgewicht
 
@@ -134,7 +134,7 @@ turbo_leck_3_1 = np.array([0.7, 1.84, 2.75, 3.62, 4.46, 5.18, 6.01, 6.79, 7.8, 8
 
 turbo_leck_3_2 = np.array([0.702, 1.83, 2.79, 3.72, 4.53, 5.32, 6.16, 6.94, 7.93, 9.14, 10.3, 11.5, 12.8]) * 10**(-4)
 
-turbo_leck_3_3 = np.array([0.698, 1.82, 2.76, 3.62, 4.46, 5.30, 6.1, 6.86, 9.0, 10.2, 11.3, 12.6]) * 10**(-4)
+turbo_leck_3_3 = np.array([0.698, 1.82, 2.76, 3.62, 4.46, 5.30, 6.1, 6.86,7.86, 9.0, 10.2, 11.3, 12.6]) * 10**(-4)
 
     
 
@@ -152,22 +152,64 @@ turbo_leck_4_3 = np.array([0.504, 1.36, 2.14, 2.86, 3.52, 4.14, 4.76, 5.37, 5.98
 
 ### Trash
 
-def printer(a):
-    n = 2
-    title = "Messreihe "
-    table = {title.join("1") : a[0]}
-    for i in range(1,n):
-        table ={table[0] ,{title.join("1" ) : a[i]}}
-    print("\n", tabulate(table, tablefmt = "latex_raw"))
+
 
 ### Funktionen
 
+def err_dreh(a):                    #funktion für die fehler des messgeräts
+    a = noms(a)
+    err = np.zeros(np.size(a))
+    for i in range(0,np.size(a)):
+        if(a[i] >= 10):
+            err[i] = 0.003*1200
+        else:
+            if(a[i] >= 2 *10**(-3)):
+                err[i] = a[i] * 0.1
+            else:
+                err[i] = a[i] * 2
+    b =unp.uarray(a,err)        
+    return b
+
+
+def err_turbo(a):
+    a = noms(a)
+    err = np.zeros(np.size(a))
+    for i in range(0,np.size(a)):
+        if(a[i] <= 100):
+            err[i] = 0.3 * a[i]
+        else:
+            err[i] = 0.5 * a[i]
+    b =unp.uarray(a,err)        
+    return b
+
+def err_mess(a, name):
+    if (name == "dreh"):
+        return err_dreh(a)
+    else:
+        if(name =="turbo"):
+            return err_turbo(a)
+        else:
+            print("############## WRONG NAME ###########")
+
+
 
 def mittel(a,b,c):
+    if (np.size(a) != np.size(b) or np.size(b) != np.size(c)):
+        print("NICHT ALLE WERTE EINGETRAGEN")
+        if(np.size(a)>np.size(b)):
+            print("FEHLER IN ARRAY  b)")
+        else:
+            if(np.size(b)>np.size(c)):
+                print("FEHLER IN ARRAY  c)")
+            else:
+                print("FEHLER IN ARRAY  a)")
     arr = unp.uarray(np.zeros(np.size(a)),np.zeros(np.size(a)))
     for i in range(0,np.size(a)):
-        arr[i] = unc.ufloat(np.mean([a[i], b[i], c[i]]), np.std([a[i], b[i], c[i]])/ np.sqrt(np.size(3)))
+        arr[i] = unc.ufloat(np.mean([a[i], b[i], c[i]]), np.std([a[i], b[i], c[i]])/ np.sqrt(3))
     return arr
+
+def printer(a,b,c):
+   table1 ={'Messreihe 1': a, 'Messreihe 2': b,  'Messreihe 3': c, 'gemittelte Messwerte': mittel(a, b, c)}
 
 def lin(t,a,b):
     return a * t + b
@@ -176,27 +218,55 @@ def logstuff(a, grenz_1, grenz_2):
     return unp.log((a[grenz_1:grenz_2]-a[-1])/(a[0]-a[-1]))
 
 
-def plot_lin(t,params_1, params_2, params_3,name,mess,grenz_1, grenz_2):
+def plot_lin_loss(t,params_1, params_2, params_3,name,mess,grenz_1, grenz_2):
 
 
     t_fine = np.linspace(t[0],t[ -1],1000)
+    if(np.size(mess) < 30 ):
+        plt.figure()
+        plt.errorbar(t[0:-1], noms(logstuff(mess,0, np.size(mess)-1)), yerr= stds(logstuff(mess, 0, np.size(mess)-1)), fmt='r.',label= "Messdaten")
+        plt.plot(t_fine[0:70], lin(t_fine[0:70],*params_1),label="Fit #1") #Fit bereich 1
+        plt.plot(t_fine[50:200], lin(t_fine[50:200], *params_2), label = "Fit #2")
+        plt.plot(t_fine[120:500], lin(t_fine[120:500], *params_3), label = "Fit #3")
+        #plt.yscale('log')
+        plt.xlabel(r"$t [s]$")
+        plt.ylabel(r"$\ln(\frac{p-p_{end}}{p_{start}-p_{end}})$")
+        #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+        #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+        plt.tight_layout()
+        plt.legend()
+        plt.savefig("build/plots/plot_" + name + "_p.pdf")
+    else:
+        plt.figure()
+        plt.errorbar(t[0:-1], noms(logstuff(mess,0, np.size(mess)-1)), yerr= stds(logstuff(mess, 0, np.size(mess)-1)), fmt='r.',label= "Messdaten")
+        plt.plot(t_fine[0:250], lin(t_fine[0:250],*params_1),label="Fit #1") #Fit bereich 1
+        plt.plot(t_fine[150:380], lin(t_fine[150:380], *params_2), label = "Fit #2")
+        plt.plot(t_fine[220:700], lin(t_fine[220:700], *params_3), label = "Fit #3")
+        #plt.yscale('log')
+        plt.xlabel(r"$t [s]$")
+        plt.ylabel(r"$\ln(\frac{p-p_{end}}{p_{start}-p_{end}})$")
+        #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+        #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+        plt.tight_layout()
+        plt.legend()
+        plt.savefig("build/plots/plot_" + name + "_p.pdf")
 
 
-    
+def plot_lin_leck(t,params_1, name,mess,):
+
+    t_fine = np.linspace(t[0],t[ -1],1000)
+
     plt.figure()
-    plt.errorbar(t[0:-1], noms(logstuff(mess,0, np.size(mess)-1)), yerr= stds(logstuff(mess, 0, np.size(mess)-1)), fmt='rx',label= "Messdaten")
-    plt.plot(t_fine[0:250], lin(t_fine[0:250],*params_1),label="Fit #1") #Fit bereich 1
-    plt.plot(t_fine[150:330], lin(t_fine[150:330], *params_2), label = "Fit #2")
-    plt.plot(t_fine[230:700], lin(t_fine[230:700], *params_3), label = "Fit #3")
+    plt.errorbar(t[0:], noms(mess), yerr= stds(mess), fmt='r.',label= "Messdaten")
+    plt.plot(t_fine, lin(t_fine,*params_1),label="Fit") 
     #plt.yscale('log')
     plt.xlabel(r"$t [s]$")
-    plt.ylabel(r"$\ln(\frac{p-p_{end}}{p_{start}-p_{end}})$")
+    plt.ylabel(r"$p [mbar]$")
     #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
     #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
     plt.tight_layout()
     plt.legend()
-    plt.savefig("build/plots/"+ name +".pdf")
-
+    plt.savefig("build/plots/" + name +".pdf")
 
 
 def pressure(a,b,c,name):
@@ -206,7 +276,14 @@ def pressure(a,b,c,name):
 
     mean = mittel(a,b,c)
     time = np.arange(0, (np.size(a)-1)*10,10)
-    time = np.append(time,1000)
+    
+
+    if(np.size(a)<grenz_2):
+        grenz_1 = 3
+        grenz_2 = 9
+        time = np.append(time,500)
+    else:
+        time = np.append(time,1000)
 
     # für den ersten Bereich
 
@@ -232,34 +309,67 @@ def pressure(a,b,c,name):
     cov_3 = np.sqrt(np.diag(cov_3))
     print("Die Ergebnisse des dritten Fits:\n",f"m = {params_3[0]:.3f} \pm {cov_3[0]:.4f} \t n = {params_3[1]:.3f} \pm {cov_3[0]:.4f}")
 
+    #err_mean =mean
+    #mean = err_mess(mean, name)
+    #print(stds(err_mean - mean))
+    plot_lin_loss(time, params_1,params_2, params_3, name, mean, grenz_1, grenz_2)
 
 
 
-    plot_lin(time, params_1,params_2, params_3, name, mean, grenz_1, grenz_2)
+def leckrate(a,b,c,name):
 
+    mean = mittel(a,b,c)
+    time = np.arange(0, (np.size(a))*10,10)
+    
+    params_1, cov_1 = curve_fit(lin, time, noms(mean))
+
+    cov_1 = np.sqrt(np.diag(cov_1))
+    print(f"Die Ergebnisse des ", name ," Fits:\n",f"m = {params_1[0]:.3f} \pm {cov_1[0]:.4f} \t n = {params_1[1]:.3f} \pm {cov_1[0]:.4f}")
+    
+    mean = err_dreh(mean)                       #einfach mal den fehler des messgeräts nehmen
+    plot_lin_leck(time, params_1, name, mean)
 
 
 
 ###Tabellen
 
-table1 ={'Messreihe 1': dreh_p_1, 'Messreihe 2': dreh_p_2,  'Messreihe 3':dreh_p_3, 'gemittelte Messwerte': mittel(dreh_p_1, dreh_p_2, dreh_p_3)}
-table2 ={'alpha1': turbo_leck_1_1 *10**3, 'alphag': turbo_leck_1_2*10**3,  'delg':turbo_leck_1_3*10**3, 'delr':mittel(turbo_leck_1_1, turbo_leck_1_2, turbo_leck_1_3)*10**3}
+#printer(dreh_leck_1_1, dreh_leck_1_2, dreh_leck_1_3)
 
-#print("\n ",tabulate (table1, tablefmt="latex"))
 
-#Auswertung
+
+
+
+
+
+
+#############################Auswertung#####################################
 
 
 print("########## AUSWERTUNG DREHSCHIEBER DRUCKKURVE: ###############\n\n")
-pressure(dreh_p_1,dreh_p_2, dreh_p_3,"plot_dreh_p")
+
+#pressure(dreh_p_1,dreh_p_2, dreh_p_3,"dreh")
 
 
 
 
 print("\n\n########## AUSWERTUNG TURBOPUMPE DRUCKKURVE: ###############\n\n")
-pressure(turbo_vent_p_1, turbo_vent_p_2, turbo_vent_p_3,"plot_turbo_vent_p")
+#pressure(turbo_vent_p_1, turbo_vent_p_2, turbo_vent_p_3,"plot_turbo_vent_p")
 
-pressure(turbo_pump_p_1, turbo_pump_p_2, turbo_pump_p_3,"plot_turbo_p")
+#pressure(turbo_pump_p_1, turbo_pump_p_2, turbo_pump_p_3,"plot_turbo_p")
+
+print("\n\n########## AUSWERTUNG DREHSCHIEBER LECKRATENMESSUNG: ###############\n\n")
+
+leckrate(dreh_leck_1_1, dreh_leck_1_2, dreh_leck_1_3, "dreh_04mbar")
+leckrate(dreh_leck_2_1, dreh_leck_2_2, dreh_leck_2_3, "dreh_10mbar")
+leckrate(dreh_leck_3_1, dreh_leck_3_2, dreh_leck_3_3, "dreh_40mbar")
+leckrate(dreh_leck_4_1, dreh_leck_4_2, dreh_leck_4_3, "dreh_80mbar")
+
+print("\n\n########## AUSWERTUNG TURBOMOLEKULAR LECKRATENMESSUNG: ###############\n\n")
+
+leckrate(turbo_leck_1_1, turbo_leck_1_2, turbo_leck_1_3, "turbo_1e-4mbar")
+leckrate(turbo_leck_2_1, turbo_leck_2_2, turbo_leck_2_3, "turbo_2e-4mbar")
+leckrate(turbo_leck_3_1, turbo_leck_3_2, turbo_leck_3_3, "turbo_7e-4mbar")
+leckrate(turbo_leck_4_1, turbo_leck_4_2, turbo_leck_4_3, "turbo_5e-4mbar")
 
 
 ########Grafiken########
