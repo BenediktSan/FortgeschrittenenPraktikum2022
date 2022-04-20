@@ -14,7 +14,7 @@
 		Dies bedeutet, dass jegliche Wechselwirkungen zwischen Teilchen nur durch vollkommen elastische Stöße passieren und die Gasteilchen keine Ausdehnung haben.
 		Wenn dies angenommen wird, kann das Gas auch mit der Idalen Gasgleichung
 		\begin{equation}
-			p \cdot V = N \cdot \text{K}_\text{b} \cdot T
+			p \cdot V = N \cdot \text{k}_\text{b} \cdot T
 		\end{equation}
 		beschreiben werden.
 		Hier is $p$ der Druck,$V$ das Volumen, $N$ die Teilchenzahl, $\text{K}_\text{b}$ die Boltzmann Konstante und $T$ die Temperatur. 
@@ -93,101 +93,94 @@
 			\cite{pfeiffer}
 			Turbomolekularpumpen sind Turbinenähnliche kinetische Vakuumpumpen. 
 			In dem Gehäuse ist ein mehrstufiger, Roter mit Schaufeln.
-			Weiterhin sind zwischen den Rotorscheiben ebenfalls beschaufelte Statorscheiben mit spiegelverkehrter Symmetrie zu den Rotorscheiben.
+			Zwischen den Rotorscheiben sind beschaufelte Statorscheiben mit spiegelverkehrter Symmetrie zu den Rotorscheiben.
 			Die Rotor schreiben drehen sich nun mit bis zu $\SI{1500}{\hertz}$, damit die Schaufeln eine Rotationsgeschwindigkeit ähnlich der mittleren Teilchgeschwindigkeit haben. 
 			Durch Wechselwirkung mit den Rotor und Statorschaufeln werden die Gasteilchen in Pumprichtung beschleunigt.
-			Eine Vorraussetzung für diese Funktionsweise, ist, dass in der Pumpe Molekulareströmung vorliegt.
+			Eine Vorraussetzung für diese Funktionsweise, ist, dass in der Pumpe Molekulareströmung vorliegt. 
+			Die mittlere freie Weglänge muss größer sein, als die Abstände zwischen Rotor und Statorscheiben damit die Teilchen ihre Bewegungsrichtung bei behalten. 
 			  						
-
 	\subsection{Saugvermögen}
 
+		Im Allgemeinen beschreibt das Saugvermögen $S$ einer Vakuumpumpe, wie viel Gas sie aus dem Rezipienten ziehen kann. 
 		\begin{equation}
 			S = \frac{\text{d}V}{\text{d}t}
 		\end{equation}
+		Um dieses zu Bestimmen werden in diesem Versuch Evakuierungskurven, also der Druck innerhalb des Rezipienten und Leckratenmessungen durchgeführt.
 
 		\subsubsection{Messung der p(t)-Kurve}
-
+			
+			Wird die Gleichung:
 			\begin{equation}
 				p \cdot V = \text{const}
 			\end{equation}
-
+			nach der Zeit abgeleitet, entstehen auf der linken Seite zwei Summanden. 
+			Wird nun mit dem Druck $p$ multipliziert, kann die Ableitung des Volumens als das Saugervermögen $S$ identifiziert werden.
+			Durch verschieben der Terme entsteht folgende Gleichung:
 			\begin{equation}
 				\frac{\text{d}V}{\text{d}t} = S = - \frac{V}{p} \frac{\text{d}p}{\text{d}t}
 			\end{equation}
-
+			Diese Differentialgleichung wird mittels einer Exponentialfunktion mit dem Saugvermögen $S$ dem Volumen $V$ und der Zeit $t$ im Exponenten gelöst:
 			\begin{equation}
 				p(t) = p_0 \text{exp}\left( - \frac{S}{V_0}t \right)
 			\end{equation}
-				
+			Jedoch muss noch beachtet werden, dass alle Vakuumpumpen einen gewissen Enddruck $p_\text{E}$ haben. 
+			Sobald dieser Druck erreicht ist, kann die Pumpe den Druck nicht weiter erhöhen und es entsteht ein Gleichgewicht des Saugvermögens und Vakuumreduzierende Prozesse wie Desorptions oder Lecks.
+			Der Gleichgewichtsdruck wird in der Evakuierungskurve durch verschieben und skalieren der Exponentialfunktion eingerechnet:
 			\begin{equation}
 				p(t) = (p_0 - p_\text{E}) \text{exp}\left( - \frac{S}{V_0}t \right) + p_\text{E}
 			\end{equation}
-
+			Mit dieser Formel lässt sich aus der Evakuierungskurve eine Schätzung für das Saugvermögen einer Vakuumpumpe berechnen.
+			Jedoch muss beim Auswerten darauf geachtet werden, dass Vakuumpumpen zum Beispiel in unterschiedlichen Strömungsarten, auch verschiedene Saugvermögen haben.
+			
 		\subsubsection{Leckratenmessung}
-
+			
+			Zur Berechnung des Saugvermögens, mittels Leckratenmessung, muss zunächst die Leckrate $Q$ mittels des Gleichgewichtsdruck $p_\text{g}$ definiert werden:
 			\begin{equation}
-				S = \frac{Q}{p_\text{g}}
+				S = \frac{Q}{p_\text{g}},
 			\end{equation}
-
+			und
 			\begin{equation}
-				Q = V_0 \frac{\Delta p}{\Delta t}
+				Q = V_0 \frac{\Delta p}{\Delta t}.
 			\end{equation}
-
+			Hier raus folgt nun wieder ein Ausdruck für das Saugvermögen der Vakuumpumpe:
 			\begin{equation}
-				S = \frac{V_0}{p_\text{g}} \cdot \frac{\Delta p}{\Delta t}
+				S = \frac{V_0}{p_\text{g}} \cdot \frac{\Delta p}{\Delta t.}
 			\end{equation}
+		\subsubsection{Leitwert}
 
+			Bei all diesen Berechnungen ist zu bedenken, dass das theoretische Saugvermögen $S_0$ immer durch Vakuumanlage reduziert wird.
+			Dieser Effekt wird durch den Leitwert des Rezipienten beschrieben, er gibt den reziproken Strömungswiderstand der Schläuche und Verbindungen an.
+			Das effektive Saugvermögen $S_\text{eff}$, dass tatsächlich am Rezipienten ankommt, berechnet sich damit zu:
 			\begin{equation}
-				S_\text{eff} = \frac{S_0 \cdot L}{S_0 + L}
+				S_\text{eff} = \frac{S_0 \cdot L}{S_0 + L}.
 			\end{equation}
 
 	\subsection{Arten der Vakuummessung}
 		
 		\subsubsection{Pirani-Vakuummeter}
+			
+			Das Pirani-Vakuummeter arbeitet optimal im Bereich des Feinvakuums, es nutzt aus, dass in diesem Druckbereich der Wärmeleitfähigkeit proportional zum Druck ist. 
+			Der Wärmetransport geschieht hier primär durch direkte Stöße von Gasteilchen untereinander. 
+			Die Messung erfolgt über einen Draht in dem Rezipienten, durch den ein konstanter Strom fließt.
+			Nun kann mittels einer Wheatstone-Brücke der Wiederstand dieses Leiters und somit die Temperatur des Drahtes bestimmt werden.
+			Da der Draht sich abhängig von dem Druck im Rezipienten, unterschiedlich schnell abkühlt, kann mit dieser Methode auch der Druck in dem Rezipienten bestimmt werden.
 
-		\subsubsection{Pennin-Vakuummeter}
+		\subsubsection{Penning-Vakuummeter}
+
+			Das Penning-Vakuummeter ist ein Kalt-Ionisations-Vakuumeter, es arbeitet im Hoch- und Ultrahochvakuum. 
+			Es beruht darauf, dass durch ein Elektrisches Feld Atome ionisiert werden.
+			Die frei werdenden Elektronen werden beschleunigt und ionisierten auf ihrem Beschleunigungsweg weitere Atome.
+			Diese Ionen werden dann zu der Kathode beschleunigt und erzeugen dort einen Strom, welcher ein Maß für das Vakuum ist.
 
 		\subsubsection{Bayard-Alpert-Vakuummeter}
+
+			Das Bayard-Alpert-Vakuummeter ist eine Heiß-Ionisations-Vakuumeter, es arbeitet sehr Analog zu dem Penning-Vakuumeter.
+			Der einzige Unterschied ist, dass die Elektronen durch einen Glühdraht frei werden.
 		
 		\subsection{Piezo-Vakuumeter}
 
 
 \section{Vorbereitung}      
-Vorbereitung: \\
-\\
-	   Partialdruck:\\
-	   	-Der Druck der in einem Gasgemisch durch eine einzelne/oder mehrere Komponente entsteht\\
-		-Setzt sich zum Gesamtdruck additativ zusammen\\
-\\
-	   Leitwert:\\
-		-Maß des Widerstandes beim Fluss eines Fluides durch ein Kabel analog zur elektrischen Leitfähigkeit?\\ 
-\\
-	5. Gasstrom: \\
-		-Fluss an Gass also Materie sehr geringer Dichte?\\
-\\
-	   Saugleistung:\\
-		-dpV/dt, das auf die Stoffmenge bezogene Durchlassvermögen\\
-\\
-	   Saugvermögen:\\
-	   	-Volumen pro Zeit bei Umgebungsdruck = 1bar und 20 Grad Celsius\\
-\\
-	   effektives Saugvermögen einer Vakuumpumpe:\\
-	   	-Das effektive Saugvermögen ist das Saugvermögen um einen Gewissen Faktor verringert, dieser berechnet sich aus dem Verhältnis des Druckes am Vakuumbehälter und dem Ansaugstutzen oder durch:\\
-			S(eff) = S/(1 + S/L) mit dem Leitwert L\\
-\\
-	   Leitwert eines Rohres:\\
-		- (pi * $d^4$)/(256 * eta *l) * (p1+p2) Laminar:\\
-\\
-	6. Adsorption:\\
-		-Wenn Materie sich an der Oberfäche von Materialien \\ 
-\\
-	   Absorption:\\
-		-Wenn Materie/EM-Wellen in Materie aufgenommen werden\\
-\\
-	   Desorption:\\
-		-Wenn Materie die Oberfläche eines Festkörpers verlässt, bzw aus der Flüssigen in die Gasphase übergeht\\
-		-Umkehrprozess der Sorption\\
-\\
 	   Diffusion:\\
 		-Der Prozess wenn ohne äußere Einwirkungen ein Konzentrationsunterschied sich ausgleicht.\\
 		\\
@@ -204,76 +197,8 @@ Vorbereitung: \\
 		-Bar bar = 100kPa about equals 1at\\
 		-Torr, Druck von eimem Millimeter Quecksilber mmHg= 1/760 atm\\
 		-1 Meter Wassersäule mWS = 0,1atm = 9.8kPa\\
-\\
-	   Teilchenzahldichte:\\
-	   	- Anzahl an Teilchen pro Volumen, n oder C\\
-\\
-	   Teilchengeschwindigkeit:\\
-		-Die durchschnittliche Geschwindigkeit von Teilchen?\\
-\\
-	   mittlere freie Weglänge:\\
-	   	- Durchschnittliche Länge die ein Teilchen zwischen 2 Kollisionen fliegt\\
-\\
-	4. Laminare Strömung:\\
-		-Eine Strömung ohne sichtbare Turbulenzen/Verwirblungen\\
-		-Das Fluid strömt in Schichten\\
-\\
-	   molekulare Strömung:\\
-		- die mittlere freie Weglänge ist deutlich größer als der Durchmesser der Strömung\\
-		- Konstanter Fluss bei gleichem Druck\\
-\\
-	   Leitwert:\\
-		-Maß des Widerstandes beim Fluss eines Fluides durch ein Kabel analog zur elektrischen Leitfähigkeit?\\ 
-\\
-	5. Gasstrom: \\
-		-Fluss an Gass also Materie sehr geringer Dichte?\\
-\\
-	   Saugleistung:\\
-		-dpV/dt, das auf die Stoffmenge bezogene Durchlassvermögen\\
-\\
-	   Saugvermögen:\\
-	   	-Volumen pro Zeit bei Umgebungsdruck = 1bar und 20 Grad Celsius\\
-\\
-	   effektives Saugvermögen einer Vakuumpumpe:\\
-	   	-Das effektive Saugvermögen ist das Saugvermögen um einen Gewissen Faktor verringert, dieser berechnet sich aus dem Verhältnis des Druckes am Vakuumbehälter und dem Ansaugstutzen oder durch:\\
-			S(eff) = S/(1 + S/L) mit dem Leitwert L\\
-\\
-	   Leitwert eines Rohres:\\
-		- (pi * $d^4$)/(256 * eta *l) * (p1+p2) Laminar:\\
-\\
-	6. Adsorption:\\
-		-Wenn Materie sich an der Oberfäche von Materialien \\ 
-\\
-	   Absorption:\\
-		-Wenn Materie/EM-Wellen in Materie aufgenommen werden\\
-\\
-	   Desorption:\\
-		-Wenn Materie die Oberfläche eines Festkörpers verlässt, bzw aus der Flüssigen in die Gasphase übergeht\\
-		-Umkehrprozess der Sorption\\
-\\
-	   Diffusion:\\
-		-Der Prozess wenn ohne äußere Einwirkungen ein Konzentrationsunterschied sich ausgleicht.\\
-		\\
-	   "virtuelles" Leck:\\
-	   	-Prozesse die das Vakuum reduzieren, jedoch von außen nicht messbar sind.\\
-		- Ausgasung/Desorption/rückstände\\
-\\
-	7. Methoden der Vakuumerzeugung:\\
-		Funktionsweise von:\\
-\\
-		Drehschieberpumpe:\\
-			-Das Volumen der Pumpkammer wird durch einen zylindrischen Rotor und 2 Drehschieber die durch Federn an die Wand gedrückt werden, das Volumen in drei Bereiche geteilt. \\
-			-Wenn der Rotor nun rotiert, wird gleichzeitig in einem Bereich neues Gas aus dem Rezipenten gezogen und in einem Anderem Bereich wird das Gas komprimiert und an einem Überdruckventil ausgegeben.\\
-			-p = o,5 * $10^{-1}$ mbar (Feinvakuum)\\
-			-es liegt viskose laminare Stömung vor, der Innendurchmesser der Rohre kann also klein sein\\
-			\\
-		Turbomolekularpumpe:\\
-			-mehstufige Turbine mit schaufelähnlichen Scheiben rotiert sehr schnell, ungefähr die mittlere thermische Geschwindigkeit der Teilchen.\\
-			-die Teilchen werden beschleunigt und durch Abprallen an den Strator-Schaufeln durch die Pumpe geleitet.\\
-			-Probleme bei leichten Gasen da die thermische Geschwindigkeit bereits sehr hoch ist\\
-
 	   Methoden der Vakuummessung:\\
-	   	Funktionsweise von:\\
+	   	Fgit@github.com:BenediktSan/FortgeschrittenenPraktikum2022.giunktionsweise von:\\
 \\
 		Wärmeleitsungs-Vakuummeter:\\
 			-Pirani-Vakuummetr:\\
