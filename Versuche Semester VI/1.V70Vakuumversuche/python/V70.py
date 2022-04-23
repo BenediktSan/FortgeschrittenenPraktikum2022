@@ -45,24 +45,24 @@ dreh_p_3 = np.array([989.7, 640, 477, 357, 266, 196, 144, 108, 76.9, 56.2, 41.1,
 ## 0.4 mbar gleichgewicht
 
 dreh_leck_1_1 = np.array([0.39, 1.3, 1.4, 1.5, 1.6, 1.6, 1.7, 1.8, 1.9, 1.9, 2, 
-                        2.1, 2.1, 2.2, 2.3, 2.3, 2.4, 2.5, 2.6, 2.7, 2.7 ])
+                        2.1, 2.1, 2.2, 2.3, 2.3, 2.4, 2.5, 2.6, 2.7, 2.7 ]) 
     
 dreh_leck_1_2 = np.array([0.39, 1.4, 1.5, 1.5, 1.6, 1.6, 1.7, 1.8, 1.9, 1.9, 2, 
-                        2.1, 2.2, 2.2, 2.3, 2.4, 2.5, 2.5, 2.6, 2.7, 2.8])
+                        2.1, 2.2, 2.2, 2.3, 2.4, 2.5, 2.5, 2.6, 2.7, 2.8]) 
 
 dreh_leck_1_3 = np.array([0.39, 1.3, 1.4, 1.5, 1.6, 1.6, 1.7, 1.8, 1.9, 1.9, 2,
-                        2.1, 2.1, 2.2, 2.2, 2.3, 2.4, 2.5, 2.6, 2.6, 2.7])
-
+                        2.1, 2.1, 2.2, 2.2, 2.3, 2.4, 2.5, 2.6, 2.6, 2.7]) 
+ 
 ## 10 mbar gleichgewicht
 
 dreh_leck_2_1 = np.array([10, 19.3, 23.1, 26.8, 30.3, 34.2, 38, 41.5, 45.5, 48.9, 53, 
-                        56, 60.5, 63.8, 67.5, 71.5, 75, 78.8, 82.8, 86.8, 90.2])
+                        56, 60.5, 63.8, 67.5, 71.5, 75, 78.8, 82.8, 86.8, 90.2]) 
 
 dreh_leck_2_2 = np.array([10, 19.3, 23.1, 26.8, 30.3, 34.2, 38, 41.5, 45.5, 48.9, 53, 
-                        56, 60.5, 63.8, 67.5, 71.5, 75, 78.8, 82.8, 86.6, 90.2 ])
+                        56, 60.5, 63.8, 67.5, 71.5, 75, 78.8, 82.8, 86.6, 90.2 ]) 
 
 dreh_leck_2_3 = np.array([10, 19.2, 22.9, 26.8, 30.4, 34.1, 37.8, 41.6, 45.3, 49.1, 
-                        52.8, 56.6, 60.3, 64, 68.1, 71.1, 75.2, 79.2, 82.6, 86.2, 90.1])
+                        52.8, 56.6, 60.3, 64, 68.1, 71.1, 75.2, 79.2, 82.6, 86.2, 90.1]) 
 
 ## 40mbar Gleichgewicht
 
@@ -70,21 +70,21 @@ dreh_leck_3_1 = np.array([40.1, 61.7, 75.8, 90, 104, 118.2, 133.2, 146.4, 160.5,
                         202.1, 216.1, 230.2, 244.3, 258.6, 274.1, 286.7, 300.8, 315, 329.1])
 
 dreh_leck_3_2 = np.array([40.2, 61.4, 75.5, 89.5, 103.7, 117.8, 131.9, 145.9, 160.1, 174.1, 188.2, 
-                        201.5, 215.6, 229.8, 245.3, 258.2, 272.2, 285.3, 303.2, 314.4, 328.5 ])
+                        201.5, 215.6, 229.8, 245.3, 258.2, 272.2, 285.3, 303.2, 314.4, 328.5 ]) 
 
 dreh_leck_3_3 = np.array([40.1, 61.4, 75.5, 89.6, 103.7, 117.8, 131.8, 145.9, 159.9, 174.0, 188.1, 
-                        201.4, 215.5, 229.5, 243.7, 257.8, 271.9, 285.9, 300.1, 314.2, 328.3])
+                        201.4, 215.5, 229.5, 243.7, 257.8, 271.9, 285.9, 300.1, 314.2, 328.3]) 
 
 ## 80mbar_Gleichgewicht
 dreh_leck_4_1 = np.array([80, 116.9, 143.9, 171, 198, 224, 251.1, 178.2, 305.2, 332.3, 359.4, 
-                        386.2, 413, 439, 466.3, 492.8, 518.8, 544.8, 570.4, 595, 620.8 ])
+                        386.2, 413, 439, 466.3, 492.8, 518.8, 544.8, 570.4, 595, 620.8 ]) 
 
 dreh_leck_4_2 = np.array([80, 116, 143.1, 170.3, 197.3, 223.4, 252.1, 280, 307.1, 334.2, 361.3, 
-                        388.1, 415.1, 441.3, 468.3, 494.7, 520.7, 546.6, 572.3, 596.4, 620])
+                        388.1, 415.1, 441.3, 468.3, 494.7, 520.7, 546.6, 572.3, 596.4, 620]) 
 
 dreh_leck_4_3 = np.array([80, 115.9, 143.1, 170, 196.8, 225.9, 253, 280, 307.2, 334.2, 361.2, 
-                        488.1, 417.1, 441.7, 468.2, 494.2, 520.8, 546.7, 572.2, 597.3, 622.5])
-
+                        488.1, 417.1, 441.7, 468.2, 494.2, 520.8, 546.7, 572.2, 597.3, 622.5]) 
+ 
 ### Turbomolekular p(t)  kurve  200s alle 10s 
 
 # als endwert 1 e-5 einfügen  DONE
@@ -92,7 +92,7 @@ dreh_leck_4_3 = np.array([80, 115.9, 143.1, 170, 196.8, 225.9, 253, 280, 307.2, 
 turbo_pump_p_1 = np.array([166, 7.8, 3.3, 2.72, 2.54, 2.42, 2.33, 2.25, 2.2, 2.16, 2.12,
                             2.09, 2.06, 2.03, 2.01, 1.98, 1.96, 1.94, 1.92, 1.91, 1.9, 1]) * 10**(-5)
 
-turbo_vent_p_1 = np.array([496, 14.2, 5.12, 4.22, 3.96, 3.83, 3.73, 3.66, 3.6, 3.52, 3.49, 
+turbo_vent_p_1 = np.array([496, 14.2, 5.12, 4.22, 3.96, 3.83, 3.73, 3.66, 3.6, 3.56, 3.52, 3.49, 
                             3.46, 3.44, 3.42, 3.4, 3.36, 3.34, 3.31, 3.28, 3.25, 1]) * 10**(-5)
 
 turbo_pump_p_2 = np.array([169, 8.73,2.98, 2.4, 2.22, 2.13, 2.05, 1.99, 1.94, 1.9, 1.87, 
@@ -123,7 +123,7 @@ turbo_leck_1_3 = np.array([1, 2.52, 3.75, 4.97, 6.03, 7.25, 8.88, 10.7, 12.4, 14
 
 turbo_leck_2_1 = np.array([2.02, 4.86, 8, 12.1, 16.2, 20.6, 15.6, 31.5, 37.6, 43.2, 49.5, 56.3, 62.4]) * 10**(-4)
 
-turbo_leck_2_2 = np.array([2.04, 4.86, 7.96, 12.2, 16.3, 20.6, 16, 31.8, 37.4, 4.32, 49.4, 56.4, 62.2]) * 10**(-4)
+turbo_leck_2_2 = np.array([2.04, 4.86, 7.96, 12.2, 16.3, 20.6, 16, 31.8, 37.4, 43.2, 49.4, 56.4, 62.2]) * 10**(-4)
 
 turbo_leck_2_3 = np.array([2.03, 4.84, 7.82, 12, 16, 20.5, 25.6, 31.4, 36.9, 42.8, 49.2, 56.2, 62]) * 10**(-4)
 
@@ -208,8 +208,12 @@ def mittel(a,b,c):
         arr[i] = unc.ufloat(np.mean([a[i], b[i], c[i]]), np.std([a[i], b[i], c[i]])/ np.sqrt(3))
     return arr
 
+
+
 def printer(a,b,c):
-   table1 ={'Messreihe 1': a, 'Messreihe 2': b,  'Messreihe 3': c, 'gemittelte Messwerte': mittel(a, b, c)}
+    table1 ={'Messreihe 1': a, 'Messreihe 2': b,  'Messreihe 3': c, 'gemittelte Messwerte': mittel(a, b, c)}
+    print("\n", tabulate(table1, tablefmt = "latex_raw"))    
+
 
 def lin(t,a,b):
     return a * t + b
@@ -324,17 +328,10 @@ def leckrate(a,b,c,name):
     params_1, cov_1 = curve_fit(lin, time, noms(mean))
 
     cov_1 = np.sqrt(np.diag(cov_1))
-    print(f"Die Ergebnisse des ", name ," Fits:\n",f"m = {params_1[0]:.3f} \pm {cov_1[0]:.4f} \t n = {params_1[1]:.3f} \pm {cov_1[0]:.4f}")
+    print(f"Die Ergebnisse des ", name ," Fits:\n",f"m = {params_1[0]:.5f} \pm {cov_1[0]:.6f} \t n = {params_1[1]:.5f} \pm {cov_1[0]:.6f}")
     
     mean = err_dreh(mean)                       #einfach mal den fehler des messgeräts nehmen
     plot_lin_leck(time, params_1, name, mean)
-
-
-
-###Tabellen
-
-#printer(dreh_leck_1_1, dreh_leck_1_2, dreh_leck_1_3)
-
 
 
 
@@ -347,15 +344,15 @@ def leckrate(a,b,c,name):
 
 print("########## AUSWERTUNG DREHSCHIEBER DRUCKKURVE: ###############\n\n")
 
-#pressure(dreh_p_1,dreh_p_2, dreh_p_3,"dreh")
+pressure(dreh_p_1,dreh_p_2, dreh_p_3,"dreh")
 
 
 
 
 print("\n\n########## AUSWERTUNG TURBOPUMPE DRUCKKURVE: ###############\n\n")
-#pressure(turbo_vent_p_1, turbo_vent_p_2, turbo_vent_p_3,"plot_turbo_vent_p")
+pressure(turbo_vent_p_1, turbo_vent_p_2, turbo_vent_p_3,"plot_turbo_vent_p")
 
-#pressure(turbo_pump_p_1, turbo_pump_p_2, turbo_pump_p_3,"plot_turbo_p")
+pressure(turbo_pump_p_1, turbo_pump_p_2, turbo_pump_p_3,"plot_turbo_p")
 
 print("\n\n########## AUSWERTUNG DREHSCHIEBER LECKRATENMESSUNG: ###############\n\n")
 
@@ -370,6 +367,36 @@ leckrate(turbo_leck_1_1, turbo_leck_1_2, turbo_leck_1_3, "turbo_1e-4mbar")
 leckrate(turbo_leck_2_1, turbo_leck_2_2, turbo_leck_2_3, "turbo_2e-4mbar")
 leckrate(turbo_leck_3_1, turbo_leck_3_2, turbo_leck_3_3, "turbo_7e-4mbar")
 leckrate(turbo_leck_4_1, turbo_leck_4_2, turbo_leck_4_3, "turbo_5e-4mbar")
+
+
+
+
+
+
+
+
+###Tabellen
+
+print("####### TABELLEN #########")
+
+print("\n\nDrehschieberpumpe tabellen:\n\n")
+#printer(dreh_p_1, dreh_p_2, dreh_p_3)
+
+#printer(dreh_leck_1_1, dreh_leck_1_2, dreh_leck_1_3)
+#printer(dreh_leck_2_1, dreh_leck_2_2, dreh_leck_2_3)
+#printer(dreh_leck_3_1, dreh_leck_3_2, dreh_leck_3_3)
+#printer(dreh_leck_4_1, dreh_leck_4_2, dreh_leck_4_3)
+
+print("\n\nTurbopumpe tabellen:\n\n")               ### Hier Messwerte in milli pascal
+
+#printer(turbo_pump_p_1 * 10**5, turbo_pump_p_2 * 10**5, turbo_pump_p_3 * 10**5)
+#printer(turbo_vent_p_1 * 10**5, turbo_vent_p_2 * 10**5, turbo_vent_p_3 * 10**5)
+
+#printer(turbo_leck_1_1 * 10**5, turbo_leck_1_2 * 10**5, turbo_leck_1_3 * 10**5)
+#printer(turbo_leck_2_1 * 10**5, turbo_leck_2_2 * 10**5, turbo_leck_2_3 * 10**5)
+#printer(turbo_leck_3_1 * 10**5, turbo_leck_3_2 * 10**5, turbo_leck_3_3 * 10**5)
+#printer(turbo_leck_4_1 * 10**5, turbo_leck_4_2 * 10**5, turbo_leck_4_3 * 10**5)
+
 
 
 ########Grafiken########

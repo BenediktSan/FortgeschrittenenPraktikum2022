@@ -50,9 +50,72 @@
         \end{table} 
 
 
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\textwidth]{build/plots/plot1.pdf}
-            \caption{Messdaten zur Wien-Robinson-Brücke}
-          \label{fig:plot1}
-        \end{figure}
+
+
+        \subsection{Fehlerrechnung}
+        \noindent
+        Die Fortpflanzung von Messungenauigkeiten für mehrere unabhängige Fehler wird durch die Gaußsche Fehlerfortpflanzung
+        \begin{equation*}
+        \Delta f = \sqrt{\sum_{i \, = \, 1}^{n} \, \left(\frac{\partial f}{\partial x_i} \, \Delta x_i\right)^2}
+        \label{fehler}
+        \end{equation*}
+        beschrieben. Dabei gibt $\Delta x$ die Unsicherheit des arithmetischen Mittelwerts $\bar{x}$ einer Observablen $x$ an:
+        
+        \begin{equation*}
+        \Delta x =  \sqrt{\frac{1}{n(n-1)} \sum_{i \, = \, 1}^{n} \, \left(\bar{x}- x_i\right)^2}.
+        \end{equation*}
+
+        \noindent
+        Die Zahl $n$ gibt die Anzahl der unabhängigen Messungen an.\\\\
+        Die Messwerte, die bei Messungen mit der Turbopumpe aufgenommen wurden, besitzen im Bereich $\SI{1e-8}{\milli\bar}$ bis $\SI{100}{\milli\bar}$ eine Ungenauigkeit von $30$\%.
+        Im Bereich von $\SI{100}{\milli\bar}$ bis $\SI{1000}{\milli\bar}$ sind es sogar $50$ \%.\\
+        Für die Messungen mit der Drehschieberpumpe sind es für Werte kleiner als $\SI{2e-3}{\milli\bar}$ ein Faktor $2$ vom Messwert.
+        Zusätzlich sind von $\SI{2e-3}{\milli\bar}$ bis $\SI{10}{\milli\bar}$ $\pm \SI{120}{\milli\bar}$ und von $\SI{10}{\milli\bar}$ bis $\SI{1200}{\milli\bar}$ $\pm \SI{3.6}{\milli\bar}$.\\\\
+        Für die Fehlerfortpflanzung des logarhitmischen Fits wird die aus der Formel \ref*{fehler} hergeleitete Formel 
+        \begin{equation*}
+          2
+        \end{equation*}
+        genutzt.
+
+        \subsection*{Volumen}
+
+        \subsection*{Drehschieberpumpe}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      \newpage
+        
+        
+        \begin{table}
+          \begin{center}
+            \begin{tabular}{cccccccc}
+              \toprule
+              $p_\text{Gg} \, / \, \text{mbar}$ & $a \, / \, \text{s}^{-1}$ &       $b$        & $Q \, / \, (\text{mbar \cdot l}/\text{s})$ & $S \, / \, (\text{l}/\text{s})$ &  \\ \midrule
+              0,1                &    $0,0050 \pm 0,0002$    & $0,15 \pm 0,02$  &          $ 0,056 \pm 0,005  $           &       $ 0,56 \pm 0,07  $        &  \\
+              0,4                &     $0,035 \pm 0,001$     & $0,33 \pm 0,05$  &          $  0,39 \pm 0,03   $           &       $  1,0 \pm 0,1   $        &  \\
+              0,6                &     $0,067 \pm 0,002$     & $0,55 \pm 0,07 $ &           $ 0,74 \pm 0,06   $           &        $1,2 \pm 0,2   $         &  \\
+              1,0                &    $0,1187 \pm 0,0007$    & $0,96 \pm 0,03 $ &           $  1,3 \pm 0,1   $            &       $  1,3 \pm 0,2   $        &  \\ \bottomrule
+              &                           &
+            \end{tabular}
+            \caption{Die Parameter der Regressionsgeraden in Abbildung \ref{fig:drehLeck} für die Leckratenmessungen der Drehschieberpumpe.}
+            \label{tab4}
+          \end{center}
+        \end{table}
+
+        
