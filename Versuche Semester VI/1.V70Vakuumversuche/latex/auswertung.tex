@@ -10,41 +10,6 @@
            \toprule
            {$\nu \mathbin{\scalebox{1.5} / } \si{\hertz}$} & $\text{Amplitude} \mathbin{\scalebox{1.5} / } \si{\volt}$\\
            \midrule
-           20 & 3.2   \\
-           100 & 3     \\
-           200 & 2     \\
-           300 & 1.35  \\
-           400 & 0.64  \\
-           420 & 0.56  \\
-           440 & 0.44  \\
-           460 & 0.34  \\
-           480 & 0.25  \\
-           500 & 0.16  \\
-           510 & 0.12  \\
-           520 & 0.08  \\
-           530 & 0.044 \\
-           540 & 0.005 \\
-           550 & 0.036 \\
-           560 & 0.08  \\
-           570 & 0.12  \\ 
-           580 & 0.15  \\
-           590 & 0.18  \\
-           600 & 0.22  \\
-           620 & 0.28  \\
-           640 & 0.36  \\
-           660 & 0.44  \\
-           680 & 0.5   \\
-           700 & 0.56  \\
-           800 & 0.8   \\
-           900 & 1.05  \\
-          1000 & 1.25  \\
-          1500 & 2     \\
-          2000 & 2.4   \\
-          3000 & 2.7   \\
-          4000 & 2.8   \\
-          5000 & 2.9   \\
-          7500 & 3     \\
-         10000 & 2.9   \\
           \bottomrule
           \end{tabular}
         \end{table} 
@@ -73,13 +38,67 @@
         Zusätzlich sind von $\SI{2e-3}{\milli\bar}$ bis $\SI{10}{\milli\bar}$ $\pm \SI{120}{\milli\bar}$ und von $\SI{10}{\milli\bar}$ bis $\SI{1200}{\milli\bar}$ $\pm \SI{3.6}{\milli\bar}$.\\\\
         Für die Fehlerfortpflanzung des logarhitmischen Fits wird die aus der Formel \ref*{fehler} hergeleitete Formel 
         \begin{equation*}
-          2
+          \sigma = \sqrt{\frac{\sigma_p^2}{(p-p_E)^2}+\frac{\sigma_{p0}^2}{(p_0-p_E)^2}+\sigma_{p_E}^2 \left(\frac{1}{p_0-p_E}-\frac{1}{p-p_E}\right)^2}
         \end{equation*}
         genutzt.
 
-        \subsection*{Volumen}
+        \subsection{Volumen}
+        Um das Saugvermögen der beiden Pumpen zu bestimmen wird das Voluhmen des Versuchsaufbaus benötigt.\\
+        Für die Messungen die für die Turbopumpe durchgeführt werden, wird ein kleineres Volumen benötigt, nämlich nur das bis hinter die Pumpe \ref{img:aufbaufoto}.
+        Dieses beträgt $V_1 = \SI{33(033)}{\litre}$.\\
+        Für die Messungen mit der Drehschieberpumpe wird zusätzlich noch das Volumen des Schlauchs genutzt. Dieses beträgt $\SI{1(01)}{\litre}$, wodurch sich das Volumen $V_2 = \SI{34(034)}{\litre}$ ergibt.\\
 
-        \subsection*{Drehschieberpumpe}
+
+
+        \subsection{Drehschieberpumpe}
+
+        \noindent Für die Drehschieberpumpe werden im folgenden beide Messverfahren ausgewertet. Einmal dass der Evakuierungsmessung und das der Leckratenmessung.\\
+        Die Herstellerangabe des Saugvermögens der Drehschieberpumpe beträgt $ S_theo = \SI{1.1}{\litre\per\second}$.
+
+        \subsubsection{Evakuierungsmessung}
+
+        \noindent Für diese Messung wurden über einen Zeitraum von $ T = \SI{600}{\second}$ alle $ \increment t = \SI{10}{\second}$
+        der Druck im Versuchsaufbau hinter der deaktivierten Turbomolekularpumpe abgelesen. Dies wurde drei mal wiederholt.\\
+        Die Messdaten sind in der Tabelle \ref{tab:dreh_p} im Anhang, inklusive der gemittelten Messwerte mit Fehler des Mittelwerts, zu finden.\\\\
+        
+        \noindent Für die Auswertung wurde nun ein linearer Fit der Form
+        \begin{equation*}
+          y = m*x + n \quad
+        \end{equation*}
+        auf die logarhitmierten Messdaten, die nun die Form 
+        \begin{equation*}
+          \ln{\frac{p(t) - p_{end}}{p_0 - p_{end}}}
+        \end{equation*}
+        angewendet.\\
+        Allerdings ist das Saugvermögen der Pumpe nicht über alle Druckbereiche konstant, was zum Beispiel an unterschiedlichen Ströumungsarten bei unterschiedlichen Drücken liegt.\\
+        Aus diesem Grund wurde der Fit für drei unterschiedliche Bereiche durchgeführt. Die Bereiche wurden willkürlich grafisch abgelesen\\
+        Das Ergebnis der Fits, die grafische Darstellung der Messdaten, inklusive Fehler, finden sich in Abbildung \ref{img:dreh_p}.
+        Dabei sind auch die unterschiedlichen betrachteten Intervalle farblich hervorgehoben.\\
+        \begin{figure}[h]
+          \centering
+          \includegraphics[width=0.7\textwidth]{build/plots/plot_dreh_p.pdf}
+          \caption{Logarhitmische Darstellung der Evakuierungsmesswerte von der Drehschieberpumpe.\\
+          Dabei sind die unterschiedlichen genutzten Intervalle farblich hervorgehoben und alle dazugehörigen Ausgleichsgeraden eingezeichnet.}
+          \label{img:dreh_p}
+        \end{figure}
+
+        \noindent Der erste Bereich geht vom Startdruck bis $\SI{1.8}{\milli\bar}$. Der zweite bis $\SI{0.4387}{\milli\bar}$ und der dritte bis zum Ende.\\
+        Aus den Fitparametern lässt sich über $ S = -mV $ das Saugvermögen bestimmen. Damit ergibt sich dann
+        \begin{table}[H]
+          \centering
+          \small
+          \caption{Parameter der Ausgleichsrechnungen und die Ergebnisse des Saugvermögens.}
+          \label{tab:Saug_dreh_p}
+          \begin{tabular}{S [table-format=5.0]  c c c}
+           \toprule
+           {} & $\text{m} \mathbin{\scalebox{1.5} / } \si{\per\second}$ & $\text{n}$ & $\text{S} \mathbin{\scalebox{1.5} / } \si{\litre\per\second}$ \\
+           \midrule
+           \text{Bereich} 1 & -0.0310 \pm 0.00024 & -0.1173 \pm 0.00024 & 1.0222 \pm 0.10252 \\
+           \text{Bereich} 2 & -0.0110 \pm 0.00036 & -4.1260 \pm 0.0036 & 0.3617 \pm 0.03808\\
+           \text{Bereich} 3 & -0.0055 \pm 0.00005 & -5.9464 \pm 0.00005 & 0.1828 \pm 0.01836 \\
+          \bottomrule
+          \end{tabular}
+        \end{table} 
 
 
 

@@ -147,6 +147,12 @@ turbo_leck_4_2 = np.array([0.499, 1.41, 2.20, 2.84, 3.5, 4.17, 4.76, 5.36, 5.92,
 turbo_leck_4_3 = np.array([0.504, 1.36, 2.14, 2.86, 3.52, 4.14, 4.76, 5.37, 5.98, 6.4, 7.19, 7.96, 8.7]) * 10**(-4)
 
 
+##Volumen
+V_hinter_tturbo = unc.ufloat(33, 3.3)
+V_turbo_bis_dreh = unc.ufloat(1, 0.1)
+
+
+
 #####RECHNUNGEN#######
 
 
@@ -183,13 +189,11 @@ def err_turbo(a):
     return b
 
 def err_mess(a, name):
-    if (name == "dreh"):
+    if (a[0] >= 900):
         return err_dreh(a)
     else:
-        if(name =="turbo"):
-            return err_turbo(a)
-        else:
-            print("############## WRONG NAME ###########")
+        return err_turbo(a)
+
 
 
 
@@ -228,7 +232,9 @@ def plot_lin_loss(t,params_1, params_2, params_3,name,mess,grenz_1, grenz_2):
     t_fine = np.linspace(t[0],t[ -1],1000)
     if(np.size(mess) < 30 ):
         plt.figure()
-        plt.errorbar(t[0:-1], noms(logstuff(mess,0, np.size(mess)-1)), yerr= stds(logstuff(mess, 0, np.size(mess)-1)), fmt='r.',label= "Messdaten")
+        plt.errorbar(t[0:grenz_1], noms(logstuff(mess, 0, grenz_1)), yerr= stds(logstuff(mess, 0, grenz_1)), fmt='r.',label= "Messdaten")
+        plt.errorbar(t[grenz_1:grenz_2], noms(logstuff(mess, grenz_1, grenz_2)), yerr= stds(logstuff(mess, grenz_1, grenz_2)), color = "orange" ,fmt='.',label= "Messdaten")
+        plt.errorbar(t[grenz_2:-1], noms(logstuff(mess, grenz_2, np.size(mess)-1)), yerr= stds(logstuff(mess, grenz_2, np.size(mess)-1)), color = "yellow", fmt='.',label= "Messdaten")
         plt.plot(t_fine[0:70], lin(t_fine[0:70],*params_1),label="Fit #1") #Fit bereich 1
         plt.plot(t_fine[50:200], lin(t_fine[50:200], *params_2), label = "Fit #2")
         plt.plot(t_fine[120:500], lin(t_fine[120:500], *params_3), label = "Fit #3")
@@ -242,7 +248,9 @@ def plot_lin_loss(t,params_1, params_2, params_3,name,mess,grenz_1, grenz_2):
         plt.savefig("build/plots/plot_" + name + "_p.pdf")
     else:
         plt.figure()
-        plt.errorbar(t[0:-1], noms(logstuff(mess,0, np.size(mess)-1)), yerr= stds(logstuff(mess, 0, np.size(mess)-1)), fmt='r.',label= "Messdaten")
+        plt.errorbar(t[0:grenz_1], noms(logstuff(mess, 0, grenz_1)), yerr= stds(logstuff(mess, 0, grenz_1)), fmt='r.',label= "Messdaten")
+        plt.errorbar(t[grenz_1:grenz_2], noms(logstuff(mess, grenz_1, grenz_2)), yerr= stds(logstuff(mess, grenz_1, grenz_2)), color = "orange" ,fmt='.',label= "Messdaten")
+        plt.errorbar(t[grenz_2:-1], noms(logstuff(mess, grenz_2, np.size(mess)-1)), yerr= stds(logstuff(mess, grenz_2, np.size(mess)-1)), color = "yellow", fmt='.',label= "Messdaten")
         plt.plot(t_fine[0:250], lin(t_fine[0:250],*params_1),label="Fit #1") #Fit bereich 1
         plt.plot(t_fine[150:380], lin(t_fine[150:380], *params_2), label = "Fit #2")
         plt.plot(t_fine[220:700], lin(t_fine[220:700], *params_3), label = "Fit #3")
@@ -276,6 +284,7 @@ def plot_lin_leck(t,params_1, name,mess,):
 def pressure(a,b,c,name):
     grenz_1 = 21 #wilkürliche, hier deklarierte, Grenzen für die einzelnen fits
     grenz_2 = 35 #gemeint sind dabei die Arrayelementindices (also OHNE element 35)
+    V = unc.ufloat(33,3.3)
 
 
     mean = mittel(a,b,c)
@@ -283,8 +292,9 @@ def pressure(a,b,c,name):
     
 
     if(np.size(a)<grenz_2):
-        grenz_1 = 3
+        grenz_1 = 4
         grenz_2 = 9
+        V = unc.ufloat(34, 3.4)
         time = np.append(time,500)
     else:
         time = np.append(time,1000)
@@ -294,7 +304,10 @@ def pressure(a,b,c,name):
     params_1, cov_1 = curve_fit(lin, time[:grenz_1], noms(logstuff(mean, 0, grenz_1)))
 
     cov_1 = np.sqrt(np.diag(cov_1))
-    print("Die Ergebnisse des ersten Fits:\n",f"m = {params_1[0]:.3f} \pm {cov_1[0]:.4f} \t n = {params_1[1]:.3f} \pm {cov_1[0]:.4f}")
+    print("Die Ergebnisse des ersten Fits:\n",f"m = {params_1[0]:.4f} \pm {cov_1[0]:.5f} \t n = {params_1[1]:.4f} \pm {cov_1[0]:.5f}")
+    uparams_1 = unp.uarray(params_1, cov_1)
+    S_1 = -1 * V * uparams_1[0]
+    print(f"Saugvermögen: {noms(S_1):.4f} \pm {stds(S_1):.5f}\n")
 
 
     # für den zweiten Bereich
@@ -302,22 +315,33 @@ def pressure(a,b,c,name):
     params_2, cov_2 = curve_fit(lin, time[grenz_1:grenz_2], noms(logstuff(mean, grenz_1, grenz_2)))
 
     cov_2 = np.sqrt(np.diag(cov_2))
-    print("Die Ergebnisse des zweiten Fits:\n",f"m = {params_2[0]:.3f} \pm {cov_2[0]:.4f} 1/s \t n = {params_2[1]:.3f} \pm {cov_2[0]:.4f}")
-
-
+    print("Die Ergebnisse des zweiten Fits:\n",f"m = {params_2[0]:.4f} \pm {cov_2[0]:.5f} 1/s \t n = {params_2[1]:.4f} \pm {cov_2[0]:.5f}")
+    uparams_2 = unp.uarray(params_2, cov_2)
+    S_2 = -1 * V * uparams_2[0]
+    print(f"Saugvermögen: {noms(S_2):.4f} \pm {stds(S_2):.5f}\n")
 
     # für den dritten Bereich
 
     params_3, cov_3 = curve_fit(lin, time[grenz_2:np.size(mean)-1], noms(logstuff(mean, grenz_2, np.size(mean)-1)))
 
     cov_3 = np.sqrt(np.diag(cov_3))
-    print("Die Ergebnisse des dritten Fits:\n",f"m = {params_3[0]:.3f} \pm {cov_3[0]:.4f} \t n = {params_3[1]:.3f} \pm {cov_3[0]:.4f}")
+    print("Die Ergebnisse des dritten Fits:\n",f"m = {params_3[0]:.4f} \pm {cov_3[0]:.5f} \t n = {params_3[1]:.4f} \pm {cov_3[0]:.5f}")
+    uparams_3 = unp.uarray(params_3, cov_3)
+    S_3 = -1 * V * uparams_3[0]
+    print(f"Saugvermögen: {noms(S_3):.4f} \pm {stds(S_3):.5f}")
+
+
 
     #err_mean =mean
     #mean = err_mess(mean, name)
     #print(stds(err_mean - mean))
     plot_lin_loss(time, params_1,params_2, params_3, name, mean, grenz_1, grenz_2)
+    
+    
+    
+    mess_params = [uparams_1, uparams_2, uparams_3]
 
+    return mess_params
 
 
 def leckrate(a,b,c,name):
@@ -339,20 +363,22 @@ def leckrate(a,b,c,name):
 
 
 
+
+
 #############################Auswertung#####################################
 
 
 print("########## AUSWERTUNG DREHSCHIEBER DRUCKKURVE: ###############\n\n")
 
-pressure(dreh_p_1,dreh_p_2, dreh_p_3,"dreh")
+Saug_dreh_p = pressure(dreh_p_1,dreh_p_2, dreh_p_3,"dreh")
 
 
 
 
 print("\n\n########## AUSWERTUNG TURBOPUMPE DRUCKKURVE: ###############\n\n")
-pressure(turbo_vent_p_1, turbo_vent_p_2, turbo_vent_p_3,"plot_turbo_vent_p")
+params_turbo_p_vent = pressure(turbo_vent_p_1, turbo_vent_p_2, turbo_vent_p_3,"turbo_vent")
 
-pressure(turbo_pump_p_1, turbo_pump_p_2, turbo_pump_p_3,"plot_turbo_p")
+params_turbo_p_pump = pressure(turbo_pump_p_1, turbo_pump_p_2, turbo_pump_p_3,"turbo_pump")
 
 print("\n\n########## AUSWERTUNG DREHSCHIEBER LECKRATENMESSUNG: ###############\n\n")
 
