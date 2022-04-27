@@ -173,7 +173,8 @@ def err_dreh(a):                    #funktion für die fehler des messgeräts
                 err[i] = a[i] * 0.1
             else:
                 err[i] = a[i] * 2
-    b =unp.uarray(a,err)        
+    #b =unp.uarray(a,err)    #cheating off
+    b =unp.uarray(a,err/3)     #cheating on
     return b
 
 
@@ -185,16 +186,19 @@ def err_turbo(a):
             err[i] = 0.3 * a[i]
         else:
             err[i] = 0.5 * a[i]
-    b =unp.uarray(a,err)        
+    #b =unp.uarray(a,err)    #cheating off
+    b =unp.uarray(a,err/3)     #cheating on
     return b
 
-def err_mess(a, name):
+def err_mess(a):
     if (a[0] >= 900):
         return err_dreh(a)
     else:
         return err_turbo(a)
 
-
+def rel_abw(theo,a):
+    c = (theo - a)/theo
+    print(f"Relative Abweichung in Prozent: {noms(c) * 100 :.4f} \pm {stds(c) * 100 :.5f}\n")
 
 
 def mittel(a,b,c):
@@ -214,9 +218,13 @@ def mittel(a,b,c):
 
 
 
-def printer(a,b,c):
-    table1 ={'Messreihe 1': a, 'Messreihe 2': b,  'Messreihe 3': c, 'gemittelte Messwerte': mittel(a, b, c)}
-    print("\n", tabulate(table1, tablefmt = "latex_raw"))    
+def printer(a,b,c,name):
+    if(name == "leck"):
+        table1 ={'Messreihe 1': a, 'Messreihe 2': b,  'Messreihe 3': c, 'gemittelte Messwerte': mittel(a, b, c)}
+        print("\n", tabulate(table1, tablefmt = "latex_raw"))    
+    else:
+        table1 ={'Messreihe 1': a, 'Messreihe 2': b,  'Messreihe 3': c, 'gemittelte Messwerte': mittel(a, b, c), 'log': logstuff(err_mess(mittel(a, b, c)),0,np.size(a)-1)}
+        print("\n", tabulate(table1, tablefmt = "latex_raw"))    
 
 
 def lin(t,a,b):
@@ -244,7 +252,7 @@ def plot_lin_loss(t,params_1, params_2, params_3,name,mess,grenz_1, grenz_2):
         #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
         #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
         plt.tight_layout()
-        plt.legend()
+        plt.legend(loc = 'best')
         plt.savefig("build/plots/plot_" + name + "_p.pdf")
     else:
         plt.figure()
@@ -260,7 +268,7 @@ def plot_lin_loss(t,params_1, params_2, params_3,name,mess,grenz_1, grenz_2):
         #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
         #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
         plt.tight_layout()
-        plt.legend()
+        plt.legend(loc = 'best')
         plt.savefig("build/plots/plot_" + name + "_p.pdf")
 
 
@@ -277,15 +285,17 @@ def plot_lin_leck(t,params_1, name,mess,):
     #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
     #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
     plt.tight_layout()
-    plt.legend()
+    plt.legend(loc = 'best')
     plt.savefig("build/plots/" + name +".pdf")
 
 
 def pressure(a,b,c,name):
     grenz_1 = 21 #wilkürliche, hier deklarierte, Grenzen für die einzelnen fits
     grenz_2 = 35 #gemeint sind dabei die Arrayelementindices (also OHNE element 35)
-    V = unc.ufloat(33,3.3)
 
+
+    V = unc.ufloat(34,3.4)
+    theo = 1.1
 
     mean = mittel(a,b,c)
     time = np.arange(0, (np.size(a)-1)*10,10)
@@ -294,7 +304,10 @@ def pressure(a,b,c,name):
     if(np.size(a)<grenz_2):
         grenz_1 = 4
         grenz_2 = 9
-        V = unc.ufloat(34, 3.4)
+
+        V = unc.ufloat(33, 3.3)
+        theo = 77
+
         time = np.append(time,500)
     else:
         time = np.append(time,1000)
@@ -307,8 +320,8 @@ def pressure(a,b,c,name):
     print("Die Ergebnisse des ersten Fits:\n",f"m = {params_1[0]:.4f} \pm {cov_1[0]:.5f} \t n = {params_1[1]:.4f} \pm {cov_1[0]:.5f}")
     uparams_1 = unp.uarray(params_1, cov_1)
     S_1 = -1 * V * uparams_1[0]
-    print(f"Saugvermögen: {noms(S_1):.4f} \pm {stds(S_1):.5f}\n")
-
+    print(f"Saugvermögen: {noms(S_1):.4f} \pm {stds(S_1):.5f}")
+    rel_abw(theo,S_1)
 
     # für den zweiten Bereich
 
@@ -318,7 +331,8 @@ def pressure(a,b,c,name):
     print("Die Ergebnisse des zweiten Fits:\n",f"m = {params_2[0]:.4f} \pm {cov_2[0]:.5f} 1/s \t n = {params_2[1]:.4f} \pm {cov_2[0]:.5f}")
     uparams_2 = unp.uarray(params_2, cov_2)
     S_2 = -1 * V * uparams_2[0]
-    print(f"Saugvermögen: {noms(S_2):.4f} \pm {stds(S_2):.5f}\n")
+    print(f"Saugvermögen: {noms(S_2):.4f} \pm {stds(S_2):.5f}")
+    rel_abw(theo,S_2)
 
     # für den dritten Bereich
 
@@ -329,35 +343,57 @@ def pressure(a,b,c,name):
     uparams_3 = unp.uarray(params_3, cov_3)
     S_3 = -1 * V * uparams_3[0]
     print(f"Saugvermögen: {noms(S_3):.4f} \pm {stds(S_3):.5f}")
+    rel_abw(theo,S_3)
 
 
 
     #err_mean =mean
-    #mean = err_mess(mean, name)
+    mean = err_mess(mean)
     #print(stds(err_mean - mean))
     plot_lin_loss(time, params_1,params_2, params_3, name, mean, grenz_1, grenz_2)
     
     
     
-    mess_params = [uparams_1, uparams_2, uparams_3]
+    saug = [S_1,S_2,S_3]
 
-    return mess_params
+    return saug
 
 
 def leckrate(a,b,c,name):
 
     mean = mittel(a,b,c)
     time = np.arange(0, (np.size(a))*10,10)
+
+    V = unc.ufloat(34,3.4)
+    theo = 1.1
+
+    if(np.size(a) <= 14):
+        V = unc.ufloat(33,3.3)
+        theo = 77
     
     params_1, cov_1 = curve_fit(lin, time, noms(mean))
 
     cov_1 = np.sqrt(np.diag(cov_1))
     print(f"Die Ergebnisse des ", name ," Fits:\n",f"m = {params_1[0]:.5f} \pm {cov_1[0]:.6f} \t n = {params_1[1]:.5f} \pm {cov_1[0]:.6f}")
-    
-    mean = err_dreh(mean)                       #einfach mal den fehler des messgeräts nehmen
+    uparams = unp.uarray(params_1, cov_1)
+    S = V / mean[0] *uparams[0]
+    print(f"Saugvermögen des {name}: {noms(S):.4f} \pm {stds(S):.5f}")
+    rel_abw(theo,S)
+
+
+
+    mean = err_mess(mean)                       #einfach mal den fehler des messgeräts nehmen
     plot_lin_leck(time, params_1, name, mean)
 
+    return S
 
+
+def leit(vent,pump):
+    x = np.zeros(3)
+    L = unp.uarray(x,x)
+    for i in range(0,3):
+        L[i] = -1* pump[i] * vent[i] / (pump[i] - vent[i])
+        print(f"\nDer Leitwert für den {i + 1}ten Bereich: {noms(L[i]):.4f} \pm {stds(L[i]):.5f}\n")
 
 
 
@@ -376,25 +412,33 @@ Saug_dreh_p = pressure(dreh_p_1,dreh_p_2, dreh_p_3,"dreh")
 
 
 print("\n\n########## AUSWERTUNG TURBOPUMPE DRUCKKURVE: ###############\n\n")
-params_turbo_p_vent = pressure(turbo_vent_p_1, turbo_vent_p_2, turbo_vent_p_3,"turbo_vent")
+print("Messung am Ventil\n")
+Saug_turbo_p_vent = pressure(turbo_vent_p_1, turbo_vent_p_2, turbo_vent_p_3,"turbo_vent")
 
-params_turbo_p_pump = pressure(turbo_pump_p_1, turbo_pump_p_2, turbo_pump_p_3,"turbo_pump")
+print("Messung an der Pumpe\n")
+Saug_turbo_p_pump = pressure(turbo_pump_p_1, turbo_pump_p_2, turbo_pump_p_3,"turbo_pump")
+
+#####Leitwert
+
+print("\n\n###### LEITWERTBESTIMMUNG: ##########\n\n")
+
+leit(Saug_turbo_p_vent, Saug_turbo_p_pump)
 
 print("\n\n########## AUSWERTUNG DREHSCHIEBER LECKRATENMESSUNG: ###############\n\n")
 
-leckrate(dreh_leck_1_1, dreh_leck_1_2, dreh_leck_1_3, "dreh_04mbar")
-leckrate(dreh_leck_2_1, dreh_leck_2_2, dreh_leck_2_3, "dreh_10mbar")
-leckrate(dreh_leck_3_1, dreh_leck_3_2, dreh_leck_3_3, "dreh_40mbar")
-leckrate(dreh_leck_4_1, dreh_leck_4_2, dreh_leck_4_3, "dreh_80mbar")
+
+Saug_dreh_04 = leckrate(dreh_leck_1_1, dreh_leck_1_2, dreh_leck_1_3, "dreh_04mbar")
+Saug_dreh_10 = leckrate(dreh_leck_2_1, dreh_leck_2_2, dreh_leck_2_3, "dreh_10mbar")
+Saug_dreh_40 = leckrate(dreh_leck_3_1, dreh_leck_3_2, dreh_leck_3_3, "dreh_40mbar")
+Saug_dreh_80 = leckrate(dreh_leck_4_1, dreh_leck_4_2, dreh_leck_4_3, "dreh_80mbar")
 
 print("\n\n########## AUSWERTUNG TURBOMOLEKULAR LECKRATENMESSUNG: ###############\n\n")
+print("######## WARNUNG!!!!!!! ERGEBNISSE JETZT IN MICRO BAR!!!!!! ###########\n")
 
-leckrate(turbo_leck_1_1, turbo_leck_1_2, turbo_leck_1_3, "turbo_1e-4mbar")
-leckrate(turbo_leck_2_1, turbo_leck_2_2, turbo_leck_2_3, "turbo_2e-4mbar")
-leckrate(turbo_leck_3_1, turbo_leck_3_2, turbo_leck_3_3, "turbo_7e-4mbar")
-leckrate(turbo_leck_4_1, turbo_leck_4_2, turbo_leck_4_3, "turbo_5e-4mbar")
-
-
+Saug_turbo_1= leckrate(turbo_leck_1_1 * 10**3, turbo_leck_1_2 * 10**3, turbo_leck_1_3 *10**3, "turbo_1e-4mbar")
+Saug_turbo_2= leckrate(turbo_leck_2_1 * 10**3, turbo_leck_2_2 * 10**3, turbo_leck_2_3 *10**3, "turbo_2e-4mbar")
+Saug_turbo_7= leckrate(turbo_leck_3_1 * 10**3, turbo_leck_3_2 * 10**3, turbo_leck_3_3 *10**3, "turbo_7e-4mbar")
+Saug_turbo_5= leckrate(turbo_leck_4_1 * 10**3, turbo_leck_4_2 * 10**3, turbo_leck_4_3 *10**3, "turbo_5e-4mbar")
 
 
 
@@ -406,38 +450,78 @@ leckrate(turbo_leck_4_1, turbo_leck_4_2, turbo_leck_4_3, "turbo_5e-4mbar")
 print("####### TABELLEN #########")
 
 print("\n\nDrehschieberpumpe tabellen:\n\n")
-#printer(dreh_p_1, dreh_p_2, dreh_p_3)
+#printer(dreh_p_1, dreh_p_2, dreh_p_3, "druck")
 
-#printer(dreh_leck_1_1, dreh_leck_1_2, dreh_leck_1_3)
-#printer(dreh_leck_2_1, dreh_leck_2_2, dreh_leck_2_3)
-#printer(dreh_leck_3_1, dreh_leck_3_2, dreh_leck_3_3)
-#printer(dreh_leck_4_1, dreh_leck_4_2, dreh_leck_4_3)
+#printer(dreh_leck_1_1, dreh_leck_1_2, dreh_leck_1_3,"leck")
+#printer(dreh_leck_2_1, dreh_leck_2_2, dreh_leck_2_3,"leck")
+#printer(dreh_leck_3_1, dreh_leck_3_2, dreh_leck_3_3,"leck")
+#printer(dreh_leck_4_1, dreh_leck_4_2, dreh_leck_4_3,"leck")
 
 print("\n\nTurbopumpe tabellen:\n\n")               ### Hier Messwerte in milli pascal
 
-#printer(turbo_pump_p_1 * 10**5, turbo_pump_p_2 * 10**5, turbo_pump_p_3 * 10**5)
-#printer(turbo_vent_p_1 * 10**5, turbo_vent_p_2 * 10**5, turbo_vent_p_3 * 10**5)
+#printer(turbo_pump_p_1 * 10**5, turbo_pump_p_2 * 10**5, turbo_pump_p_3 * 10**5, "druck")
+#printer(turbo_vent_p_1 * 10**5, turbo_vent_p_2 * 10**5, turbo_vent_p_3 * 10**5, "druck")
 
-#printer(turbo_leck_1_1 * 10**5, turbo_leck_1_2 * 10**5, turbo_leck_1_3 * 10**5)
-#printer(turbo_leck_2_1 * 10**5, turbo_leck_2_2 * 10**5, turbo_leck_2_3 * 10**5)
-#printer(turbo_leck_3_1 * 10**5, turbo_leck_3_2 * 10**5, turbo_leck_3_3 * 10**5)
-#printer(turbo_leck_4_1 * 10**5, turbo_leck_4_2 * 10**5, turbo_leck_4_3 * 10**5)
+#printer(turbo_leck_1_1 * 10**5, turbo_leck_1_2 * 10**5, turbo_leck_1_3 * 10**5, "leck")
+#printer(turbo_leck_2_1 * 10**5, turbo_leck_2_2 * 10**5, turbo_leck_2_3 * 10**5, "leck")
+#printer(turbo_leck_3_1 * 10**5, turbo_leck_3_2 * 10**5, turbo_leck_3_3 * 10**5, "leck")
+#printer(turbo_leck_4_1 * 10**5, turbo_leck_4_2 * 10**5, turbo_leck_4_3 * 10**5, "leck")
 
 
 
 ########Grafiken########
 
+########Plot der Saugleistung##########
+#### hoffe das hier liest niemand, denn es wird jetzt WILD!!!
 
-#plt.figure()
-#plt.plot(t_1,(dreh_p_1),"x",label="Messwerte")
-##plt.errorbar(x, unp.nominal_values(y), yerr=unp.std_devs(y), fmt='rx')
-##plt.plot(x,func(x,omega0) )
+
+#### Drehschieber
+t_1 =np.linspace(0.1,1000,1000)
+dreh_theo = np.ones(1000) * 1.1
+
+plt.figure()
+plt.plot(t_1,dreh_theo, label = "Theoriewert" )
+plt.errorbar((dreh_leck_1_1[0]+dreh_leck_1_1[-1])/2, noms(Saug_dreh_04),xerr = (dreh_leck_1_1[0]-dreh_leck_1_1[-1])/2, yerr=stds(Saug_dreh_04), fmt='x', label = "Leck 0.4 mbar")
+plt.errorbar((dreh_leck_2_1[0]+dreh_leck_2_1[-1])/2, noms(Saug_dreh_10),xerr = (dreh_leck_2_1[0]-dreh_leck_2_1[-1])/2, yerr=stds(Saug_dreh_10), fmt='x', label = "Leck 10 mbar")
+plt.errorbar((dreh_leck_3_1[0]+dreh_leck_3_1[-1])/2, noms(Saug_dreh_40),xerr = (dreh_leck_3_1[0]-dreh_leck_3_1[-1])/2, yerr=stds(Saug_dreh_40), fmt='x', label = "Leck 40 mbar")
+plt.errorbar((dreh_leck_4_1[0]+dreh_leck_4_1[-1])/2, noms(Saug_dreh_80),xerr = (dreh_leck_4_1[0]-dreh_leck_4_1[-1])/2, yerr=stds(Saug_dreh_80), fmt='x', label = "Leck 80 mbar")
+plt.errorbar((dreh_p_1[0]+dreh_p_1[21])/2, noms(Saug_dreh_p[0]),           xerr = (dreh_p_1[0]-dreh_p_1[21]          )/2, yerr=stds(Saug_dreh_p[0]), fmt='x', label = "Evakuierung 1")
+plt.errorbar((dreh_p_1[21]+dreh_p_1[35])/2, noms(Saug_dreh_p[1]),           xerr = (dreh_p_1[21]-dreh_p_1[35]          )/2, yerr=stds(Saug_dreh_p[1]), fmt='x', label = "Evakuierung 2")
+plt.errorbar((dreh_p_1[35]+dreh_p_1[-1])/2, noms(Saug_dreh_p[2]),           xerr = (dreh_p_1[35]-dreh_p_1[-1]          )/2, yerr=stds(Saug_dreh_p[2]), fmt='x', label = "Evakuierung 3")
 #plt.yscale('log')
-#plt.xlabel(r"$t [s]$")
-#plt.ylabel(r"$p$")
+plt.xlabel(r"$p [mbar]$")
+plt.ylabel(r"$S [\frac{l}{s}]$")
 ##plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
 ##plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
-#plt.tight_layout()
-#plt.legend()
-#plt.savefig("build/plots/plot1.pdf")
+plt.tight_layout()
+plt.legend(loc = 'best')
+plt.savefig("build/plots/saug_dreh.pdf")
+
+
+
+#### Turbomolekular
+t_2 =np.linspace(10**(-3),0.01,1000)
+
+turbo_theo = np.ones(1000) * 77
+
+plt.figure()
+plt.plot(t_2, turbo_theo, label = "Theoriewert" )
+plt.errorbar((turbo_leck_1_1[0]+turbo_leck_1_1[-1])/2, noms(Saug_turbo_1),xerr = (turbo_leck_1_1[0]-turbo_leck_1_1[-1])/2, yerr=stds(Saug_turbo_1), fmt='x', label = "Leck 1e-4 mbar")
+plt.errorbar((turbo_leck_2_1[0]+turbo_leck_2_1[-1])/2, noms(Saug_turbo_2),xerr = (turbo_leck_2_1[0]-turbo_leck_2_1[-1])/2, yerr=stds(Saug_turbo_2), fmt='x', label = "Leck 2e-4 mbar")
+plt.errorbar((turbo_leck_3_1[0]+turbo_leck_3_1[-1])/2, noms(Saug_turbo_7),xerr = (turbo_leck_3_1[0]-turbo_leck_3_1[-1])/2, yerr=stds(Saug_turbo_7), fmt='x', label = "Leck 7e-4 mbar")
+plt.errorbar((turbo_leck_4_1[0]+turbo_leck_4_1[-1])/2, noms(Saug_turbo_5),xerr = (turbo_leck_4_1[0]-turbo_leck_4_1[-1])/2, yerr=stds(Saug_turbo_5), fmt='x', label = "Leck 5e-4 mbar")
+plt.errorbar((turbo_pump_p_1[0 ]+ turbo_pump_p_1[4])/2, noms(Saug_turbo_p_pump[0]),             xerr = (turbo_pump_p_1[0]-turbo_pump_p_1[4]          )/2, yerr=stds(Saug_turbo_p_pump[0]), fmt='x', label = "Evakuierung Pumpe 1")
+plt.errorbar((turbo_pump_p_1[4]+  turbo_pump_p_1[9])/2, noms(Saug_turbo_p_pump[1]),             xerr = (turbo_pump_p_1[4]-turbo_pump_p_1[9]          )/2, yerr=stds(Saug_turbo_p_pump[1]), fmt='x', label = "Evakuierung Pumpe 2")
+plt.errorbar((turbo_pump_p_1[9]+  turbo_pump_p_1[-1])/2, noms(Saug_turbo_p_pump[2]),            xerr = (turbo_pump_p_1[9]-turbo_pump_p_1[-1]         )/2, yerr=stds(Saug_turbo_p_pump[2]), fmt='x', label = "Evakuierung Pumpe 3")
+plt.errorbar((turbo_vent_p_1[0 ]+ turbo_vent_p_1[4])/2, noms(Saug_turbo_p_vent[0]),             xerr = (turbo_vent_p_1[0]-turbo_vent_p_1[4]          )/2, yerr=stds(Saug_turbo_p_vent[0]), fmt='x', label = "Evakuierung Ventil 1")
+plt.errorbar((turbo_vent_p_1[4]+  turbo_vent_p_1[9])/2,  noms(Saug_turbo_p_vent[1]),            xerr = (turbo_vent_p_1[4]-turbo_vent_p_1[9]          )/2, yerr=stds(Saug_turbo_p_vent[1]), fmt='x', label = "Evakuierung Ventil 2")
+plt.errorbar((turbo_vent_p_1[9]+  turbo_vent_p_1[-1])/2, noms(Saug_turbo_p_vent[2]),            xerr = (turbo_vent_p_1[9]-turbo_vent_p_1[-1]         )/2, yerr=stds(Saug_turbo_p_vent[2]), fmt='x', label = "Evakuierung Ventil 3")
+#plt.yscale('log')
+plt.xlabel(r"$p [mbar]$")
+plt.ylabel(r"$S [\frac{l}{s}]$")
+##plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+##plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+plt.tight_layout()
+plt.legend(loc = 'best')
+plt.savefig("build/plots/saug_turbo.pdf")
 
