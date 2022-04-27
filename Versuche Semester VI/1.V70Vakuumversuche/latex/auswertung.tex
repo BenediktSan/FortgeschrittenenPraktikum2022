@@ -33,8 +33,9 @@
 
       \subsection{Volumen}
         Um das Saugvermögen der beiden Pumpen zu bestimmen wird das Volumen des Versuchsaufbaus benötigt.\\
-        Für die Messungen die für die Turbopumpe durchgeführt werden, wird ein kleineres Volumen benötigt, nämlich nur das bis hinter die Pumpe, 
-        welches in \ref{fig:auf} zu sehen ist.\\
+        Für die Messungen, die für die Turbopumpe durchgeführt werden, wird ein kleineres Volumen benötigt.
+        Dies ist nämlich nur das bis hinter die Pumpe, 
+        was in Abbildung \ref{fig:auf} zu sehen ist.\\
         Dieses Volumen beträgt $V_1 = \SI{33.0(33)}{\litre}$.\\
         Für die Messungen mit der Drehschieberpumpe wird zusätzlich noch das Volumen des Schlauchs genutzt. 
         Dieses beträgt $\SI{1(01)}{\litre}$, wodurch sich das Volumen $V_2 = \SI{34.0(34)}{\litre}$ ergibt.\\
@@ -49,7 +50,7 @@
         \subsubsection{Evakuierungsmessung}
 
         \noindent Für diese Messung wurden über einen Zeitraum von $ T = \SI{600}{\second}$ alle $ \increment t = \SI{10}{\second}$
-        der Druck im Versuchsaufbau hinter der deaktivierten Turbomolekularpumpe abgelesen. Dies wurde drei mal wiederholt.\\
+        der Druck im Versuchsaufbau hinter der deaktivierten Turbomolekularpumpe abgelesen. Dies wurde dreimal wiederholt.\\
         Die Messdaten sind in der Tabelle \ref{tab:dreh_p} im Anhang, inklusive der gemittelten Messwerte mit Fehler des Mittelwerts, zu finden.
         Als Enddruck wurde $\SI{0.021}{\milli\bar}$ abgeschätzt.\\\\
         
@@ -65,7 +66,7 @@
         folgen, angewandt.\\
         Allerdings ist das Saugvermögen der Pumpe nicht über alle Druckbereiche konstant, was zum Beispiel an unterschiedlichen Ströumungsarten bei unterschiedlichen Drücken liegt.\\
         Aus diesem Grund wurde der Fit für drei unterschiedliche Bereiche durchgeführt. Die Bereiche wurden willkürlich grafisch abgelesen.\\
-        Das Ergebnis der Fits, die grafische Darstellung der Messdaten, inklusive Fehler, finden sich in Abbildung \ref{img:dreh_p}.
+        Die Ergebnisse der Fits, die grafische Darstellung der Messdaten, inklusive Fehler, finden sich in Abbildung \ref{img:dreh_p}.
         Dabei sind auch die unterschiedlichen betrachteten Intervalle farblich hervorgehoben.\\
         \begin{figure}[h]
           \centering
@@ -81,7 +82,7 @@
           \centering
           \small
           \label{tab:Saug_dreh_p}
-          \begin{tabular}{S [table-format=5.0]  c c c}
+          \begin{tabular}{S [table-format=7.0]  c c c}
            \toprule
            {} & $\text{m} \mathbin{\scalebox{1.5} / } \si{\per\second}$ & $\text{n}$ & $\text{S} \mathbin{\scalebox{1.5} / } \si{\litre\per\second}$ \\
            \midrule
@@ -99,39 +100,40 @@
         \noindent Für die Leckratenmessung wurden über ein Ventil vier unterschiedliche Gleichgewichtsdrücke eingestellt
         und nach dem Verschließen des Ventils wieder Druckwerte aufgenommen.
         Die Messwerte für die Messung mit dem Gleichgewichtsdruck $p_G = \SI{0.4}{\milli\bar}$ sind in Tabelle \ref{tab:dreh_leck_1} zu finden.\\
-        Die für $p_G = \SI{10}{\milli\bar}$ in \ref{tab:dreh_leck_2}, $p_G = \SI{20}{\milli\bar}$ in \ref{tab:dreh_leck_2} und $p_G = \SI{80}{\milli\bar}$ in \ref{tab:dreh_leck_4}.\\
+        Die für $p_G = \SI{10}{\milli\bar}$ in Tabelle \ref{tab:dreh_leck_2}, $p_G = \SI{20}{\milli\bar}$ in Tabelle \ref{tab:dreh_leck_3} und $p_G = \SI{80}{\milli\bar}$ in Tabelle \ref{tab:dreh_leck_4}.\\
         Sie wurden über einen Zeitraum von $ T = \SI{200}{\second}$ alle $ \increment t = \SI{10}{\second}$, hinter der deaktivierten Turbomolekularpumpe, aufgenommen.\\
-        Grafisch aufbereitet, inklusive Ausgleichsgeraden und Abweichung, ist dies in den Abbildungen \ref{img:dreh_leck_1} bis \ref{img:dreh_leck_4} zu finden.\\\\
+        Grafisch aufbereitet, inklusive Ausgleichsgeraden und Abweichung, ist dies in den Abbildungen \subref{img:dreh_leck_1} bis \subref{img:dreh_leck_4} zu finden.\\\\
         \begin{figure}[H]
             \begin{subfigure}{0.46\textwidth}
                     \centering
                     \includegraphics[width=\textwidth]{build/plots/dreh_04mbar.pdf}
-                    \label{img:dreh_leck_1}
                     \caption{Gleichgewichtsdruck $p_G = \SI{0.4}{\milli\bar}$.}
+                    \label{img:dreh_leck_1}
             \end{subfigure}
             \hfill
             \begin{subfigure}{0.46\textwidth}
                     \centering
                     \includegraphics[width=\textwidth]{build/plots/dreh_10mbar.pdf}
-                    \label{img:dreh_leck_2}
                     \caption{Gleichgewichtsdruck $p_G = \SI{10}{\milli\bar}$.}
+                    \label{img:dreh_leck_2}
             \end{subfigure}
             \hfill
             \begin{subfigure}{0.46\textwidth}
               \centering
               \includegraphics[width=\textwidth]{build/plots/dreh_40mbar.pdf}
-              \label{img:dreh_leck_3}
               \caption{Gleichgewichtsdruck $p_G = \SI{20}{\milli\bar}$.}
+              \label{img:dreh_leck_3}
             \end{subfigure}
             \hfill
             \begin{subfigure}{0.46\textwidth}
               \centering
               \includegraphics[width=\textwidth]{build/plots/dreh_80mbar.pdf}
-              \label{img:dreh_leck_4}
               \caption{Gleichgewichtsdruck $p_G = \SI{80}{\milli\bar}$.}
+              \label{img:dreh_leck_4}
             \end{subfigure}
             \caption{Die Messwerte der Leckratenmessung an der Drehschieberpumpe.\\
             Außerdem sind auch noch die dazugehörigen Fits abgebildet. }
+            \label{img:1}
         \end{figure}
 
         \noindent 
@@ -141,7 +143,7 @@
 
         \begin{table}
           \begin{center}
-            \begin{tabular}{cccccccc}
+            \begin{tabular}{c c c c}
               \toprule
               {$p_G \mathbin{\scalebox{1.5} / } \si{\milli\bar}$} & $\text{m} \mathbin{\scalebox{1.5} / } \si{\milli\bar\per\second}$ & 
               $\text{n} \mathbin{\scalebox{1.5} / } \si{\milli\bar}$  & $\text{S} \mathbin{\scalebox{1.5} / } \si{\litre\per\second}$ \\
@@ -152,14 +154,14 @@
               \bottomrule 
             \end{tabular}
             \caption{Die Parameter der Regressionsgeraden und die daraus bestimmten Saugvermögen für die Drehschieberpumpe.}
-            \label{tab4}
+            \label{tab:erg_dreh_leck}
           \end{center}
         \end{table}
 
         \subsection{Turbomolekularpumpe}
 
         \noindent Für die Turbomolekularpumpe wurde auch die Evakuierungsmessung und die Leckratenmessung durchgeführt.\\
-        Die Auswertung der einzelnen Messungen sind weitestgehend identisch.
+        Die Auswertungen der einzelnen Messungen sind weitestgehend identisch.
         Die Herstellerangabe des Saugvermögens der Drehschieberpumpe beträgt $ S_{theo} = \SI{77}{\litre\per\second}$.\\
         Außerdem ist hier das veränderte Volumen zu beachten.
 
@@ -168,12 +170,12 @@
         \noindent
         Für die Evakuierungsmessung weicht die Auswertung leicht von der der Drehschieberpumpe ab. 
         Hier wurden nämlich einmal Messwerte direkt an der Pumpe genommen und einmal am Vakuumkörper. \\
-        Die Messwerte, die an der Pumpe genommen wurden finden sich inklusive gemittelter Werte in Tabelle \ref{tab:turbo_pump_p} im Anhang. 
-        Für die Messwerte am Vakuumkörper ist es Tabelle \ref{tab:turbo_vent_p}. \\
+        Die Messwerte, die an der Pumpe genommen wurden finden sich, inklusive gemittelter Werte, in Tabelle \ref{tab:turbo_p_pump} im Anhang. 
+        Für die Messwerte am Vakuumkörper ist es Tabelle \ref{tab:turbo_p_vent}. \\
         Die Werte wurden über einen Zeitraum von $ T = \SI{200}{\second}$ alle $ \increment t = \SI{10}{\second}$ aufgenommen.\\
         Für beide Messungen wurde dafür als Endwert $p_{end} = \SI{1e-5}{\milli\bar}$ abgeschätzt.\\\\
-        Die zu den Messwerten dazugehörigen Abbildungen sind Abbildung \ref{img:turbo_pump_p}, 
-        für die Messungen an der Pumpe, und in Abbildung \ref{img:turbo_vent_p}, für den anderen Datensatz, zu finden.\\
+        Die zu den Messwerten dazugehörigen Abbildungen sind Abbildung \subref{img:turbo_pump_p}, 
+        für die Messungen an der Pumpe, und in Abbildung \subref{img:turbo_vent_p}, für den anderen Datensatz, zu finden.\\
         Der Unterschied zur Auswertung der Drehschieberpumpe ist, dass hier der Leitwert zusätzlich betrachtet wird, 
         weswegen ein zusätzlicher Datensatz an einer anderen Messstelle benötigt wird.
         Abgesehen davon ist die Auswertung analog zur Drehschieberpumpe.\\\\
@@ -204,7 +206,7 @@
           \centering
           \small
           \label{tab:Saug_turbo_vent}
-          \begin{tabular}{S [table-format=5.0]  c c c c c c}
+          \begin{tabular}{S [table-format=7.0]  c c c c c c}
            \toprule
            {} & $\text{m} \mathbin{\scalebox{1.5} / } \si{\per\second}$ & $\text{n}$ & $\text{S} \mathbin{\scalebox{1.5} / } \si{\litre\per\second}$ \\
            \midrule
@@ -219,8 +221,8 @@
         \begin{table}[H]
           \centering
           \small
-          \label{tab:Saug_turbo_vent}
-          \begin{tabular}{S [table-format=5.0]  c c c c c c}
+          \label{tab:Saug_turbo_pump}
+          \begin{tabular}{S [table-format=7.0]  c c c c c c}
            \toprule
            {} & $\text{m} \mathbin{\scalebox{1.5} / } \si{\per\second}$ & $\text{n}$ & $\text{S} \mathbin{\scalebox{1.5} / } \si{\litre\per\second}$ \\
            \midrule
@@ -249,9 +251,9 @@
            \toprule
            {} & $\text{L} \mathbin{\scalebox{1.5} / } \si{\litre\per\second}$  \\
            \midrule
-           \text{Bereich} 1 & -282.7821 \pm 5911.48140  \\
-           \text{Bereich} 2 & -0.2646 \pm 0.08152 \\
-           \text{Bereich} 3 & -0.0872 \pm 0.02025 \\
+           \text{Bereich} 1 & -282.782 \pm 5911.4814  \\
+           \text{Bereich} 2 & -0.265 \pm 0.0815 \\
+           \text{Bereich} 3 & -0.087 \pm 0.0203 \\
           \bottomrule
           \end{tabular}
         \end{table} 
@@ -266,34 +268,34 @@
         Für den Gleichgewichtsdruck $\SI{2e-4}{\milli\bar}$ ist es Tabelle \ref{tab:turbo_leck_2}, für  $\SI{7e-4}{\milli\bar}$ Tabelle \ref{tab:turbo_leck_3}
         und für $\SI{5e-4}{\milli\bar}$ Tabelle \ref{tab:turbo_leck_4}.\\
         Der Zeitraum für diese Messung beträgt $ T = \SI{120}{\second}$. Das Messintervall ist wieder $ \increment t = \SI{10}{\second}$.
-        Visualisiert sind die Messwerte, inklusive der auf ihnen berechneten Fits, sind sie in den Abbildungen \ref{img:turbo_leck_1} bis \ref{img:turbo_leck_4}.
+        Visualisiert sind die Messwerte, inklusive der auf ihnen berechneten Fits, sind sie in den Abbildungen \subref{img:turbo_leck_1} bis \subref{img:turbo_leck_4}.
         \begin{figure}[H]
           \begin{subfigure}{0.46\textwidth}
                   \centering
                   \includegraphics[width=\textwidth]{build/plots/turbo_1e-4mbar.pdf}
-                  \label{img:dreh_leck_1}
                   \caption{Gleichgewichtsdruck $p_G = \SI{1e-4}{\milli\bar}$.}
+                  \label{img:turbo_leck_1}
           \end{subfigure}
           \hfill
           \begin{subfigure}{0.46\textwidth}
                   \centering
                   \includegraphics[width=\textwidth]{build/plots/turbo_2e-4mbar.pdf}
-                  \label{img:dreh_leck_2}
                   \caption{Gleichgewichtsdruck $p_G = \SI{2e-4}{\milli\bar}$.}
+                  \label{img:turbo_leck_2}
           \end{subfigure}
           \hfill
           \begin{subfigure}{0.46\textwidth}
             \centering
             \includegraphics[width=\textwidth]{build/plots/turbo_7e-4mbar.pdf}
-            \label{img:dreh_leck_3}
             \caption{Gleichgewichtsdruck $p_G = \SI{7e-4}{\milli\bar}$.}
+            \label{img:turbo_leck_3}
           \end{subfigure}
           \hfill
           \begin{subfigure}{0.46\textwidth}
             \centering
             \includegraphics[width=\textwidth]{build/plots/turbo_5e-4mbar.pdf}
-            \label{img:dreh_leck_4}
             \caption{Gleichgewichtsdruck $p_G = \SI{5e-4}{\milli\bar}$.}
+            \label{img:turbo_leck_4}
           \end{subfigure}
           \caption{Die Messwerte der Leckratenmessung an der Turbomolekularpumpe.\\
           Außerdem sind auch noch die dazugehörigen Fits abgebildet. }
@@ -301,7 +303,7 @@
 
       \noindent
       Auch hier wurde wieder eine lineare Ausgleichsrechnung durchgeführt, aus deren Ergebnis dann mittels $S = \frac{-V}{p_g}\cdot m$ das Saugvermögen bestimmt wird.\\
-      Die Ergebnisse dieser Rechnungen sind in der folgenden Tabelle \ref{tab:erg_dreh_leck} aufgeführt.
+      Die Ergebnisse dieser Rechnungen sind in der folgenden Tabelle \ref{tab:erg_turbo_leck} aufgeführt.
 
       \begin{table}
         \begin{center}
@@ -317,7 +319,7 @@
             \bottomrule 
           \end{tabular}
           \caption{Die Parameter der Regressionsgeraden und die daraus bestimmten Saugvermögen für die Turbomolekularpumpe.}
-          \label{tab4}
+          \label{tab:erg_turbo_leck}
         \end{center}
       \end{table}
 
