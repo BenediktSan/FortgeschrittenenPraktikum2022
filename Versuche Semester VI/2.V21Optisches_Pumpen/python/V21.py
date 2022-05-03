@@ -33,8 +33,18 @@ i_hor_2 = np.array([0,0.02,0.02,0.07,0.09,0.1,0.12,0.16,0.2,0.22])
 p_1 = np.array([9,10.5,9.5,9,10])
 p_2 = np.array([19,21.5,19,19,20])
 
-#Ver
+##Dimensionen der Spulen
+#Sweep-Spule:
+r_sweep = 16.39 * 0.01 
+n_sweep = 11
 
+#horizontal-Spule
+r_hor = 15.79 * 0.01
+n_hor = 154	
+
+#vertikal-Spule
+r_ver = 11.735 * 0.01
+n_ver = 20
 
 ##Konstanten einlesen
 mu = const.mu_0
@@ -50,4 +60,13 @@ def Helm( I , R , N):
 
 ##Funktionen aufrufen:
 
-B_1 = Helm(i_sweep_1) + 
+B_1 = Helm(i_sweep_1 , r_sweep, n_sweep) + Helm(i_hor_1, r_hor, n_hor)
+B_2 = Helm(i_sweep_2 , r_sweep, n_sweep) + Helm(i_hor_2, r_hor, n_hor)
+
+plt.figure()
+plt.plot(freq, B_1, '+', label='Isotop 1')
+plt.plot(freq, B_2, 'o', label='Isotop 2')
+plt.legend()
+plt.savefig('Magnetfeld.png')
+
+ 
