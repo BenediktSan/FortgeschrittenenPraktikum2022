@@ -1,10 +1,26 @@
 \section{Auswertung}
 	
 
-	\subsection{Vertikalfeld}
+	\subsection{Magnetfelder}
 		
 		\noindent
-				
+		Die Magnetfeldstärke einer Helmholtzspule berechnet sich nach der Formel:
+		\begin{equation}
+			B = \mu_0 \frac{8IN}{\sqrt{125}R}.
+		\end{equation}		
+		Mit den Windungszahlen der Spulen $N$ und dem Radius $R$ der Spulen:
+		\begin{align*}
+			R_\text{Sweep} = \SI{16.39}{\centi\metre}			\quad   &N_\text{Sweep}    = 11		\\
+			R_\text{Horizontal} = \SI{15.79}{\centi\metre}		\quad 	&N_\text{Horizontal} = 154  \\
+			R_\text{Vertikal} = \SI{11.735}{\centi\metre}		\quad	&N_\text{Vertikal} = 20
+		\end{align*}
+		lässt sich aus den Stromstärken aus Tabelle (\ref{tab:Daten1}) und (\ref{tab:Daten2}) die gesamt horizontalkomponente des Magnetfeldes nach
+		\begin{equation*}
+			B_\text{Gesamt} = B_\text{Sweep} + B_\text{Horizontal}
+		\end{equation*} 
+		berechnen. Diese Ergebnisse für diese Berechnung sind auch in Tabelle(\ref{tab:Daten2}) eingetragen.
+		Die Stromstärke der Vertikal-Spule bei dem der Effekt des Erdmagnetfeldes minimal war, wurde bei \SI{}{\ampere}  gemessen.
+		Danach berechnet sich die Erdmagnetfeldstärke zu \SI{}{\micro\tesla}
 		
 	\subsection{Gyromagnetische Faktoren}
 		
@@ -42,7 +58,7 @@
 			&\text{Isotop 2:} \quad g_\text{F} = \num{0.329(0.006)}			
 		\end{align*}
 
-		\begin{table}
+		\begin{table}[h]
 			\begin{center}
 				\begin{tabular}{c c c  }% c}
 					\toprule
@@ -63,9 +79,10 @@
 				\end{tabular}				
 				\caption{Tabelle der RF Frequenzen und den gemessenen Stromstärken der Sweep-Spule.}
 			\end{center}
+			\label{tab:dat1}
 		\end{table}
 
-		\begin{table}
+		\begin{table}[h]
 			\begin{center}
 				\begin{tabular}{c c c c}
 					\toprule
@@ -86,6 +103,7 @@
 				\end{tabular}				
 				\caption{Tabelle der Stromstärke in der Horizontalspule und der gesamt Magnetfeldstärke in horizontal Richtung.}
 			\end{center}
+			\label{tab:dat2}
 		\end{table}
 	\subsection{Kernspin}
 		
@@ -94,7 +112,26 @@
 		\begin{equation}
 			I =\frac{1}{2} \left| \frac{g_\text{J}}{g_\text{F}} -1 \right|
 		\end{equation}
+		berechnen. Hier ist $g_\text{F}$ der Landé-Faktor.
+		Werden die berechneten gyromagnetischen Faktoren $g_\text{J}$, in diese Formel eingesetzt, ergibt sich für die Kernspins:
+		\begin{align}
+			&I_1 = \num{1.48(0.05)}\\
+			&I_2 = \num{2.54(0.05)}
+		\end{align}
 
+		
 	\subsection{Isotopenverhältnis}
-
+		
+		\noindent
+		Zur Bestimmung des Isotopenverhältnisses wurde bei einer RF Frequenz von \SI{100}{\kilo\hertz} die Peak tiefe der Magnetfeldstärke abgelesen. Da die Peaktiefe auch proportional zum Isotopenverhältnis der beiden RB Isotope.
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.6\textwidth]{latex/images/Messbild.jpeg}
+			\caption{Ein typisches Oszilloskopbild der Transitivität gegen die horizontalkomponente des Magnetfeldes. 
+			Der tiefste Peak auf der linken Seite des Bildes spiegelt die Stelle dar, andem die Horizontalmagnetfeldstärke 0 ist.
+			Rechts daneben ist ein kleiner Peak, der durch die stimulierte Emission von Isotop 1 entsteht. 
+			Der etwas größere Peak auf der rechten Seite entsteht durch die stimulierte Emission von Isotop 2.}
+		\end{figure}	
+	
 	\subsection{Quadratischer Zeemann-Effekt}
