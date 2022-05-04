@@ -71,6 +71,9 @@ def spin(gF):
 
 B_1 = Helm(i_sweep_1 , r_sweep, n_sweep) + Helm(i_hor_1, r_hor, n_hor)
 B_2 = Helm(i_sweep_2 , r_sweep, n_sweep) + Helm(i_hor_2, r_hor, n_hor)
+print('Die Magnetfeldstärken von Isotop 1: ', B_1)
+print('DIe Magnetfeldstärken von Isotop 2: ', B_2)
+
 
 ##Fitten:
 
