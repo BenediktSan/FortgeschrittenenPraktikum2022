@@ -48,8 +48,8 @@ n_ver = 20
 
 ##Konstanten einlesen
 mu = const.mu_0
-h  = const.h  
-
+h  = const.h
+mu_b, ___ , ___ = const.physical_constants["Bohr magneton"]  
 
 
 
@@ -59,7 +59,15 @@ def Helm( I , R , N):
 	B = mu * ( 8 * I * N) / (np.sqrt(125) * R)
 	return B
 
-##Funktionen aufrufen:
+def gyro(m):
+	gF = h / (m * mu_b)
+	return gF
+
+def spin(gF):
+	I = 1/2 * (2.002/gF -1)
+	return I
+
+###Funktionen aufrufen:
 
 B_1 = Helm(i_sweep_1 , r_sweep, n_sweep) + Helm(i_hor_1, r_hor, n_hor)
 B_2 = Helm(i_sweep_2 , r_sweep, n_sweep) + Helm(i_hor_2, r_hor, n_hor)
@@ -67,25 +75,48 @@ B_2 = Helm(i_sweep_2 , r_sweep, n_sweep) + Helm(i_hor_2, r_hor, n_hor)
 ##Fitten:
 
 p_arr_1 , cov_1 = np.polyfit(freq, B_1, deg=1, cov=True)
-print(p_arr_1)
+#print(p_arr_1)
 error_1 = np.sqrt(np.diag(cov_1))
-print(error_1)
+m_1 = ufloat(p_arr_1[0],error_1[0])
+b_1 = ufloat(p_arr_1[1],error_1[1])
+print("Steigung des Megnetfeldes von Isotop 1:",m_1)
+print("Achsenabschnit des Megnetfeldes von Isotop 1:",b_1)
+#print(error_1)
 p_arr_2 , cov_2 = np.polyfit(freq, B_2, deg=1, cov=True)
+error_2 = np.sqrt(np.diag(cov_2))
+m_2 = ufloat(p_arr_2[0], error_2[0])
+b_2 = ufloat(p_arr_2[1], error_2[1])
+print("Steigung des Magnetfeldes von Isotop 2:", m_2)
+print("Achsenabschnit des Magnetfeldes von Isotop 2:", b_2)
 
+print('###')
+##gyromagnetischer Faktor:
+
+gF_1 = gyro(m_1)
+print('Der gyromagnetische Faktor von Isotop 1: ', gF_1)
+gF_2 = gyro(m_2)
+print('Der gyromagnetische Faktor von Isotop 2: ', gF_2)
+
+##Kernspin:
+
+ki_1 = spin(gF_1)
+print('Der Kernspin von Isotop 1: ', ki_1)
+ki_2 = spin(gF_2)
+print('Der Kernspin von Isotop 2: ', ki_2)
 
 
 ##Plotten:
 #Linspace:
-x_freq = np.linspace(1 * 1e5, 10 * 1e5, 1000)
+x_freq = np.linspace(0, 1, 1000)
 #Peak magnetfleder
 plt.figure()
-plt.plot(freq, B_1, '+', label='Isotop 1')
-plt.plot(x_freq, x_freq * p_arr_1[0] + p_arr_1[1], label='fit zu Isotop 1')
-plt.plot(freq, B_2, 'o', label='Isotop 2')
-plt.plot(x_freq, x_freq * p_arr_2[0] + p_arr_2[1], label='fit zu Isotop 2')
-plt.xlabel('Frequenz der RF-Spule in Hz')
-plt.ylabel('Summierte Magnetfeldstärke in den Peaks')
+plt.plot(freq*1e-6, B_1*1e6, 'r+', label='Isotop 1')
+plt.plot(x_freq, (x_freq * 1e6 * p_arr_1[0] + p_arr_1[1])*1e6,'r-' , label='Fit zu Isotop 1')
+plt.plot(freq*1e-6, B_2*1e6, 'g+', label='Isotop 2')
+plt.plot(x_freq, (x_freq * 1e6 * p_arr_2[0] + p_arr_2[1])*1e6, 'g-' , label='Fit zu Isotop 2')
+plt.xlabel('Frequenz der RF-Spule /  MHz')
+plt.ylabel(r"Horizontalkomponente von B / $\mu T$")
 plt.legend()
-plt.savefig('Magnetfeld.png')
+plt.savefig('build/Magnetfeld.png')
 
  
