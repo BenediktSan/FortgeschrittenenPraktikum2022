@@ -17,8 +17,31 @@ Anschließend trifft das Licht auf einen Filter, der alle Frequenzen bis auf die
 mit $\lambda = \SI{794.8}{\nano\metres}$, herausfiltert. Danach wird das Licht mit einer $\frac{\lambda}{4}$-Platte zirkular polarisiert.\\
 Dieses Licht trifft dann auf die Dampfzelle, welche den Rubidium-Dampf enthält. 
 Der Dampf wird mit einem kleinen Ofen erwärmt, um den optimalen Dampfdruck zu erzeugen.
-Dies sollte eine halbe Stunde vor den Messungen geschehen.\\
-Die Dampfzelle ist von drei Helmholtzspulen und einer weiteren Spule umgeben.
+Dies sollte eine halbe Stunde vor den Messungen geschehen.\\\\
+Die Dampfzelle ist von drei Helmholtzspulen und einer weiteren Spule umgeben.\\
+Eine der Helmholtzspulen ist dabei so aufgebaut, dass die Magnetfeldlinien ihres Feldes senkrecht auf dem Tisch stehen.
+Dies dient später dazu die vertikale Komponente des Erdmagnetfeldes ausgleichen zu können.\\
+Die anderen beiden Helmholtzspulen sind so aufgebaut, dass ihr Feld parallel zum Strahlengang ist.
+Eine der Spulen ist die sogenannte Sweep-Spule. 
+Für sie kann ein Startwert, ein Endwert und ein Duchlaufzeitraum eingestellt werden, der von dem Feld durchlaufen wird, eingestellt werden.
+Die andere ist die Horizontalfeld-Spule. 
+Mit ihr wird ein zusätzliches Feld angelegt, welches auf das Feld der Sweep-Spule addiert wird, da diese nur einen kleinen Feldstärkenbereich abdecken kann.\\
+Die letzte Spule ist die RF-Spule, oder \enquote*{radio-frequency}-Spule. 
+Sie erzeugt ein Magnetwechselfeld, welches die Dampfzelle durchsetzt.\\
+Ihre Frequenz kann variiert werden.\\\\ 
+Hinter der Dampfzelle im Strahlengang befindet sich noch eine Sammellinse, welche den Lichtstrahl auf einen Photodetektor bündelt.
+Dieser ist an ein Oszilloskop und ein Galvanometer angeschlossen.\\
+Zusätzlich werden noch Steuergeräte genutzt, mit denen die Stromstärke der Spulen eingestellt werden kann, genutzt.
+Die RF-Spule ist an einen Impulsgenerator angeschlossen, mit dem die Frequenzen varriert werden können.\\
 
 
 \subsection{Durchführung}
+
+Zuerst werden alle optische Bauteile so im Strahlengang positioniert, dass der am Galvanometer gemessene Stromstärke maximal wird.\\
+Anschließend wird bei abgeschaltetem RF-Feld ein Sweep-Feld angelegt. Dadurch sind Resonanzstellen auf dem Oszilloskop zu erkennen.
+Nun wird das Feld der Vertikal-Spule so eingestellt, dass diese Stellen möglichst schmal werden. Wenn dies geschieht, ist das Erdmagnetfeld in dieser Komponente kompensiert.\\
+Nun wird der Aufbau so verschoben, dass der Strahlengang parallel zur vertikal Komponente des Erdmagnetfeldes liegt. \\
+Dabei wird der Tisch verschoben und wieder die Breite der Resonanzstelle minimiert. Dazu kann ein Kompass unterstützend genutzt werden.\\\\
+Für die Messung wird das Horizontalfeld zunächst auf null gestellt.
+Die Sweep-Spule wird auf das maximale Intervall eingestellt und darauf, dass sie das gesamte Intervall durchläuft.\\
+Das RF-Feld wird auf $\Si{100}{\kilo\hertz}$ gestellt.
