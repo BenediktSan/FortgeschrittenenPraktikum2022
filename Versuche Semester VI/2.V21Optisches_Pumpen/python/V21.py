@@ -73,7 +73,7 @@ def spin(gF):
 	return I
 
 def Zeequad(gF , B , M , E):
-	Z = (gF ** 2) * ( mu ** 2) * (B ** 2) * (1 - 2 * M) / E
+	Z = (gF ** 2) * ( mu_b ** 2) * (B ** 2) * (1 - 2 * M) / E
 	return Z
 
 ###Funktionen aufrufen:
@@ -126,9 +126,9 @@ B_max_2 = 238e-6
 Delta_E_2 = 2.01e-24
 
 print('Für Isotop 1 ergibt der quadratische Zeemaneffekt: ', Zeequad( gF_1 , B_max_1 , M_F_1 , Delta_E_1))
-print('Für Isotop 1 ergibt der lineare Zeemanneffekt: ', gF_1 * mu * B_max_1)
+print('Für Isotop 1 ergibt der lineare Zeemanneffekt: ', gF_1 * mu_b * B_max_1)
 print('Für Isotop 2 ergibt der quadratische Zeemaneffekt: ', Zeequad( gF_2 , B_max_2 , M_F_2 , Delta_E_2))
-print('Für Isotop 2 ergibt der lineare Zeemaneffekt: ', gF_2 * mu * B_max_2)
+print('Für Isotop 2 ergibt der lineare Zeemaneffekt: ', gF_2 * mu_b * B_max_2)
 
 
 ##Plotten:
