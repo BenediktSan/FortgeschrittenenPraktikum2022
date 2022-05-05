@@ -51,7 +51,12 @@ mu = const.mu_0
 h  = const.h
 mu_b, ___ , ___ = const.physical_constants["Bohr magneton"]  
 
-
+##Isotopenverhältnis:
+P_1 = 9
+P_2 = 19
+P_ges = P_1 + P_2
+print('Das Gemisch besteht zu :' ,P_1 / P_ges * 100 ,'% aus Isotop 1')
+print('Das Gemisch besteht zu :' ,P_2 / P_ges * 100 ,'% aus Isotop 2')
 
 ##Funktionen definieren:
 
@@ -72,8 +77,8 @@ def spin(gF):
 B_1 = Helm(i_sweep_1 , r_sweep, n_sweep) + Helm(i_hor_1, r_hor, n_hor)
 B_2 = Helm(i_sweep_2 , r_sweep, n_sweep) + Helm(i_hor_2, r_hor, n_hor)
 print('Die Magnetfeldstärken von Isotop 1: ', B_1)
-print('DIe Magnetfeldstärken von Isotop 2: ', B_2)
-
+print('Die Magnetfeldstärken von Isotop 2: ', B_2)
+print('Die Magnetfeldstärke in Vertikalrichtung beträgt: ' , Helm( 0.23 , r_ver , n_ver))
 
 ##Fitten:
 
