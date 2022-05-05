@@ -72,6 +72,10 @@ def spin(gF):
 	I = 1/2 * (2.002/gF -1)
 	return I
 
+def Zeequad(gF , B , M , E):
+	Z = (gF * mu_b * B )**2  * (1 - 2*M) / E
+	return Z
+
 ###Funktionen aufrufen:
 
 B_1 = Helm(i_sweep_1 , r_sweep, n_sweep) + Helm(i_hor_1, r_hor, n_hor)
@@ -111,6 +115,20 @@ ki_1 = spin(gF_1)
 print('Der Kernspin von Isotop 1: ', ki_1)
 ki_2 = spin(gF_2)
 print('Der Kernspin von Isotop 2: ', ki_2)
+
+##Quadratischer Zeemaneffekt:
+
+M_F_1 = -1
+B_max_1 = 163* 1e-6
+Delta_E_1 = 4.54e-24
+M_F_2 = -2
+B_max_2 = 238* 1e-6
+Delta_E_2 = 2.01e-24
+
+print('Für Isotop 1 ergibt der quadratische Zeemaneffekt: ', Zeequad( gF_1 , B_max_1 , M_F_1 , Delta_E_1))
+print('Für Isotop 1 ergibt der lineare Zeemanneffekt: ', gF_1 * mu_b * B_max_1)
+print('Für Isotop 2 ergibt der quadratische Zeemaneffekt: ', Zeequad( gF_2 , B_max_2 , M_F_2 , Delta_E_2))
+print('Für Isotop 2 ergibt der lineare Zeemaneffekt: ', gF_2 * mu_b * B_max_2)
 
 
 ##Plotten:
