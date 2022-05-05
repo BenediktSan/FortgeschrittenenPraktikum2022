@@ -73,7 +73,7 @@ def spin(gF):
 	return I
 
 def Zeequad(gF , B , M , E):
-	Z = (gF * mu_b * B )**2  * (1 - 2*M) / E
+	Z = (gF ** 2) * ( mu ** 2) * (B ** 2) * (1 - 2 * M) / E
 	return Z
 
 ###Funktionen aufrufen:
@@ -119,16 +119,16 @@ print('Der Kernspin von Isotop 2: ', ki_2)
 ##Quadratischer Zeemaneffekt:
 
 M_F_1 = -1
-B_max_1 = 163* 1e-6
+B_max_1 = 163e-6
 Delta_E_1 = 4.54e-24
 M_F_2 = -2
-B_max_2 = 238* 1e-6
+B_max_2 = 238e-6
 Delta_E_2 = 2.01e-24
 
 print('Für Isotop 1 ergibt der quadratische Zeemaneffekt: ', Zeequad( gF_1 , B_max_1 , M_F_1 , Delta_E_1))
-print('Für Isotop 1 ergibt der lineare Zeemanneffekt: ', gF_1 * mu_b * B_max_1)
+print('Für Isotop 1 ergibt der lineare Zeemanneffekt: ', gF_1 * mu * B_max_1)
 print('Für Isotop 2 ergibt der quadratische Zeemaneffekt: ', Zeequad( gF_2 , B_max_2 , M_F_2 , Delta_E_2))
-print('Für Isotop 2 ergibt der lineare Zeemaneffekt: ', gF_2 * mu_b * B_max_2)
+print('Für Isotop 2 ergibt der lineare Zeemaneffekt: ', gF_2 * mu * B_max_2)
 
 
 ##Plotten:
@@ -145,4 +145,14 @@ plt.ylabel(r"Horizontalkomponente von B / $\mu T$")
 plt.legend()
 plt.savefig('build/Magnetfeld.png')
 
- 
+###Dikussion
+
+B_Erd_v_Theo = 44e-6
+I_1_Theo = 1.5
+I_2_Theo = 2.5
+
+print('Abweichung des Bestimmten Magnetfeldes: ', 1 - ( Helm( 0.23 , r_ver , n_ver)/ B_Erd_v_Theo))
+print('Abweichung des Kernspins von Isotop 1: ', 1 - ki_1 / I_1_Theo)
+print('Abweichung des Kernspins von Isotop 2: ', 1 - ki_2 / I_2_Theo)	
+print('Abweichung des Anteils von Isotop 1: ', 1- 32.143/27.835)
+print('Abweichung des Anteils von Isotop 2: ', 1- 67.857/72.835)
