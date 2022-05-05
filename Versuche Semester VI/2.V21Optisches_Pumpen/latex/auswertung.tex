@@ -14,24 +14,25 @@
 			R_\text{Horizontal} = \SI{15.79}{\centi\metre}		\quad 	&N_\text{Horizontal} = 154  \\
 			R_\text{Vertikal} = \SI{11.735}{\centi\metre}		\quad	&N_\text{Vertikal} = 20
 		\end{align*}
-		lässt sich aus den Stromstärken aus Tabelle (\ref{tab:Daten1}) und (\ref{tab:Daten2}) die gesamt horizontalkomponente des Magnetfeldes nach
+		lässt sich aus den Stromstärken aus Tabelle \ref{tab:Daten1} und Tabelle \ref{tab:Daten2} die Gesamthorizontalkomponente des Magnetfeldes berechnen.\\
+		Dies wird nach
 		\begin{equation*}
 			B_\text{Gesamt} = B_\text{Sweep} + B_\text{Horizontal}
 		\end{equation*} 
-		berechnen. Diese Ergebnisse für diese Berechnung sind auch in Tabelle(\ref{tab:Daten2}) eingetragen.
-		Die Stromstärke der Vertikal-Spule bei dem der Effekt des Erdmagnetfeldes minimal war, wurde bei \SI{0.23}{\ampere}  gemessen.
+		bestimmt. Die Ergebnisse für diese Berechnung sind auch in Tabelle \ref{tab:Daten2} eingetragen.
+		Die Stromstärke der Vertikal-Spule, bei der der Effekt des Erdmagnetfeldes minimal war, wurde bei \SI{0.23}{\ampere} gemessen.
 		Danach berechnet sich die Erdmagnetfeldstärke zu \SI{35.24}{\micro\tesla}
 		
 	\subsection{Gyromagnetische Faktoren}
 		
 		\noindent
-		Die Formel(\ref{eqn:zeeman}) lässt sich zu 
+		Die Formel \ref{eqn:zeeman} lässt sich zu 
 		\begin{equation*}
 			B = \frac{\hbar}{g_F \, \mu_B} \cdot \omega
 			\label{eqn:steig}
 		\end{equation*}
-		umstellen. In Abbildung(\ref{fig:Daten}) ist die Magnetfeldstärke gegen die RF-Frequenz gezeichnet.
-		Hier lässt sich nun die Steigung der beiden Geraden mittels Gleichung(\ref{eqn:steig}) als $ m = \frac{\hbar}{g_F \, \mu_B}$ identifizieren.		
+		umstellen. In Abbildung \ref{fig:Daten} ist die Magnetfeldstärke gegen die RF-Frequenz gezeichnet.
+		Hier lässt sich nun die Steigung der beiden Geraden mittels Gleichung \ref{eqn:steig} als $ m = \frac{\hbar}{g_F \, \mu_B}$ identifizieren.		
 		Diese Steigung lässt sich wiederum zum gyromagnetischen Faktor
 		\begin{equation}
 		 	g_F = \frac{\hbar}{m \mu_B}
@@ -42,7 +43,7 @@
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.7\textwidth]{build/Magnetfeld.png}
-			\caption{Die gemessenen Daten aus Tabelle(\ref{tab:Daten}) geplotted mit den berechneten linearen Regressionen.}
+			\caption{Die gemessenen Daten aus Tabelle \ref{tab:Daten1} und Tabelle \ref{tab:Daten2} geplottet mit den berechneten linearen Regressionen.}
 			\label{fig:Daten} 
 		\end{figure}
 
@@ -52,7 +53,7 @@
 			m_1 &= \SI{1.42(04)e-10}{\tesla\per\hertz}  &b_1= \SI{2.08(22)}{\tesla}\\
 			m_2 &= \SI{2.17(04)e-10}{\tesla\per\hertz}  &b_2= \SI{1.92(23)}{\tesla}
 		\end{align*}
-		bestimmt. Werden diese Steigungen nun in Gleichung(\ref{eqn:gyro}) eingesetzt, ergit sich für die die gyromagnetischen Faktoren:
+		bestimmt. Werden diese Steigungen nun in Gleichung \ref{eqn:gyro} eingesetzt, ergibt sich für die gyromagnetischen Faktoren:
 		\begin{align*}
 			&\text{Isotop 1:} \quad g_\text{F} = \num{0.504(013)}\\		
 			&\text{Isotop 2:} \quad g_\text{F} = \num{0.329(006)}			
@@ -77,9 +78,9 @@
 					1.0 & 0.385 & 0.750\\
 					\bottomrule
 				\end{tabular}				
-				\caption{Tabelle der RF Frequenzen und den gemessenen Stromstärken der Sweep-Spule.}
+				\caption{Tabelle der RF-Frequenzen und der gemessenen Stromstärken der Sweep-Spule.}
+				\label{tab:Daten1}
 			\end{center}
-			\label{tab:dat1}
 		\end{table}
 
 		\begin{table}[H]
@@ -101,9 +102,9 @@
 					0.16 & 0.22 & 163.5 & 238.1 \\
 					\bottomrule
 				\end{tabular}				
-				\caption{Tabelle der Stromstärke in der Horizontalspule und der gesamt Magnetfeldstärke in horizontal Richtung.}
+				\caption{Tabelle der Stromstärke in der Horizontalspule und der daraus errechneten Gesamtmagnetfeldstärke in horizontal Richtung.}
+				\label{tab:Daten2}		
 			\end{center}
-			\label{tab:dat2}
 		\end{table}
 	\subsection{Kernspin}
 		
@@ -112,30 +113,31 @@
 		\begin{equation}
 			I =\frac{1}{2} \left| \frac{g_\text{J}}{g_\text{F}} -1 \right|
 		\end{equation}
-		berechnen. Hier ist $g_\text{F}$ der Landé-Faktor.
-		Werden die berechneten gyromagnetischen Faktoren $g_\text{J}$, in diese Formel eingesetzt, ergibt sich für die Kernspins:
+		berechnen. Hier ist $g_\text{F}$ der Landé-Faktor.\\
+		Werden die berechneten gyromagnetischen Faktoren $g_\text{J}$ in diese Formel eingesetzt ergibt sich für die Kernspins:
 		\begin{align*}
-			&I_1 = \num{1.48(0.05)}\\
-			&I_2 = \num{2.54(0.05)}
+			&I_1 = \num{1.48(005)}\\
+			&I_2 = \num{2.54(005)}
 		\end{align*}
 
 		
-	\subsection{Isotopenverhältnis}
+	\subsection{Isotopenverhältnis}s
 		
 		\noindent
-		Zur Bestimmung des Isotopenverhältnisses wurde bei einer RF Frequenz von \SI{100}{\kilo\hertz} die Peaktiefe der Magnetfeldstärke abgelesen,
-		da diese auch proportional zum Isotopenverhältnis der beiden RB Isotope.
+		Zur Bestimmung des Isotopenverhältnisses wurde bei einer RF Frequenz von \SI{100}{\kilo\hertz} die Peaktiefe der Magnetfeldstärke abgelesen.
+		Diese ist auch proportional zum Isotopenverhältnis der beiden RB Isotope.
 		
 		\begin{figure}[H]
 			\centering
 			\includegraphics[width=0.6\textwidth]{latex/images/Messbild.jpeg}
-			\caption{Ein typisches Oszilloskopbild der Transitivität gegen die horizontalkomponente des Magnetfeldes. 
-			Der tiefste Peak auf der linken Seite des Bildes spiegelt die Stelle dar, andem die Horizontalmagnetfeldstärke 0 ist.
-			Rechts daneben ist ein kleiner Peak, der durch die stimulierte Emission von Isotop 1 entsteht. 
-			Der etwas größere Peak auf der rechten Seite entsteht durch die stimulierte Emission von Isotop 2.}
+			\caption{Ein typisches Oszilloskopbild der Transitivität gegen die Horizontalkomponente des Magnetfeldes. 
+			Der tiefste Peak auf der linken Seite des Bildes ist die Stelle an der die Horizontalmagnetfeldstärke 0 ist.\\
+			Rechts daneben ist ein kleiner Peak, der durch die induzierte Emission von Isotop 1 entsteht. 
+			Der etwas größere Peak auf der rechten Seite entsteht durch die induzierte Emission von Isotop 2.}
 		\end{figure}
 
-		Bei einer RF-Frequenz von \SI{100}{\kilo\hertz} wurde mit für das erste Isotop eine Peaktief von $N_1$ = 9 Punkten, für das zweite Isotop wurde eine Tiefe von $N_2$ = 19 Punkten gemessen.
+		\noindent
+		Bei einer RF-Frequenz von \SI{100}{\kilo\hertz} wurde für das erste Isotop eine Peaktiefe von $N_1$ = 9 Punkten, für das zweite Isotop wurde eine Tiefe von $N_2$ = 19 Punkten gemessen.
 		Mit diesen Messungen lässt sich der Anteil im Gas nach 
 		\begin{equation}
 			A_i = \frac{N_1 + N_2}{N_i}
@@ -150,23 +152,26 @@
 	
 	\subsection{Quadratischer Zeemann-Effekt}
 
-		Die Effekte des Quadratischen Zeemaneffektes wurden nach Gleichung(\ref{eqn:zee_quad}) berechnet.
+		\noindent
+		Die Effekte des quadratischen Zeeman-Effektes wurden nach Gleichung \ref{eqn:zee_quad} berechnet.
 		Für das erste Isotop wurden dazu die Werte:
 		\begin{align*}
 			M_\text{F} &= -1\\
 			B_\text{max} &= \SI{163}{\micro\tesla}\\
 			\Delta E_\text{Hyp} &= \SI{4.53 e-24}{\joule}
 		\end{align*}
-		verwendet, dies führt zu einem quadratischem Zeemaneffekt von $Z_\text{Zee,quad,1} = \SI{3.84(2)e-31}{\joule}.$
-		Der Lineare Zeemaneffekt berechnet sich zu $Z_\text{Zee,linear,1} = \SI{7.63(2)e-28}{\joule}$
+		verwendet. Dies führt zu einem quadratischen Zeeman-Effekt von $E_\text{Zee,quad,1} = \SI{3.84(2)e-31}{\joule}.$
+		Der lineare Zeeman-Effekt berechnet sich zu $E_\text{Zee,linear,1} = \SI{7.63(2)e-28}{\joule}$.
 
+		\noindent
 		Für das zweite Isotop wurden die Werte:
 		\begin{align*}
 			M_\text{F} &= -2\\
 			B_\text{max} &= \SI{238}{\micro\tesla}\\
 			\Delta E_\text{Hyp} &= \SI{2.01 e-24}{\joule}
 		\end{align*}
-		verwendet. Hiermit berechnet sich der quadratische Zeemaneffekt zu $Z_\text{Zee,quad,2} = \SI{1.31(04)e-30}{\joule}$ und der lineare Zeemaneffekt zu $Z_\text{Zee,linear,2} = \SI{7.26(12)e-28}{\joule}$.
+		verwendet. Hiermit berechnet sich der quadratische Zeeman-Effekt zu $E_\text{Zee,quad,2} = \SI{1.31(04)e-30}{\joule}$ 
+		und der lineare Zeeman-Effekt zu $E_\text{Zee,linear,2} = \SI{7.26(12)e-28}{\joule}$.
 
 
 
