@@ -1,4 +1,4 @@
-all: build/Protokoll_V748.pdf
+all: build/Protokoll_V48.pdf
 
 
 

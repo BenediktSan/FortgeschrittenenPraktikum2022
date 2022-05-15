@@ -16,16 +16,20 @@
 
         \noindent
         Die Zahl $n$ gibt die Anzahl der unabhängigen Messungen an.\\\\
-        Die Messwerte, die bei Messungen mit der Turbopumpe aufgenommen wurden, besitzen im Bereich $\SI{1e-8}{\milli\bar}$ bis $\SI{100}{\milli\bar}$ eine Ungenauigkeit von $30$\%.
-        Im Bereich von $\SI{100}{\milli\bar}$ bis $\SI{1000}{\milli\bar}$ sind es sogar $50$ \%.\\
-        Für die Messungen mit der Drehschieberpumpe sind es für Werte kleiner als $\SI{2e-3}{\milli\bar}$ ein Faktor $2$ vom Messwert.
+        Die Messwerte, die bei Messungen mit der Turbopumpe aufgenommen wurden, besitzen im Bereich $\SI{1e-8}{\milli\bar}$ bis $\SI{100}{\milli\bar}$ eine Ungenauigkeit von $30$\% \cite{V70}.
+        Im Bereich von $\SI{100}{\milli\bar}$ bis $\SI{1000}{\milli\bar}$ sind es $50$ \%.\\
+        Für die Messungen mit der Drehschieberpumpe sind es für Werte kleiner als $\SI{2e-3}{\milli\bar}$ ein Faktor $2$ vom Messwert \cite{V70}.
         Zusätzlich sind es von $\SI{2e-3}{\milli\bar}$ bis $\SI{10}{\milli\bar}$ $\pm\; \SI{120}{\milli\bar}$ 
         und von $\SI{10}{\milli\bar}$ bis $\SI{1200}{\milli\bar}$ $\pm \;\SI{3.6}{\milli\bar}$.\\\\
         Für die Fehlerfortpflanzung des logarithmischen Fits wird die aus der Formel \ref*{fehler} hergeleitete Formel 
         \begin{equation*}
           \sigma = \sqrt{\frac{\sigma_p^2}{(p-p_E)^2}+\frac{\sigma_{p0}^2}{(p_0-p_E)^2}+\sigma_{p_E}^2 \left(\frac{1}{p_0-p_E}-\frac{1}{p-p_E}\right)^2}
         \end{equation*}
-        genutzt. Des Weiteren wird für die relative Abweichung berechneter Werte vom Theoriewert die Formel 
+        genutzt. Die Fehlerfortpflanzung des Leitwerts bestimmt sich zu
+        \begin{equation*}
+          \sigma = \sqrt{aaa} \quad .
+        \end{equation*}
+        Des Weiteren wird für die relative Abweichung berechneter Werte vom Theoriewert die Formel 
         \begin{equation*}
           \increment x = \frac{x - x_{theo}}{x_{theo}}
         \end{equation*}
@@ -34,11 +38,10 @@
       \subsection{Volumen}
         Um das Saugvermögen der beiden Pumpen zu bestimmen wird das Volumen des Versuchsaufbaus benötigt.\\
         Für die Messungen, die für die Turbopumpe durchgeführt werden, wird ein kleineres Volumen benötigt.
-        Dies ist nämlich nur das bis hinter die Pumpe, 
-        was in Abbildung \ref{fig:auf} zu sehen ist.\\
+        Dort wird nämlich nur das Volumen bis zur Turbomolekularpumpe evakuiert.\\
         Dieses Volumen beträgt $V_1 = \SI{33.0(33)}{\litre}$.\\
         Für die Messungen mit der Drehschieberpumpe wird zusätzlich noch das Volumen des Schlauchs genutzt. 
-        Dieses beträgt $\SI{1(01)}{\litre}$, wodurch sich das Volumen $V_2 = \SI{34.0(34)}{\litre}$ ergibt.\\
+        Dieses beträgt $\SI{1.0(1)}{\litre}$, wodurch sich das Volumen $V_2 = \SI{34.0(34)}{\litre}$ ergibt.\\
 
 
 
@@ -52,20 +55,20 @@
         \noindent Für diese Messung wurden über einen Zeitraum von $ T = \SI{600}{\second}$ alle $ \increment t = \SI{10}{\second}$
         der Druck im Versuchsaufbau hinter der deaktivierten Turbomolekularpumpe abgelesen. Dies wurde dreimal wiederholt.\\
         Die Messdaten sind in der Tabelle \ref{tab:dreh_p} im Anhang, inklusive der gemittelten Messwerte mit Fehler des Mittelwerts, zu finden.
-        Als Enddruck wurde $\SI{0.021}{\milli\bar}$ abgeschätzt.\\\\
+        Als Enddruck wurde $\SI{0.021}{\milli\bar}$ aufgenommen.\\\\
         
-        \noindent Für die Auswertung wurde nun ein linearer Fit der Form
+        \noindent Für die Auswertung wurde ein linearer Fit der Form
         \begin{equation}
           y = m \cdot x + n
           \label{eqn:lin}
         \end{equation}
-        auf die logarithmierten Messdaten, die nun der Form 
+        auf die logarithmierten Messdaten, die der Form 
         \begin{equation*}
           \ln\left(\frac{p(t) - p_{end}}{p_0 - p_{end}}\right)
         \end{equation*}
-        folgen, angewandt.\\
+        folgen, angewandt. Diese Gleichung ist dabei aus Gleichung \ref{eqn:druckkurve} hergeleitet.\\
         Allerdings ist das Saugvermögen der Pumpe nicht über alle Druckbereiche konstant, was zum Beispiel an unterschiedlichen Ströumungsarten bei unterschiedlichen Drücken liegt.\\
-        Aus diesem Grund wurde der Fit für drei unterschiedliche Bereiche durchgeführt. Die Bereiche wurden willkürlich grafisch abgelesen.\\
+        Aus diesem Grund wurde der Fit für drei unterschiedliche Bereiche durchgeführt. Die Bereiche wurden aus der grafischen Darstellung abgeschätzt.\\
         Die Ergebnisse der Fits, die grafische Darstellung der Messdaten, inklusive Fehler, finden sich in Abbildung \ref{img:dreh_p}.
         Dabei sind auch die unterschiedlichen betrachteten Intervalle farblich hervorgehoben.\\
         \begin{figure}[h]
@@ -76,7 +79,7 @@
           \label{img:dreh_p}
         \end{figure}
 
-        \noindent Der erste Bereich geht vom Startdruck bis $\SI{1.8}{\milli\bar}$. Der zweite bis $\SI{0.4387}{\milli\bar}$ und der dritte bis zum Ende.\\
+        \noindent Der erste Bereich geht vom Startdruck bis $\SI{1.8}{\milli\bar}$. Der zweite bis $\SI{0.44}{\milli\bar}$ und der dritte bis zum Ende.\\
         Aus den Fitparametern lässt sich über $ S = -mV $ das Saugvermögen bestimmen. Damit ergibt sich dann
         \begin{table}[H]
           \centering
