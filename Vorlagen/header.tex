@@ -132,13 +132,17 @@
 \usepackage{expl3}
 \usepackage{xparse}
 
-\ExplSyntaxON
+%\ExplSyntaxON
 
 \NewDocumentCommand \I {m}{ \symup{#1} }
 
 \RenewDocumentCommand \t {m}{ \text{#1} }
 
-\ExplSyntaxOff
+\NewDocumentCommand \DIF{m m}{
+\frac{\text{d} #1}{\text{d} #2}
+}
+
+%\ExplSyntaxOff
 
 \author{%
   Niklas Düser\\%
