@@ -129,6 +129,17 @@
 
 \usepackage{dsfont}
 
+\usepackage{expl3}
+\usepackage{xparse}
+
+\ExplSyntaxON
+
+\NewDocumentCommand \I {m}{ \symup{#1} }
+
+\RenewDocumentCommand \t {m}{ \text{#1} }
+
+\ExplSyntaxOff
+
 \author{%
   Niklas Düser\\%
   \href{mailto:niklasdueser@tu-dortmund.de}{niklas.dueser@tu-dortmund.de}%
