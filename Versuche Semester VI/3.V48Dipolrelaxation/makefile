@@ -5,13 +5,13 @@ all: build/Protokoll_V48.pdf
 #hier Python-Skripte
 
 
-#build/plots/dreh_04mbar.pdf:	|build
-#	python python/V70.py
+build/plots/build/plots/mitunter1.5grad.pdf.pdf:	|build
+	python python/48.py
 
 
 
 # hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-build/Protokoll_V48.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex | build
+build/Protokoll_V48.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex build/plots/mitunter1.5grad.pdf | build
 	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V48.tex
 	biber build/Protokoll_V48.bcf
 	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V48.tex
