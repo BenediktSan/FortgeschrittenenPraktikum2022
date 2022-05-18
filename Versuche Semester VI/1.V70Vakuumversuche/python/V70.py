@@ -7,7 +7,7 @@ from scipy.optimize import curve_fit
 import scipy.constants as const
 import sympy
 import os
-from tabulate import tabulate
+from tabulate import tabulate           # falls nicht installiert "pip install tabulate"
 from uncertainties.unumpy import (nominal_values as noms, std_devs as stds)
 
 
@@ -488,10 +488,10 @@ dreh_theo = np.ones(1000) * 1.1
 
 plt.figure()
 plt.plot(t_1,dreh_theo, label = "Theoriewert" )
-plt.errorbar((dreh_leck_1_1[0]+dreh_leck_1_1[-1])/2, noms(Saug_dreh_04),xerr = (dreh_leck_1_1[0]-dreh_leck_1_1[-1])/2, yerr=stds(Saug_dreh_04), fmt='x', label = "Leck 0.4 mbar")
-plt.errorbar((dreh_leck_2_1[0]+dreh_leck_2_1[-1])/2, noms(Saug_dreh_10),xerr = (dreh_leck_2_1[0]-dreh_leck_2_1[-1])/2, yerr=stds(Saug_dreh_10), fmt='x', label = "Leck 10 mbar")
-plt.errorbar((dreh_leck_3_1[0]+dreh_leck_3_1[-1])/2, noms(Saug_dreh_40),xerr = (dreh_leck_3_1[0]-dreh_leck_3_1[-1])/2, yerr=stds(Saug_dreh_40), fmt='x', label = "Leck 40 mbar")
-plt.errorbar((dreh_leck_4_1[0]+dreh_leck_4_1[-1])/2, noms(Saug_dreh_80),xerr = (dreh_leck_4_1[0]-dreh_leck_4_1[-1])/2, yerr=stds(Saug_dreh_80), fmt='x', label = "Leck 80 mbar")
+plt.errorbar((dreh_leck_1_1[0]+dreh_leck_1_1[-1])/2, noms(Saug_dreh_04), xerr = 0, yerr=stds(Saug_dreh_04), fmt='x', label = "Leck 0.4 mbar")
+plt.errorbar((dreh_leck_2_1[0]+dreh_leck_2_1[-1])/2, noms(Saug_dreh_10), xerr = 0, yerr=stds(Saug_dreh_10), fmt='x', label = "Leck 10 mbar")
+plt.errorbar((dreh_leck_3_1[0]+dreh_leck_3_1[-1])/2, noms(Saug_dreh_40), xerr = 0, yerr=stds(Saug_dreh_40), fmt='x', label = "Leck 40 mbar")
+plt.errorbar((dreh_leck_4_1[0]+dreh_leck_4_1[-1])/2, noms(Saug_dreh_80), xerr = 0, yerr=stds(Saug_dreh_80), fmt='x', label = "Leck 80 mbar")
 plt.errorbar((dreh_p_1[0]+dreh_p_1[21])/2, noms(Saug_dreh_p[0]),           xerr = (dreh_p_1[0]-dreh_p_1[21]          )/2, yerr=stds(Saug_dreh_p[0]), fmt='x', label = "Evakuierung 1")
 plt.errorbar((dreh_p_1[21]+dreh_p_1[35])/2, noms(Saug_dreh_p[1]),           xerr = (dreh_p_1[21]-dreh_p_1[35]          )/2, yerr=stds(Saug_dreh_p[1]), fmt='x', label = "Evakuierung 2")
 plt.errorbar((dreh_p_1[35]+dreh_p_1[-1])/2, noms(Saug_dreh_p[2]),           xerr = (dreh_p_1[35]-dreh_p_1[-1]          )/2, yerr=stds(Saug_dreh_p[2]), fmt='x', label = "Evakuierung 3")
@@ -515,10 +515,10 @@ turbo_theo = np.ones(1000) * 77
 plt.figure()
 plt.rc('legend', fontsize= 6)
 #plt.plot(t_2, turbo_theo, label = "Theoriewert" )
-plt.errorbar((turbo_leck_1_1[0]+turbo_leck_1_1[-1])/2, noms(Saug_turbo_1),xerr = (turbo_leck_1_1[0]-turbo_leck_1_1[-1])/2, yerr=stds(Saug_turbo_1), fmt='x', label = "Leck 1e-4 mbar")
-plt.errorbar((turbo_leck_2_1[0]+turbo_leck_2_1[-1])/2, noms(Saug_turbo_2),xerr = (turbo_leck_2_1[0]-turbo_leck_2_1[-1])/2, yerr=stds(Saug_turbo_2), fmt='x', label = "Leck 2e-4 mbar")
-plt.errorbar((turbo_leck_3_1[0]+turbo_leck_3_1[-1])/2, noms(Saug_turbo_7),xerr = (turbo_leck_3_1[0]-turbo_leck_3_1[-1])/2, yerr=stds(Saug_turbo_7), fmt='x', label = "Leck 7e-4 mbar")
-plt.errorbar((turbo_leck_4_1[0]+turbo_leck_4_1[-1])/2, noms(Saug_turbo_5),xerr = (turbo_leck_4_1[0]-turbo_leck_4_1[-1])/2, yerr=stds(Saug_turbo_5), fmt='x', label = "Leck 5e-4 mbar")
+plt.errorbar((turbo_leck_1_1[0]+turbo_leck_1_1[-1])/2, noms(Saug_turbo_1), xerr = 0, yerr=stds(Saug_turbo_1), fmt='x', label = "Leck 1e-4 mbar")
+plt.errorbar((turbo_leck_2_1[0]+turbo_leck_2_1[-1])/2, noms(Saug_turbo_2), xerr = 0, yerr=stds(Saug_turbo_2), fmt='x', label = "Leck 2e-4 mbar")
+plt.errorbar((turbo_leck_3_1[0]+turbo_leck_3_1[-1])/2, noms(Saug_turbo_7), xerr = 0, yerr=stds(Saug_turbo_7), fmt='x', label = "Leck 7e-4 mbar")
+plt.errorbar((turbo_leck_4_1[0]+turbo_leck_4_1[-1])/2, noms(Saug_turbo_5), xerr = 0, yerr=stds(Saug_turbo_5), fmt='x', label = "Leck 5e-4 mbar")
 plt.errorbar((turbo_pump_p_1[0 ]+ turbo_pump_p_1[4])/2, noms(Saug_turbo_p_pump[0]),             xerr = (turbo_pump_p_1[0]-turbo_pump_p_1[4]          )/2, yerr=stds(Saug_turbo_p_pump[0]), fmt='x', label = "Evakuierung Pumpe 1")
 plt.errorbar((turbo_pump_p_1[4]+  turbo_pump_p_1[9])/2, noms(Saug_turbo_p_pump[1]),             xerr = (turbo_pump_p_1[4]-turbo_pump_p_1[9]          )/2, yerr=stds(Saug_turbo_p_pump[1]), fmt='x', label = "Evakuierung Pumpe 2")
 plt.errorbar((turbo_pump_p_1[9]+  turbo_pump_p_1[-1])/2, noms(Saug_turbo_p_pump[2]),            xerr = (turbo_pump_p_1[9]-turbo_pump_p_1[-1]         )/2, yerr=stds(Saug_turbo_p_pump[2]), fmt='x', label = "Evakuierung Pumpe 3")
