@@ -19,7 +19,7 @@ if os.path.exists("build/plots") == False:
 ## Read in the measurements
 
 #Fequenzen der RF Spule in Hz:
-freq = np.array([1,2,3,4,5,6,7,8,9,10]) * 1e6
+freq = np.array([1,2,3,4,5,6,7,8,9,10]) * 1e5
 
 #Stromstärken der Sweep-Spule in A:
 i_sweep_1 = np.array([6.82,4.75,7.1,2.37,2.1,2.65,2.4,4.05,2.45,3.85]) * 0.1
@@ -36,6 +36,16 @@ p_2 = np.array([19,21.5,19,19,20])
 #Ver
 
 
+##Dimensionen der Spulen:
+
+#Sweep-Spule:
+r_sweep = 16.39 * 0.01
+n_sweep= 11
+
+#Horizontalspule:
+r_hor = 15.70 * 0.01
+n_hor = 154
+
 ##Konstanten einlesen
 mu = const.mu_0
 
@@ -50,4 +60,17 @@ def Helm( I , R , N):
 
 ##Funktionen aufrufen:
 
-B_1 = Helm(i_sweep_1) + 
+B_1 = Helm(i_sweep_1, r_sweep, n_sweep) +  Helm(i_hor_1, r_hor, n_hor)
+B_2 = Helm(i_sweep_2, r_sweep, n_sweep) +  Helm(i_hor_2, r_hor, n_hor)
+
+
+#Plotten:
+plt.figure()
+plt.plot(freq, B_1, 'o', label = 'Isotop 1')
+plt.plot(freq, B_2, '+', label = 'Isotop 2')
+plt.legend()
+plt.xlabel('Frequenzen der RF Spule')
+plt.ylabel('Magnetfeldstärke in den Peaks')
+plt.savefig('Magnetfeld.png')
+
+
