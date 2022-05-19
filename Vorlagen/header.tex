@@ -60,7 +60,6 @@
   separate-uncertainty=true,   % immer Unsicherheit mit \pm
   per-mode=symbol-or-fraction, % / in inline math, fraction in display math
 ]{siunitx}
-
 % chemische Formeln
 \usepackage[
   version=4,
@@ -129,6 +128,21 @@
 \usepackage[shortcuts]{extdash}
 
 \usepackage{dsfont}
+
+\usepackage{expl3}
+\usepackage{xparse}
+
+%\ExplSyntaxON
+
+\NewDocumentCommand \I {m}{ \symup{#1} }
+
+\RenewDocumentCommand \t {m}{ \text{#1} }
+
+\NewDocumentCommand \DIF{m m}{
+\frac{\text{d} #1}{\text{d} #2}
+}
+
+%\ExplSyntaxOff
 
 \author{%
   Niklas Düser\\%

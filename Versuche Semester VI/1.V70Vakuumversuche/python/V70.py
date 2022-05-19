@@ -7,7 +7,7 @@ from scipy.optimize import curve_fit
 import scipy.constants as const
 import sympy
 import os
-from tabulate import tabulate
+from tabulate import tabulate           # falls nicht installiert "pip install tabulate"
 from uncertainties.unumpy import (nominal_values as noms, std_devs as stds)
 
 
@@ -148,10 +148,11 @@ turbo_leck_4_3 = np.array([0.504, 1.36, 2.14, 2.86, 3.52, 4.14, 4.76, 5.37, 5.98
 
 
 ##Volumen
-V_hinter_tturbo = unc.ufloat(33, 3.3)
+V_hinter_turbo = unc.ufloat(33, 3.3)
 V_turbo_bis_dreh = unc.ufloat(1, 0.1)
 
-
+##größe der Achenbeschriftung
+size_label = 17
 
 #####RECHNUNGEN#######
 
@@ -239,6 +240,8 @@ def plot_lin_loss(t,params_1, params_2, params_3,name,mess,grenz_1, grenz_2):
 
     t_fine = np.linspace(t[0],t[ -1],1000)
     if(np.size(mess) < 30 ):
+        t[0] = t[0] - 2
+
         plt.figure()
         plt.errorbar(t[0:grenz_1], noms(logstuff(mess, 0, grenz_1)), yerr= stds(logstuff(mess, 0, grenz_1)), fmt='r.',label= "Messdaten")
         plt.errorbar(t[grenz_1:grenz_2], noms(logstuff(mess, grenz_1, grenz_2)), yerr= stds(logstuff(mess, grenz_1, grenz_2)), color = "orange" ,fmt='.',label= "Messdaten")
@@ -247,7 +250,8 @@ def plot_lin_loss(t,params_1, params_2, params_3,name,mess,grenz_1, grenz_2):
         plt.plot(t_fine[50:200], lin(t_fine[50:200], *params_2), label = "Fit #2")
         plt.plot(t_fine[120:500], lin(t_fine[120:500], *params_3), label = "Fit #3")
         #plt.yscale('log')
-        plt.xlabel(r"$t [s]$")
+        plt.rc('axes', labelsize=size_label)
+        plt.xlabel(r"$t$ $ [s]$")
         plt.ylabel(r"$\ln(\frac{p-p_{end}}{p_{start}-p_{end}})$")
         #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
         #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
@@ -256,6 +260,7 @@ def plot_lin_loss(t,params_1, params_2, params_3,name,mess,grenz_1, grenz_2):
         plt.savefig("build/plots/plot_" + name + "_p.pdf")
     else:
         plt.figure()
+        plt.rc('axes', labelsize=size_label)
         plt.errorbar(t[0:grenz_1], noms(logstuff(mess, 0, grenz_1)), yerr= stds(logstuff(mess, 0, grenz_1)), fmt='r.',label= "Messdaten")
         plt.errorbar(t[grenz_1:grenz_2], noms(logstuff(mess, grenz_1, grenz_2)), yerr= stds(logstuff(mess, grenz_1, grenz_2)), color = "orange" ,fmt='.',label= "Messdaten")
         plt.errorbar(t[grenz_2:-1], noms(logstuff(mess, grenz_2, np.size(mess)-1)), yerr= stds(logstuff(mess, grenz_2, np.size(mess)-1)), color = "yellow", fmt='.',label= "Messdaten")
@@ -263,7 +268,8 @@ def plot_lin_loss(t,params_1, params_2, params_3,name,mess,grenz_1, grenz_2):
         plt.plot(t_fine[150:380], lin(t_fine[150:380], *params_2), label = "Fit #2")
         plt.plot(t_fine[220:700], lin(t_fine[220:700], *params_3), label = "Fit #3")
         #plt.yscale('log')
-        plt.xlabel(r"$t [s]$")
+        plt.rc('axes', labelsize=size_label)
+        plt.xlabel(r"$t$ $ [s]$")
         plt.ylabel(r"$\ln(\frac{p-p_{end}}{p_{start}-p_{end}})$")
         #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
         #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
@@ -280,8 +286,9 @@ def plot_lin_leck(t,params_1, name,mess,):
     plt.errorbar(t[0:], noms(mess), yerr= stds(mess), fmt='r.',label= "Messdaten")
     plt.plot(t_fine, lin(t_fine,*params_1),label="Fit") 
     #plt.yscale('log')
-    plt.xlabel(r"$t [s]$")
-    plt.ylabel(r"$p [mbar]$")
+    plt.rc('axes', labelsize=size_label)
+    plt.xlabel(r"$t$ $ [s]$")
+    plt.ylabel(r"$p$ $ [mbar]$")
     #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
     #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
     plt.tight_layout()
@@ -481,16 +488,17 @@ dreh_theo = np.ones(1000) * 1.1
 
 plt.figure()
 plt.plot(t_1,dreh_theo, label = "Theoriewert" )
-plt.errorbar((dreh_leck_1_1[0]+dreh_leck_1_1[-1])/2, noms(Saug_dreh_04),xerr = (dreh_leck_1_1[0]-dreh_leck_1_1[-1])/2, yerr=stds(Saug_dreh_04), fmt='x', label = "Leck 0.4 mbar")
-plt.errorbar((dreh_leck_2_1[0]+dreh_leck_2_1[-1])/2, noms(Saug_dreh_10),xerr = (dreh_leck_2_1[0]-dreh_leck_2_1[-1])/2, yerr=stds(Saug_dreh_10), fmt='x', label = "Leck 10 mbar")
-plt.errorbar((dreh_leck_3_1[0]+dreh_leck_3_1[-1])/2, noms(Saug_dreh_40),xerr = (dreh_leck_3_1[0]-dreh_leck_3_1[-1])/2, yerr=stds(Saug_dreh_40), fmt='x', label = "Leck 40 mbar")
-plt.errorbar((dreh_leck_4_1[0]+dreh_leck_4_1[-1])/2, noms(Saug_dreh_80),xerr = (dreh_leck_4_1[0]-dreh_leck_4_1[-1])/2, yerr=stds(Saug_dreh_80), fmt='x', label = "Leck 80 mbar")
+plt.errorbar((dreh_leck_1_1[0]+dreh_leck_1_1[-1])/2, noms(Saug_dreh_04), xerr = 0, yerr=stds(Saug_dreh_04), fmt='x', label = "Leck 0.4 mbar")
+plt.errorbar((dreh_leck_2_1[0]+dreh_leck_2_1[-1])/2, noms(Saug_dreh_10), xerr = 0, yerr=stds(Saug_dreh_10), fmt='x', label = "Leck 10 mbar")
+plt.errorbar((dreh_leck_3_1[0]+dreh_leck_3_1[-1])/2, noms(Saug_dreh_40), xerr = 0, yerr=stds(Saug_dreh_40), fmt='x', label = "Leck 40 mbar")
+plt.errorbar((dreh_leck_4_1[0]+dreh_leck_4_1[-1])/2, noms(Saug_dreh_80), xerr = 0, yerr=stds(Saug_dreh_80), fmt='x', label = "Leck 80 mbar")
 plt.errorbar((dreh_p_1[0]+dreh_p_1[21])/2, noms(Saug_dreh_p[0]),           xerr = (dreh_p_1[0]-dreh_p_1[21]          )/2, yerr=stds(Saug_dreh_p[0]), fmt='x', label = "Evakuierung 1")
 plt.errorbar((dreh_p_1[21]+dreh_p_1[35])/2, noms(Saug_dreh_p[1]),           xerr = (dreh_p_1[21]-dreh_p_1[35]          )/2, yerr=stds(Saug_dreh_p[1]), fmt='x', label = "Evakuierung 2")
 plt.errorbar((dreh_p_1[35]+dreh_p_1[-1])/2, noms(Saug_dreh_p[2]),           xerr = (dreh_p_1[35]-dreh_p_1[-1]          )/2, yerr=stds(Saug_dreh_p[2]), fmt='x', label = "Evakuierung 3")
-#plt.yscale('log')
-plt.xlabel(r"$p [mbar]$")
-plt.ylabel(r"$S [\frac{l}{s}]$")
+plt.xscale('log')
+plt.rc('axes', labelsize= size_label)
+plt.xlabel(r"$p$ $ [mbar]$")
+plt.ylabel(r"$S$ $ [\frac{l}{s}]$")
 ##plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
 ##plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
 plt.tight_layout()
@@ -505,20 +513,22 @@ t_2 =np.linspace(10**(-3),0.01,1000)
 turbo_theo = np.ones(1000) * 77
 
 plt.figure()
-plt.plot(t_2, turbo_theo, label = "Theoriewert" )
-plt.errorbar((turbo_leck_1_1[0]+turbo_leck_1_1[-1])/2, noms(Saug_turbo_1),xerr = (turbo_leck_1_1[0]-turbo_leck_1_1[-1])/2, yerr=stds(Saug_turbo_1), fmt='x', label = "Leck 1e-4 mbar")
-plt.errorbar((turbo_leck_2_1[0]+turbo_leck_2_1[-1])/2, noms(Saug_turbo_2),xerr = (turbo_leck_2_1[0]-turbo_leck_2_1[-1])/2, yerr=stds(Saug_turbo_2), fmt='x', label = "Leck 2e-4 mbar")
-plt.errorbar((turbo_leck_3_1[0]+turbo_leck_3_1[-1])/2, noms(Saug_turbo_7),xerr = (turbo_leck_3_1[0]-turbo_leck_3_1[-1])/2, yerr=stds(Saug_turbo_7), fmt='x', label = "Leck 7e-4 mbar")
-plt.errorbar((turbo_leck_4_1[0]+turbo_leck_4_1[-1])/2, noms(Saug_turbo_5),xerr = (turbo_leck_4_1[0]-turbo_leck_4_1[-1])/2, yerr=stds(Saug_turbo_5), fmt='x', label = "Leck 5e-4 mbar")
+plt.rc('legend', fontsize= 6)
+#plt.plot(t_2, turbo_theo, label = "Theoriewert" )
+plt.errorbar((turbo_leck_1_1[0]+turbo_leck_1_1[-1])/2, noms(Saug_turbo_1), xerr = 0, yerr=stds(Saug_turbo_1), fmt='x', label = "Leck 1e-4 mbar")
+plt.errorbar((turbo_leck_2_1[0]+turbo_leck_2_1[-1])/2, noms(Saug_turbo_2), xerr = 0, yerr=stds(Saug_turbo_2), fmt='x', label = "Leck 2e-4 mbar")
+plt.errorbar((turbo_leck_3_1[0]+turbo_leck_3_1[-1])/2, noms(Saug_turbo_7), xerr = 0, yerr=stds(Saug_turbo_7), fmt='x', label = "Leck 7e-4 mbar")
+plt.errorbar((turbo_leck_4_1[0]+turbo_leck_4_1[-1])/2, noms(Saug_turbo_5), xerr = 0, yerr=stds(Saug_turbo_5), fmt='x', label = "Leck 5e-4 mbar")
 plt.errorbar((turbo_pump_p_1[0 ]+ turbo_pump_p_1[4])/2, noms(Saug_turbo_p_pump[0]),             xerr = (turbo_pump_p_1[0]-turbo_pump_p_1[4]          )/2, yerr=stds(Saug_turbo_p_pump[0]), fmt='x', label = "Evakuierung Pumpe 1")
 plt.errorbar((turbo_pump_p_1[4]+  turbo_pump_p_1[9])/2, noms(Saug_turbo_p_pump[1]),             xerr = (turbo_pump_p_1[4]-turbo_pump_p_1[9]          )/2, yerr=stds(Saug_turbo_p_pump[1]), fmt='x', label = "Evakuierung Pumpe 2")
 plt.errorbar((turbo_pump_p_1[9]+  turbo_pump_p_1[-1])/2, noms(Saug_turbo_p_pump[2]),            xerr = (turbo_pump_p_1[9]-turbo_pump_p_1[-1]         )/2, yerr=stds(Saug_turbo_p_pump[2]), fmt='x', label = "Evakuierung Pumpe 3")
 plt.errorbar((turbo_vent_p_1[0 ]+ turbo_vent_p_1[4])/2, noms(Saug_turbo_p_vent[0]),             xerr = (turbo_vent_p_1[0]-turbo_vent_p_1[4]          )/2, yerr=stds(Saug_turbo_p_vent[0]), fmt='x', label = "Evakuierung Ventil 1")
 plt.errorbar((turbo_vent_p_1[4]+  turbo_vent_p_1[9])/2,  noms(Saug_turbo_p_vent[1]),            xerr = (turbo_vent_p_1[4]-turbo_vent_p_1[9]          )/2, yerr=stds(Saug_turbo_p_vent[1]), fmt='x', label = "Evakuierung Ventil 2")
 plt.errorbar((turbo_vent_p_1[9]+  turbo_vent_p_1[-1])/2, noms(Saug_turbo_p_vent[2]),            xerr = (turbo_vent_p_1[9]-turbo_vent_p_1[-1]         )/2, yerr=stds(Saug_turbo_p_vent[2]), fmt='x', label = "Evakuierung Ventil 3")
-#plt.yscale('log')
-plt.xlabel(r"$p [mbar]$")
-plt.ylabel(r"$S [\frac{l}{s}]$")
+plt.xscale('log')
+plt.rc('axes', labelsize= size_label)
+plt.xlabel(r"$p$ $ [mbar]$")
+plt.ylabel(r"$S$ $ [\frac{l}{s}]$")
 ##plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
 ##plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
 plt.tight_layout()

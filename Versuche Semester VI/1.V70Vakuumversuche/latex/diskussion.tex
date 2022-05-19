@@ -7,67 +7,72 @@
     \begin{subfigure}{0.46\textwidth}
             \centering
             \includegraphics[width=\textwidth]{build/plots/saug_dreh.pdf}
-            \caption{Die Saugvermögen aller Messungen für die Drehschieberpumpe, für den Druck aufgetragen.}
+            \caption{Die Saugvermögen aller Messungen für die Drehschieberpumpe als Funktion des Drucks.
+            }
             \label{img:saug_dreh}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.46\textwidth}
             \centering
             \includegraphics[width=\textwidth]{build/plots/saug_turbo.pdf}
-            \caption{Die Saugvermögen aller Messungen für die Turbomolekularpumpe, für den Druck aufgetragen.}
+            \caption{Die Saugvermögen aller Messungen für die Turbomolekularpumpe als Funktion des Drucks.
+            Der Theoriewert ist hier nicht eingezeichnet. Er liegt bei $\SI{77}{\litre\per\second}$.}
             \label{img:saug_turbo}
     \end{subfigure}
+    \caption{}
+    \label{img:4}
 \end{figure}
 
 
-\noindent Die Aufnahme der Messwerte lief alles in allem ganz gut. Es gab keine Probleme mit dem Aufbau und die Werte passten auf den ersten Blick zu unseren Erwartungen.\\
-Allerdings haben wir vergessen die Enddrücke für die Evakuierungsmessungen abzulesen, weswegen diese abgeschätzt werden mussten.\\
+\noindent Die Aufnahme der Messwerte lief alles in allem unproblematisch. Es gab keine Probleme mit dem Aufbau und die Werte passten auf den ersten Blick zu unseren Erwartungen.\\
+Allerdings haben wir vergessen die Enddrücke für die Evakuierungsmessungen abzulesen, weswegen diese abgeschätzt werden mussten.
+Das heißt, dass mithilfe der Erfahrung der betreuenden Person und des Trendes der sich bei einer kürzeren Evakuierungszeit ergab, Enddrücke abgeschätzt wurden.\\  
 Des Weiteren hat die Turbomolekularpumpe bei der Evakuierungsmessung jedes Mal im selben Messzeitraum ein besseres Vakuum erzeugt. 
+Das heißt, dass von Messreihe zu Messreihe das Volumen schneller evakuiert wurde und der Enddruck auch kleiner war als bei den vorhergegangenen Messungen.
 Dies lag vermutlich daran, dass bei jedem Pumpen mehr Verunreinigungen entfernt wurde, welche sonst ein virtuelles Leck darstellen würden. 
 Allerdings hat dies dann zu einem größeren Fehler des Mittelwerts geführt.\\
 Ein zusätzliches Problem war, dass auf Grund des exponentiellen Wachstums und der exponentiellen Abnahme, bei Start einer Messreihe sehr schnell reagiert werden musste, da sich die Werte sehr schnell geändert haben.
-Dies führt natürlich auch zu Ungenauigkeiten in den Messungen. Da wir aber trotzdem, auch in diesem Bereich, wenig Varianz in unseren Werten haben, sollte dies zu vernachlässigen sein.\\
-Alles in allem liefen die Messungen also gut.\\\\
-
+Dies führte ebenfalls zu Ungenauigkeiten in den Messungen. Da wir aber trotzdem, auch in diesem Bereich, wenig Streuung in unseren Werten haben, wurde dies vernachlässigt.\\\\
 \noindent
-Die Ergebnisse der Drehschieberpumpe sind, wie in Abbildung \subref{img:saug_dreh} zu sehen, recht nah am Theoriewert von $\SI{1.1}{\litre\per\second}$.\\
+Die Ergebnisse der Drehschieberpumpe stimmen, wie in Abbildung \ref{img:4}\subref{img:saug_dreh} zu sehen, im Rahmen der Messfehler mit dem Theoriewert von $\SI{1.1}{\litre\per\second}$ überein.
 Die genauen relativen Abweichungen und die dazugehörigen Messwerte sind in Tabelle \ref{tab:abw_dreh} aufgetragen. \\
-Dabei werden die Ergebnisse für die letzten beiden Bereiche der Evakuierungsmessung, $S_2 = \SI{}{\litre\per\second}$ und $S_3 = \SI{}{\litre\per\second}$, nicht weiter betrachtet.
-Dies liegt daran, dass der Theoriewert nur für den optimalen Wirkungsbereich der Pumpe gilt.\\
-Die Bereiche für die diese Werte berechnet wurden, sind davon schon so weit entfernt, dass dort andere Saugvermögen gelten. \\
+Dabei werden die Ergebnisse für die letzten beiden Bereiche der Evakuierungsmessung, $S_2 = \SI{0.37 (004)}{\litre\per\second}$ und $S_3 = \SI{0.19 (002)}{\litre\per\second}$, nicht weiter betrachtet,
+da der Theoriewert nur für den optimalen Wirkungsbereich der Pumpe gilt. Außerdem wurde der Theoriewert unter Idealbedingungen mit Stickstoff erreicht.
+Die Bereiche für die die ausgeschlossenen Werte berechnet wurden, sind davon schon so weit entfernt, sodass dort andere Saugvermögen gelten. \\
 \begin{table}[H]
     \centering
     \small
     \begin{tabular}{S [table-format=5.0]  c c}
      \toprule
-     {Verfahren} & $\text{S} \mathbin{\scalebox{1.5} / } \si{\litre\per\second}$ & $\text{relative Abweichung} \mathbin{\scalebox{1.5} / } \si{\percent}$ \\
+     {Messverfahren} & $\text{S} \mathbin{\scalebox{1.5} / } \si{\litre\per\second}$ & $\text{relative Abweichung} \mathbin{\scalebox{1.5} / } \si{\percent}$ \\
      \midrule
-     \text{Evakuierung}                 &  1.0532 \pm 0.10562      & 4.2580 \pm 9.60221 \\
-     \text{Leck $\SI{0.4}{\milli\bar}$}  & 0.7310 \pm 0.09358        & 33.5432 \pm 8.50711 \\
-     \text{Leck $\SI{0.4}{\milli\bar}$}  & 1.2926 \pm 0.13003      &  -17.5067 \pm 11.82046 \\
-     \text{Leck $\SI{0.4}{\milli\bar}$}  & 1.1492 \pm 0.11621      & -8.9793 \pm 10.90703 \\
-     \text{Leck $\SI{0.4}{\milli\bar}$}  & 1.1988 \pm 0.11998      & -4.4690 \pm 10.56470 \\
+     \text{Evakuierung}                 & 1.05 \pm 0.11            &  4.26 \pm 9.60 \\
+     \text{Leck $\SI{0.4}{\milli\bar}$} & 0.73 \pm 0.09           &  33.54 \pm 8.51 \\
+     \text{Leck $\SI{10}{\milli\bar}$}  & 1.29 \pm 0.13            & -17.51 \pm 11.82 \\
+     \text{Leck $\SI{40}{\milli\bar}$}  & 1.15 \pm 0.12            & -8.98 \pm 10.91 \\
+     \text{Leck $\SI{80}{\milli\bar}$}  & 1.20 \pm 0.12            & -4.47 \pm 10.56 \\
     \bottomrule
     \end{tabular}
     \caption{Relative Abweichungen von dem Theoriewert für die Drehschieberpumpe.}
     \label{tab:abw_dreh}
 \end{table} 
 \noindent
-An Tabelle \ref{tab:abw_dreh} lässt sich erkennen, dass die Drehschieberpumpenmessung insgesamt nah an den Theoriewert gekommen ist.\\\\
+An Tabelle \ref{tab:abw_dreh} lässt sich erkennen, dass die Drehschieberpumpenmessungen, im Rahmen des Messfehlers, gut mit dem Theoriewert übereinstimmen.\\\\
 
-\noindent Anders ist es hingegen bei der Turbomolekularpumpe. \\
-Es lässt sich schon in Abbildung \subref{img:saug_turbo} erkennen, dass kein bestimmtes Saugvermögen auch nur nah an den Theoriewert von $S_{theo} = \SI{77}{\litre\per\second}$ kommt.
+\noindent Anders ist es hingegen bei der Turbomolekularpumpe. 
+Es lässt sich schon in Abbildung \ref{img:4}\subref{img:saug_turbo} erkennen, dass kein gemessenes Saugvermögen nah an den Theoriewert von $S_{theo} = \SI{77}{\litre\per\second}$ kommt.
 Und das, obwohl es bei der Messung keine erkennbaren Probleme gab.\\ 
 Es gab keine besonders große Varianz unter den einzelnen Messreihen. 
 Die errechneten Saugvermögen weichen stark vom Theoriewert ab,
-schwanken aber trotzdem alle um $\approx \SI{5}{\litre\per\second}$.\\
+schwanken aber trotzdem alle um ca. $\SI{5}{\litre\per\second}$.\\
 Dies zeigt auf jeden Fall, dass der Rechenvorgang an sich nicht falsch ist. 
-Des Weiteren wurde die Auswertung der Drehschieberpumpe mit denselben Funktionen durchgeführt.\\
+Des Weiteren wurde die Auswertung der Turbomolekularpumpe mit denselben selbstgeschriebenen Python-Skripten durchgeführt.
 Es könnte natürlich ein Größenordnungsfehler im Code sein. So etwas konnten wir aber nicht finden.\\
-Woran diese Ergebnisse liegen können wir uns also nicht erklären.\\\\
-Die Ergebnisse und ihre relative Abweichung vom Theoriewert sind auch noch einmal in Tabelle \ref{tab:abw_turbo} aufgetragen.\\
-Auch hier werden wieder die späteren Bereiche der Evakuierungsmessung außen vor gelassen.\\
-In der Tabelle zeigt sich auch noch einmal wie groß die Abweichungen wirklich sind. 
+Was den Aufbau angeht muss hier auch der Leitwert berücksichtigt werden. 
+Dadurch, dass die Messwerte weit entfernt von der Turbomolekularpumpe aufgenommen wurden, verringert der Leitwert die Saugleistung.
+Dieser Effekt spielt im Hochvakuum eine größere Rolle. Außerdem wurden hier auch keine, bei der Herstellerangabe genutzten Idealbedingungen, erreicht.\\\\
+Die Ergebnisse und ihre relative Abweichung vom Theoriewert sind in Tabelle \ref{tab:abw_turbo} zusammengefasst.
+Auch hier wird wieder nur der Bereich betrachtet, bei dem die Turbomolekularpumpe, bei der Evakuierungsmessung, am besten evakuiert.\\
 \begin{table}[H]
     \centering
     \small
@@ -75,19 +80,25 @@ In der Tabelle zeigt sich auch noch einmal wie groß die Abweichungen wirklich s
      \toprule
      {Verfahren} & $\text{S} \mathbin{\scalebox{1.5} / } \si{\litre\per\second}$ & $\text{relative Abweichung} \mathbin{\scalebox{1.5} / } \si{\percent}$ \\
      \midrule
-     \text{Evakuierung Ventil }                  &  5.4995 \pm 1.90637      & 92.8578 \pm 2.47580 \\
-     \text{Evakuierung Pumpe }                   &  5.6086 \pm 1.21505      & 92.7161 \pm 1.57799 \\
-     \text{Leck $\SI{1e-4}{\milli\bar}$}         & 5.1067 \pm 0.52772        & 93.3679 \pm 0.68535 \\
-     \text{Leck $\SI{2e-4}{\milli\bar}$}          & 8.3083 \pm 0.93574      &  89.2100 \pm 1.21525 \\
-     \text{Leck $\SI{7e-4}{\milli\bar}$}         & 4.4886 \pm 0.46088      & 94.1707 \pm 0.59855 \\
-     \text{Leck $\SI{5e-4}{\milli\bar}$}         & 4.2640 \pm 0.43101      &  94.4624 \pm 0.55976 \\
+     \text{Evakuierung Ventil }                  &  5.50 \pm 1.91      & 92.86 \pm 2.48 \\
+     \text{Evakuierung Pumpe }                   &  5.61 \pm 1.22      & 92.72 \pm 1.58 \\
+     \text{Leck $\SI{1e-4}{\milli\bar}$}         & 5.11 \pm 0.53        & 93.37 \pm 0.69 \\
+     \text{Leck $\SI{2e-4}{\milli\bar}$}          & 8.31 \pm 0.94      &  89.21 \pm 1.22 \\
+     \text{Leck $\SI{7e-5}{\milli\bar}$}         & 4.49 \pm 0.46      & 94.17 \pm 0.60 \\
+     \text{Leck $\SI{5e-5}{\milli\bar}$}         & 4.26 \pm 0.43      &  94.46 \pm 0.56 \\
     \bottomrule
     \end{tabular}
     \caption{Relative Abweichungen von dem Theoriewert für die Turbomolekularpumpe.}
     \label{tab:abw_turbo}
 \end{table} 
 \noindent
-Es bleiben noch die zwei Messreihen der Evakuierungsmessung mit der Turbomolekularpumpe, welche zur Bestimmung des Leitwerts genutzt wurde.\\
+Es bleiben noch die zwei Messreihen der Evakuierungsmessung mit der Turbomolekularpumpe, welche zur Bestimmung des Leitwerts genutzt wurden.
+Die Ergebnisse dieser Rechnung sind in Tabelle \ref{tab:leit} aufgetragen.
 Da wir keine Theoriewerte besitzen fällt es schwer zu vergleichen. Allerdings ist an den Messwerten direkt ersichtlich, dass es einen Unterschied zwischen den beiden Messstellen gibt.\\
 Die errechneten Leitwerte zeigen dies auch. 
-Alles in allem lässt sich also sagen, dass die Ergebnisse der Drehschieberpumpe sehr gut und die der Turbomolekularpumpe eher schlecht sind.
+Außerdem sticht heraus, dass einer der bestimmten Leitwerte zu $-282.78 \pm 5911.48 \si{\litre\per\second}$ berechnet wurde. 
+Die große Abweichung lässt sich dadurch erklären, dass für die Berechnung dieses Leitwerts die beiden Saugleistungen $S_{eff} = 5.50 \pm 1.91 \si{\litre\per\second}$ und $S_0 = 5.61 \pm 1.22 \si{\litre\per\second}$ im Nenner voneinander abgezogen werden.
+Dadurch dass sie fast gleich groß sind, wird durch eine sehr kleine Zahl geteilt, während die Zahlen im Zähler multipliziert werden.
+Dies führt zu einem großen Fehlerwert.\\
+Alles in allem lässt sich zusammenfassen, dass die Ergebnisse der Drehschieberpumpenmessungen sehr gut und die der Turbomolekularpumpenmessungen schlechter zu den Herstellerangaben passen.
+\newpage
