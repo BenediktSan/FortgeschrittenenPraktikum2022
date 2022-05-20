@@ -28,7 +28,7 @@ T_0 = -273.15
 T_1 = np.array([-44, -42.6, -41.6, -40.1, -38.7, -37.4, -36.0, -34.6, -33.2, -32.0, -30.7, -29.4, -28.1, -26.8, -25.6, -24.4, -23.2, -21.9, -20.7, -19.6, -18.4, -17.2, 
                 -15.9, -14.6, -13.4, -12.1, -10.6, -9.2, -7.8, -6.4, -4.9, -3.4, -1.9, -0.5, 0.8, 2.3, 3.7, 5, 6.3, 7.6, 9, 10.3, 11.5, 12.9, 14.2, 15.6, 17, 18.4, 19.8,
                 21.3, 22.7, 24.2, 25.7, 27.1, 28.5, 29.9, 31.2, 32.7, 34, 35.4, 36.9, 38.3, 40.5, 41.3, 42.6, 44.1, 45.6, 47.1, 48.6, 50.1  ])
-T_1 = T_1 + T_0 #jetzt kelvin
+T_1 = T_1 - T_0 #jetzt kelvin
 
 T_2 = np.array([-67.8, -66.8, -65.2, -63.2, -61.2, -59.1, -57.0, -54.8, -52.6, -50.9, -49, -47.2, -45.1, -43, -40.5, -38.3, -36.1, -33.9, -31.9, -30, -28.2, -26.5, 
                 -24.8, -23, -21, -19, -17, -15.2, -13.3, -11.5, -9.7, -7.6, -5.5, -3.4, -1.4, 0.6, 2.5, 4.4, 6.5, 8.1, 10.1, 12, 14, 16, 17.9, 19.9, 21.7,
@@ -45,10 +45,11 @@ I_2 = np.array([0.015, 0.015, -0.007, -0.01, -0.08, 0.015, 0.025, 0.03, 0.05, 0.
                 1.35, 1.55, 1.8, 2.1, 2.5, 2.95, 3.4, 3.6, 3.9, 4, 4, 3.9, 3.5, 3.1, 2.6, 2.2]) * 10**(-11)
 
 
-#t in ampere
+#t in min
 t_1 = np.linspace(0,69,70)
 t_1[62] = 62.5
 
+t_2 = np.arange(0, np.size(I_2), 1)
 
 ### Funktionen
 
@@ -82,8 +83,10 @@ def printer(a,b,c,name):
     print("\n", tabulate(table1, tablefmt = "latex_raw"))    
 
 def ploten(T, I, name):
+
     plt.figure()
     plt.plot(T, I, "x",  label = "Messwerte" )
+    plt.fill_between(T[4:35], I[4:35], color="b", alpha=0.3)
     #plt.xscale('log')
     plt.rc('axes', labelsize= 12)
     plt.ylabel(r"I / pA")
@@ -128,6 +131,23 @@ def ploten_ohneunter(T, I_rein, start, end, max, name):
     plt.legend(loc = 'best')
     plt.savefig("build/plots/ohneunter_" + name + ".pdf")
 
+def ploten_ascdesc(T_ascdesc, I_ascdesc, param, name):             #ascending-, descending-plot
+
+    T_plot = np.linspace(T_ascdesc[0], T_ascdesc[-1], 500)
+
+    plt.figure()
+    plt.plot(T_ascdesc,np.log(I_ascdesc), "x",  label = "Messwerte" )
+    plt.plot(T_plot, lin(T_plot, *param), label = "Ausgleichsgerade")
+    #plt.yscale('log')
+    plt.rc('axes', labelsize= 12)
+    plt.ylabel(r"ln(I) / pA")
+    plt.xlabel(r"T / K")
+    ##plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+    ##plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+    plt.tight_layout()
+    plt.legend(loc = 'best')
+    plt.savefig("build/plots/" + name + ".pdf")
+
 def heiz(T, name):
     a =(np.size(T)) -1
     a = int(a)
@@ -152,10 +172,53 @@ def underground_fit(T_unter, I_unter):
 
     uparam = unp.uarray(param, cov)
 
-    scale = 10**(18)
-    print(f"\nUntergrundfit: \aa = {noms(uparam[0])* scale:.4f} \pm {stds(uparam[0]) * scale:.4f} pA\t b = {noms(uparam[1]):.4f} \pm {stds(uparam[1]):.4f} K \n")
+    scale = 10**(18)            #um Werte vernünftig anzeigen zu können. Einheiten müssen noch geändert werden
 
-    return param
+    print(f"\nUntergrundfit: \na = {noms(uparam[0])* scale:.4f} \pm {stds(uparam[0]) * scale:.4f} pA\t b = {noms(uparam[1]):.4f} \pm {stds(uparam[1]):.4f} K \n")
+
+    return param                #nur param fürs plotten 
+
+def tau_speichern(tau_0):
+    global tau0_speicher
+
+    if(tau0_speicher[0] == 0): 
+        tau0_speicher[0] = tau_0
+    elif(tau0_speicher[1] == 0): 
+        tau0_speicher[1] = tau_0
+    elif(tau0_speicher[2] == 0): 
+        tau0_speicher[2] = tau_0
+    elif(tau0_speicher[3] == 0): 
+        tau0_speicher[3] = tau_0
+    print("\nQUICK CHECKUP: ", tau0_speicher,"\n")
+
+def tau_stuff(T, b, W):
+
+    scale = 18
+
+    tau_max = (const.k * T**2) / (b * W)
+    tau_0 = tau_max * unp.exp(-W / (const.k * T)) * 10**(scale)
+    
+    print(f"\nRelaxationszeiten: \ntau_max = {noms(tau_max):.4f} \pm {stds(tau_max):.4f} s \ntau_0= ({noms(tau_0):.4f} \pm {stds(tau_0):.4f})e-{scale} s")
+
+    tau_speichern(noms(tau_0))
+
+def ascdesc_fit(T, I, b, argmax):
+
+
+    param, cov = curve_fit(lin, 1/T, np.log(I))
+    cov = np.sqrt(np.diag(cov))
+
+    uparam = unp.uarray(param, cov)
+
+    W = const.k * -1 * uparam[0]
+    W = W / const.e                  #now in eV
+
+    print(f"\nAscending fit: \nm = {noms(uparam[0]):.4f} \pm {stds(uparam[0]):.4f} 1/T\t n = {noms(uparam[1]):.4f} \pm {stds(uparam[1]):.4f}  \n")
+    print(f"Aktivierungsenergie: \nW = {noms(W):.4f} \pm {stds(W):.4f} eV")
+
+    tau_stuff(T[argmax], b, W * const.e)         #T[-1] wiel  I dort maximal wird
+
+    return param                #nur param fürs plotten
 
 def slicer(arr, start, end, peak):
 
@@ -164,7 +227,7 @@ def slicer(arr, start, end, peak):
 
     return arr_new
 
-def ugly_main(T, I, start, end, peak, name):
+def ugly_main(T, I, start, end, peak,b, name):
 
     #Untergrund fitten
 
@@ -182,10 +245,19 @@ def ugly_main(T, I, start, end, peak, name):
         I_rein[i] = I[i] - exp(T[i], *param_unter)
 
     max = np.argmax(I_rein)
+    print(f"\nT_max = {T[max]:.4f} K\n")
 
     ploten_ohneunter(T, I_rein, start, end, max, name)    
 
+    #aufsteigend auswerten
+    print(f"\n### AUSWERTUNG APPROXIMATION " + name + " ###\n")
 
+    param_asc = ascdesc_fit(T[start:max],I[start:max], b, -1)   #-1, weil T[-1] mit I_max korrespondiert
+
+    ploten_ascdesc(1/T[start:max], I_rein[start:max], param_asc, "asc_" + name)
+
+    #Integrale Auswertung
+    print(f"\n### AUSWERTUNG INTEGRAL " + name + " ###\n")
 
 
 
@@ -205,7 +277,7 @@ start_2 = 10
 end_2 = 50
 T_peak_2 = 63
 
-
+tau0_speicher = np.zeros(4) #speicher um mit allen tau werten am ende zu plotten. ist kinda annoying und unnötig. 
 
 print("### mittlere Heizraten ###")
 
@@ -214,8 +286,11 @@ b_2 = heiz(T_2, "2 grad")
 
 print("\n\n#### AUSWERTUNG 1.5°C ####")
 
-ugly_main(T_1, I_1, start_1, end_1, T_peak_1,  "1.5grad")
+ugly_main(T_1, I_1, start_1, end_1, T_peak_1, b_1, "1.5grad")
 
+
+
+print("\nFinal checkup", tau0_speicher,"\n")
 ###Tabellen
 
 print("\n####### TABELLEN #########")
