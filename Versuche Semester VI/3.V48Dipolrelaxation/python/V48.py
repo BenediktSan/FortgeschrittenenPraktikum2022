@@ -23,6 +23,8 @@ if os.path.exists("build/plots") == False:
 
 ########MESSWERTE#######
 
+# sorry für den code. i know. its wild
+
 T_0 = -273.15
 
 # T in Kelvin
@@ -78,9 +80,9 @@ def mittel(a,b,c):
 
 
 
-def printer(a,b,c,name):
+def printer(a,b,c,d,name):
     print(f"### {name} ###")
-    table1 ={'Messreihe 1': a, 'Messreihe 2': b,  'Messreihe 3': c, }
+    table1 ={'Messreihe 1': a, 'Messreihe 2': b,  'Messreihe 3': c, 'Messreihe 4': d }
     print("\n", tabulate(table1, tablefmt = "latex_raw"))    
 
 def ploten(T, I, name):
@@ -120,8 +122,8 @@ def ploten_ohneunter(T, I_rein, start, end, max, name):
 
     plt.figure()
     plt.plot(T, I_rein, "x",  label = "Messwerte" )
-    plt.plot(T[start:max], I_rein[start:max], "x",  label = "Messwerte Aprox" )
     plt.plot(T[start:end], I_rein[start:end], "x",  label = "Messwerte Integrale-Auswertung" )
+    plt.plot(T[start:max+1], I_rein[start:max+1], "x",  label = "Messwerte Aprox" )
     plt.fill_between(T[start:end], I_rein[start:end], color="b", alpha=0.3)
     #plt.xscale('log')
     plt.rc('axes', labelsize= 12)
@@ -154,10 +156,10 @@ def ploten_tau(T_1, T_2):
 
 
     plt.figure()
-    plt.plot(T_1, exp(T_1, tau0_speicher[0], - W_speicher[0]/const.k), "gx",  label = r"Näherungsmethode $\Delta T = 1.5$°C" )
-    plt.plot(T_1, exp(T_1, tau0_speicher[1], - W_speicher[1]/const.k), "g.",  label = r"Integrationsmethode $\Delta T = 1.5$°C"  )
-    plt.plot(T_2, exp(T_2, tau0_speicher[2], - W_speicher[2]/const.k), "bx",  label = r"Näherungsmethode $\Delta T = 2$°C"  )
-    plt.plot(T_2, exp(T_2, tau0_speicher[3], - W_speicher[3]/const.k), "b.",  label = r"Integrationsmethode $\Delta T = 2$°C"  )
+    plt.plot(T_1, exp(T_1, tau0_speicher[0], - W_speicher[0]/const.k), "gx",  label = r"Näherungsmethode $\Delta T = 1.5$K" )
+    plt.plot(T_1, exp(T_1, tau0_speicher[1], - W_speicher[1]/const.k), "g.",  label = r"Integrationsmethode $\Delta T = 1.5$K"  )
+    plt.plot(T_2, exp(T_2, tau0_speicher[2], - W_speicher[2]/const.k), "bx",  label = r"Näherungsmethode $\Delta T = 2$K"  )
+    plt.plot(T_2, exp(T_2, tau0_speicher[3], - W_speicher[3]/const.k), "b.",  label = r"Integrationsmethode $\Delta T = 2$K"  )
     plt.yscale('log')
     plt.rc('axes', labelsize= 12)
     plt.ylabel(r"$\tau_0$ / s")
@@ -192,9 +194,9 @@ def underground_fit(T_unter, I_unter):
 
     uparam = unp.uarray(param, cov)
 
-    scale = 10**(18)            #um Werte vernünftig anzeigen zu können. Einheiten müssen noch geändert werden
+    scale = 1            #um Werte vernünftig anzeigen zu können. Einheiten müssen noch geändert werden
 
-    print(f"\nUntergrundfit: \na = {noms(uparam[0])* scale:.4f} \pm {stds(uparam[0]) * scale:.4f} pA\t b = {noms(uparam[1]):.4f} \pm {stds(uparam[1]):.4f} K \n")
+    print(f"\nUntergrundfit: \na = {noms(uparam[0])* 10**scale:.4f} \pm {stds(uparam[0]) * 10**scale:.4f} * 10**{scale} A\t b = {noms(uparam[1]):.4f} \pm {stds(uparam[1]):.4f} K \n")
 
     return param                #nur param fürs plotten 
 
@@ -278,17 +280,18 @@ def ugly_main(T, I, start, end, peak,b, name):
     for i in range(0,np.size(I)):
         I_rein[i] = I[i] - exp(T[i], *param_unter)
 
+    
     max = np.argmax(I_rein)
     print(f"\nT_max = {T[max]:.4f} K\n")
 
     ploten_ohneunter(T, I_rein, start, end, max, name)    
 
     #aufsteigend auswerten
-    print(f"\n### AUSWERTUNG APPROXIMATION " + name + " ###\n")
+    print(f"\n### AUSWERTUNG Polarisation " + name + " ###\n")
 
-    param_asc = ascdesc_fit(T[start:max],I[start:max], b, -1)   #-1, weil T[-1] mit I_max korrespondiert
+    param_asc = ascdesc_fit(T[start:max+1],I[start:max+1], b, -1)   #-1, weil T[-1] mit I_max korrespondiert
 
-    ploten_ascdesc(1/T[start:max], I_rein[start:max], param_asc, "asc_" + name)
+    ploten_ascdesc(1/T[start:max+1], I_rein[start:max+1], param_asc, "asc_" + name)
 
     #Integrale Auswertung
     print(f"\n### AUSWERTUNG INTEGRAL " + name + " ###\n")
@@ -298,6 +301,7 @@ def ugly_main(T, I, start, end, peak,b, name):
     param_int = ascdesc_fit(T[start:end], I_int/(I_rein[start:end]) , b, max)   #-max weil T[max] mit I_max korrespondiert
     ploten_ascdesc(1/T[start:end], I_int/(I_rein[start:end] ), param_int, "int_" + name)
 
+    return I_rein                   #return für tabellen am ende
 
 
 #############################Auswertung#####################################
@@ -326,9 +330,11 @@ b_2 = heiz(T_2, "2 grad")
 
 print("\n\n#### AUSWERTUNG 1.5°C ####")
 
-ugly_main(T_1, I_1, start_1, end_1, T_peak_1, b_1, "1.5grad")
+I_rein_1 = ugly_main(T_1, I_1 , start_1, end_1, T_peak_1, b_1, "1.5grad")
 
-ugly_main(T_2, I_2, start_2, end_2, T_peak_2, b_2, "2grad")
+print("\n\n#### AUSWERTUNG 2°C ####")
+
+I_rein_2 = ugly_main(T_2, I_2, start_2, end_2, T_peak_2, b_2, "2grad")
 
 
 print("\nFinal checkup tau_0: ", tau0_speicher,"")
@@ -340,10 +346,9 @@ ploten_tau(T_1, T_2)
 
 print("\n####### TABELLEN #########")
 
-#printer(t_1, T_1, I_1, "Messung \delta T =1.5 Grad")
+#printer(t_1, T_1, I_1* 10**(11), I_rein_1 * 10**(11), "Messung \delta T =1.5 Grad")
 
-#printer(t_2, T_2, I_2, "Messung \delta T =2 Grad")
-
+#printer(t_2, T_2, I_2* 10**(11), (I_rein_2 * 10**(11)), "Messung \delta T =2 Grad")
 
 ########Grafiken########
 

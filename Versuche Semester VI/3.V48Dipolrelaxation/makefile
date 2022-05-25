@@ -5,8 +5,8 @@ all: build/Protokoll_V48.pdf
 #hier Python-Skripte
 
 
-build/plots/build/plots/mitunter1.5grad.pdf.pdf:	|build
-	python python/48.py
+build/plots/mitunter1.5grad.pdf:	|build
+	python python/V48.py
 
 
 
