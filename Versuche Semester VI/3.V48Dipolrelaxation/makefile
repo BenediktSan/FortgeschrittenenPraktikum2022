@@ -11,7 +11,7 @@ build/plots/mitunter1.5grad.pdf:	|build
 
 
 # hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-build/Protokoll_V48.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex build/plots/mitunter1.5grad.pdf | build
+build/Protokoll_V48.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex build/plots/mitunter_1.5grad.pdf | build
 	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V48.tex
 	biber build/Protokoll_V48.bcf
 	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V48.tex
