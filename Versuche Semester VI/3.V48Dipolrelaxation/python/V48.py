@@ -249,7 +249,7 @@ def ascdesc_fit(T, I, b, argmax):
 
     W = W / const.e                  #now in eV
 
-    print(f"\nAscDesc fit: \nm = {noms(uparam[0]):.4f} \pm {stds(uparam[0]):.4f} 1/T\t n = {noms(uparam[1]):.4f} \pm {stds(uparam[1]):.4f}  \n")
+    print(f"\nAscDesc fit: \nm = {noms(uparam[0]):.4f} \pm {stds(uparam[0]):.4f} T\t n = {noms(uparam[1]):.4f} \pm {stds(uparam[1]):.4f}  \n")
     print(f"Aktivierungsenergie: \nW = {noms(W):.4f} \pm {stds(W):.4f} eV")
 
     tau_stuff(T[argmax], b, W * const.e)         #T[-1] wiel  I dort maximal wird
@@ -342,6 +342,14 @@ print("Final checkup W: ", W_speicher,"\n")
 
 ploten_tau(T_1, T_2)
 
+theo = 0.66
+print(W_speicher[0], W_speicher[1], W_speicher[2])
+W_speicher = W_speicher/const.e
+print(f"\n########## REL ABW ########\n")
+rel_abw(theo, W_speicher[0])
+rel_abw(theo, W_speicher[1])
+rel_abw(theo, W_speicher[2])
+rel_abw(theo, W_speicher[3])
 ###Tabellen
 
 print("\n####### TABELLEN #########")
