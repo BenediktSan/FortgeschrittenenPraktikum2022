@@ -8,7 +8,7 @@ Die Heizraten lassen sich über das Mitteln der Differenzen zwischen den Tempera
   b = \frac{1}{n-1} \sum_{i=1}^{n} \frac{T_i - T_{i-1}}{\SI{1}{\minute}}
 \end{equation*}
 Zum Berechnen der Heizraten für die einzelnen Messreihen werden die Werte aus der Tabelle \ref{tab:mess1} und der Tabelle \ref{tab:mess2} genutzt.\\
-Mit dem Fehler des Mittelwerts als Abweichung ergibt sich dann für die Messreihe mit $\Delta T = \SI{1.5}{\kelvin}$ für die Heizrate
+Mit dem Fehler des Mittelwerts als Abweichung, ergibt sich dann für die Messreihe mit $\Delta T = \SI{1.5}{\kelvin}$ für die Heizrate
 \begin{equation*}
   b_1 = \SI{1.36(016)}{\kelvin\per\minute}
 \end{equation*}
@@ -24,12 +24,12 @@ und für die Messreihe mit $\Delta T = \SI{2}{\kelvin}$
 Um aus dem Depolarisationsstrom die Relaxationszeit zu bestimmen, muss zuerst der Untergrund von den gemessenen Strömen entfernt werden.
 Dafür wird auf grafisch abgeschätzte Messwerte eine Exponentialfunktion der Form
 \begin{equation}
-  I_{Unter}(T) = A\cdot \exp\left(\frac{-b}{T}\right)
+  I_\t{Unter}(T) = A\cdot \exp\left(\frac{-b}{T}\right)
   \label{eqn:exp}
 \end{equation}
 gefittet. Anschließend wird der Untergrund von den Messwerten abgezogen, um sie zu bereinigen
 \begin{equation*}
-  \tilde{I_i} = I_i - I_{Unter}(T_i) \quad.
+  \tilde{I_i} = I_i - I_\t{Unter}(T_i) \quad.
 \end{equation*}
 Für den Fit wurden die Messwerte aus den Zeitintervallen $t \in [0,4] \; \si{\minute}$ und $t \in [28,61] \; \si{\minute}$ genutzt.
 Als Fitparameter ergeben sich so 
@@ -121,7 +121,7 @@ Zusätzlich sind noch die Bereiche, die für die Auswertung über den Polarisati
 
 \noindent
 Um die Aktivierungsenergie $W$ zu berechnen wird eine lineare Ausgleichsrechnung auf dem Intervall des Depolarisationsstroms vom Ende der genutzten Untergrundwerte bis zum Maximalwert der Termperatur, berechnet.
-Das Maximum liegt dabei bei $T(t_{max} = 20) = \SI{254.75}{\kelvin}$. 
+Das Maximum liegt dabei bei $T(t_\t{max} = 20) = \SI{254.75}{\kelvin}$. 
 Zum Fitten werden die logarithmisch aufgetragenen Depolarisationsströme gegen das reziproke der Temperatur auf dem Intervall $t \in [5,20]$, mit einer linearen Funktion der Form
 \begin{equation}
   y(T) = m\cdot \frac{1}{T} + n \quad,
@@ -134,17 +134,17 @@ genutzt. Für die Parameter ergibt sich dabei
   n & = \SI{20.55(080)}{} \quad .
 \end{align*}
 Die Messwerte und die damit korrespondierende Ausgleichsgerade sind in Abbildung \ref{img:pol15} grafisch dargestellt.\\
-Nach Gleichung \ref{eqn:W} lässt sich über $W = -m \cdot k_{\t b}$, mit $k_{\t b}$\cite{kb} als Boltzmannkonstante, lässt sich die Aktivierungsenergie zu 
+Nach Gleichung \ref{eqn:W} lässt sich über $W = -m \cdot k_\t{B}$, mit $k_\t{B}$\cite{kb} als Boltzmannkonstante, lässt sich die Aktivierungsenergie zu 
 \begin{equation*}
   W = \SI{0.944(0017)}{\electronvolt}
 \end{equation*}
 berechnen. Über den Zusammenhang
 \begin{align}
-  \tau_{max} &= \frac{k_{\t b}\cdot T_{max}^2}{b W}
+  \tau_\t{max} &= \frac{k_\t{B}\cdot T_\t{max}^2}{b W}
   \label{eqn:taumax}\\
-  \tau_{max} &= \SI{4.34 (053)}{\second} \notag
+  \tau_\t{max} &= \SI{4.34 (053)}{\second} \notag
 \end{align}
-mit $b$ als Heizrate und $T_{max}$ als der Temperaturwert, der mit dem maximalen Strom korrespondiert, lässt sich die maximale Relaxationszeit bestimmen.
+mit $b$ als Heizrate und $T_\t{max}$ als der Temperaturwert, der mit dem maximalen Strom korrespondiert, lässt sich die maximale Relaxationszeit bestimmen.
 Damit wird in \ref{sec:tau} die charakteristische Relaxationszeit $\tau_0$ bestimmt.
 
 \begin{figure}[ht]
@@ -170,13 +170,13 @@ Als Fitparameter ergeben sich
   m & = \SI{ -8480.55(99864)}{\kelvin}\\
   n & = \SI{36.10 (401)}{} \quad .
 \end{align*}
-Über den Vergleich mit Gleichung \ref{eqn:int} lässt sich die Energie, über $W = -m k_{\t b}$, zu 
+Über den Vergleich mit Gleichung \ref{eqn:int} lässt sich die Energie, über $W = -m k_\t{B}$, zu 
 \begin{equation*}
   W = \SI{0.731(0086)}{\electronvolt}
 \end{equation*}
 bestimmen. Damit ergibt sich nach Gleichung \ref{eqn:taumax} für die maximale Relaxationszeit 
 \begin{equation*}
-  \tau_{max} = \SI{5.61 (095)}{\second} \quad .
+  \tau_\t{max} = \SI{5.61 (095)}{\second} \quad .
 \end{equation*}
 
 %\subsubsection{Bestimmung von $W$ und $\tau _{max}$}
@@ -276,7 +276,7 @@ In der Abbildung sind ebenfalls wieder die Intervalle für die weiteren Auswertu
 \noindent
 Für den Polarisationsansatz wird analog wieder eine lineare Ausgleichsrechnung durchgeführt.
 Dafür werden Werte aus dem Intervall $t \in [13,27]$ genutzt.
-Das Maximum der Messreihe liegt in diesem Intervall und bei $T(t_{max} = 27) = \SI{257.95}{\kelvin}$. \\
+Das Maximum der Messreihe liegt in diesem Intervall und bei $T(t_\t{max} = 27) = \SI{257.95}{\kelvin}$. \\
 Der Fit der Messwerte nach Gleichung \ref{eqn:lin}, auf dem logarithmierten Strom gegen $\frac{1}{T}$ aufgetragen, führt zu den Parametern
 \begin{align*}
   m & = \SI{ -5602.33( 74537)}{\kelvin}\\
@@ -293,11 +293,11 @@ Das Ergebnis der Ausgleichsrechnung ist zusammen mit den beschriebenen Werten in
 \end{figure}
 
 \noindent
-Aus den Parametern des Fits lässt sich über die Gleichungen $W = -k_{\t B} m$ und Gleichung $\ref{eqn:taumax}$ die Aktivierungsenergie und die maximale Relaxationszeit bestimmen.
+Aus den Parametern des Fits lässt sich über die Gleichungen $W = -k_\t{B} m$ und Gleichung $\ref{eqn:taumax}$ die Aktivierungsenergie und die maximale Relaxationszeit bestimmen.
 Dies führt zu 
 \begin{align*}
   W &= \SI{0.65 (002)}{\electronvolt}\\
-  \tau_s{max} &= \SI{4.58 (059)}{\second} \quad .
+  \tau_\t{max} &= \SI{4.58 (059)}{\second} \quad .
 \end{align*}
 
 
@@ -316,7 +316,7 @@ Als Parameter für die lineare Funktion ergeben sich damit die Werte
 Daraus lassen sich dann die Werte 
 \begin{align*}
   W &= \SI{ 0.49  (006)}{\electronvolt}\\
-  \tau_{max} &= \SI{6.14 (113)}{\second}
+  \tau_\t{max} &= \SI{6.14 (113)}{\second}
 \end{align*}
 bestimmen.
 
@@ -327,10 +327,10 @@ bestimmen.
 \label{sec:tau}
 
 \noindent
-Um die charakteristische Relaxationszeit $\tau_0$ zu bestimmen, wird die Gleichung \ref{eqn:tau0} genutzt und nach $tau_0$ umgefortmt.
-Dies führt für die Temperatur $T_{max}$ zu 
+Um die charakteristische Relaxationszeit $\tau_0$ zu bestimmen, wird die Gleichung \ref{eqn:tau0} genutzt und nach $\tau_0$ umgefortmt.
+Dies führt für die Temperatur $T_\t{max}$ zu 
 \begin{equation*}
- \tau_0 =   \tau(T_{max})\text{exp}\left(\frac{W}{k_\text{B}T_{max}}\right) \quad .
+ \tau_0 =   \tau(T_\t{max})\text{exp}\left(\frac{W}{k_\text{B}T_\t{max}}\right) \quad .
 \end{equation*}
 Die maximalen Temperaturen sind dabei für die erste Messreihe $\SI{254.75}{\kelvin}$ und $\SI{257.95}{\kelvin}$ für die zweite.
 Die einzusetzenden Werte und die dazugehörigen Ergebnisse sind in Tabelle \ref{tab:tau} abgebildet.
