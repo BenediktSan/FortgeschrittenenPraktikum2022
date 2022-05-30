@@ -8,11 +8,11 @@ Die Heizraten lassen sich über das Mitteln der Differenzen zwischen den Tempera
   b = \frac{1}{n-1} \sum_{i=1}^{n} \frac{T_i - T_{i-1}}{\SI{1}{\minute}}
 \end{equation*}
 Zum Berechnen der Heizraten für die einzelnen Messreihen werden die Werte aus der Tabelle \ref{tab:mess1} und der Tabelle \ref{tab:mess2} genutzt.\\
-Mit dem Fehler des Mittelwerts als Abweichung, ergibt sich dann für die Messreihe mit $\Delta T = \SI{1.5}{\kelvin}$ für die Heizrate
+Mit dem Fehler des Mittelwerts als Abweichung ergibt sich dann für die Messreihe mit $\increment T = \SI{1.5}{\kelvin}$ für die Heizrate
 \begin{equation*}
   b_1 = \SI{1.36(016)}{\kelvin\per\minute}
 \end{equation*}
-und für die Messreihe mit $\Delta T = \SI{2}{\kelvin}$ 
+und für die Messreihe mit $\increment T = \SI{2}{\kelvin}$ 
 \begin{equation*}
   b_2 = \SI{1.94(025)}{\kelvin\per\minute} \quad .
 \end{equation*}
@@ -29,7 +29,7 @@ Dafür wird auf grafisch abgeschätzte Messwerte eine Exponentialfunktion der Fo
 \end{equation}
 gefittet. Anschließend wird der Untergrund von den Messwerten abgezogen, um sie zu bereinigen
 \begin{equation*}
-  \tilde{I_i} = I_i - I_\t{Unter}(T_i) \quad.
+  \tilde{I}(T_i) = I(T_i) - I_\t{Unter}(T_i) \quad.
 \end{equation*}
 Für den Fit wurden die Messwerte aus den Zeitintervallen $t \in [0,4] \; \si{\minute}$ und $t \in [28,61] \; \si{\minute}$ genutzt.
 Als Fitparameter ergeben sich so 
@@ -111,7 +111,7 @@ Zusätzlich sind noch die Bereiche, die für die Auswertung über den Polarisati
       34   & 273.95 &  0.255 &  0.030   & 69   & 323.25 &  1.95  & -5.140  \\  
       \bottomrule 
       \end{tabular}
-      \caption{Messwerte der Depolarisationsstrommessung und für die vom Untergrund bereinigten Depolarisationsströme, bei einer Heizrate von $b = \SI{1.5}{\kelvin}$. }
+      \caption{Messwerte der Depolarisationsstrommessung und für die vom Untergrund bereinigten Depolarisationsströme, bei einer Heizrate von $b = \SI{1.36}{\kelvin}$. }
       \label{tab:mess1}
 \end{table}
 
@@ -120,7 +120,7 @@ Zusätzlich sind noch die Bereiche, die für die Auswertung über den Polarisati
 \subsubsection{Ausgleichsrechnung über den Polarisationsansatz}
 
 \noindent
-Um die Aktivierungsenergie $W$ zu berechnen wird eine lineare Ausgleichsrechnung auf dem Intervall des Depolarisationsstroms vom Ende der genutzten Untergrundwerte bis zum Maximalwert der Termperatur, berechnet.
+Um die Aktivierungsenergie $W$ zu bestimmen wird eine lineare Ausgleichsrechnung auf dem Intervall des Depolarisationsstroms, vom Ende der genutzten Untergrundwerte bis zum Maximalwert der Termperatur, berechnet.
 Das Maximum liegt dabei bei $T(t_\t{max} = 20) = \SI{254.75}{\kelvin}$. 
 Zum Fitten werden die logarithmisch aufgetragenen Depolarisationsströme gegen das reziproke der Temperatur auf dem Intervall $t \in [5,20]$, mit einer linearen Funktion der Form
 \begin{equation}
@@ -134,18 +134,19 @@ genutzt. Für die Parameter ergibt sich dabei
   n & = \SI{20.55(080)}{} \quad .
 \end{align*}
 Die Messwerte und die damit korrespondierende Ausgleichsgerade sind in Abbildung \ref{img:pol15} grafisch dargestellt.\\
-Nach Gleichung \ref{eqn:W} lässt sich über $W = -m \cdot k_\t{B}$, mit $k_\t{B}$\cite{kb} als Boltzmannkonstante, lässt sich die Aktivierungsenergie zu 
+Nach Gleichung \ref{eqn:W} lässt sich über $W = -m \cdot k_\t{B}$, mit $k_\t{B}$\cite{kb} als Boltzmannkonstante, die Aktivierungsenergie zu 
 \begin{equation*}
   W = \SI{0.944(0017)}{\electronvolt}
 \end{equation*}
-berechnen. Über den Zusammenhang
+berechnen. Aus der Gleichung \ref{eqn:taumaxsource} lässt sich der Zusammenhang 
 \begin{align}
   \tau_\t{max} &= \frac{k_\t{B}\cdot T_\t{max}^2}{b W}
   \label{eqn:taumax}\\
   \tau_\t{max} &= \SI{4.34 (053)}{\second} \notag
 \end{align}
-mit $b$ als Heizrate und $T_\t{max}$ als der Temperaturwert, der mit dem maximalen Strom korrespondiert, lässt sich die maximale Relaxationszeit bestimmen.
-Damit wird in \ref{sec:tau} die charakteristische Relaxationszeit $\tau_0$ bestimmt.
+herleiten, wobei $b$ die Heizrate ist und $T_\t{max}$ der Temperaturwert, der mit dem maximalen Strom korrespondiert. 
+Daraus lässt sich die maximale Relaxationszeit bestimmen.
+Damit wird in Abschnitt \ref{sec:tau} die charakteristische Relaxationszeit $\tau_0$ bestimmt.
 
 \begin{figure}[ht]
   \centering
@@ -161,7 +162,7 @@ Damit wird in \ref{sec:tau} die charakteristische Relaxationszeit $\tau_0$ besti
 \label{sec:int}
 
 \noindent 
-Um über den Integrationsansatz die Aktivierungsenergie zu bestimmen wird im Vergleich Gleichung \ref{eqn:int} ein linearer Fit in 
+Um über den Integrationsansatz die Aktivierungsenergie zu bestimmen wird im Vergleich mit Gleichung \ref{eqn:int} ein linearer Fit in 
 $\frac{1}{T}$ gegen die nach Gleichung \ref{eqn:int} integrierten Werte genutzt. Dabei wurden die bereinigten Depolarisationsstromwerte
 des Intervalls $t \in [4,18]$  mit der Trapezregel numerisch von ihrem korrespondierenden $T$-Wert bis $\frac{1}{T(t = 4)}$ aufintegriert.\\
 Der Fit und die integrierten Werte sind in Abbildung \ref{img:int15} aufgetragen.\\
@@ -200,7 +201,7 @@ Die Parameter ergeben sich zu
   b &= \SI{ 6110.98 (13422)}{\kelvin} \quad .
 \end{align*}
 Der Untergrundfit inklusive der Messwerte aus Tabelle \ref{tab:mess2} sind in Abbildung \ref{img:mitunter2} dargestellt.
-Die bereinigten Messwerte sind in Tabelle \ref{tab:mess2} zu finden, wo wie auch grafisch in Abbildung \ref{img:ohneunter2} zu finden.
+Die bereinigten Messwerte sind in Tabelle \ref{tab:mess2} zu finden, sowie auch grafisch in Abbildung \ref{img:ohneunter2}.
 In der Abbildung sind ebenfalls wieder die Intervalle für die weiteren Auswertungschritte hervorgehoben.
 \begin{figure}[h]
   \centering
@@ -266,7 +267,7 @@ In der Abbildung sind ebenfalls wieder die Intervalle für die weiteren Auswertu
       31 & 265.55 &  1.000 &  0.874    &     &        &        &        \\
       \bottomrule 
       \end{tabular}
-      \caption{Messwerte der Depolarisationsstrommessung und für die vom Untergrund bereinigten Depolarisationsströme, bei einer Heizrate von $b = \SI{2}{\kelvin}$. }
+      \caption{Messwerte der Depolarisationsstrommessung und für die vom Untergrund bereinigten Depolarisationsströme, bei einer Heizrate von $b = \SI{1.94}{\kelvin}$. }
       \label{tab:mess2}
 \end{table}
 
@@ -318,16 +319,22 @@ Daraus lassen sich dann die Werte
   W &= \SI{ 0.49  (006)}{\electronvolt}\\
   \tau_\t{max} &= \SI{6.14 (113)}{\second}
 \end{align*}
-bestimmen.
+bestimmen. Die integrierten Stromwerte sind in Abbildung \ref{img:int2}, inklusive des dazugehörigen Fits, gegen $\frac{1}{T}$ aufgetragen.
 
-
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.7\textwidth]{build/plots/int_2grad.pdf}
+  \caption{Die integrierten Messwerte für eine Heizrate von $b_1 = \SI{1.94}{\kelvin\per\minute}$ 
+          logarithmisch gegen $\frac{1}{T}$ aufgetragen.}
+  \label{img:int2}
+\end{figure}
 
 
 \subsection{Bestimmung von \textbf{\texorpdfstring{$\tau_0$}{tau_0}}}
 \label{sec:tau}
 
 \noindent
-Um die charakteristische Relaxationszeit $\tau_0$ zu bestimmen, wird die Gleichung \ref{eqn:tau0} genutzt und nach $\tau_0$ umgefortmt.
+Um die charakteristische Relaxationszeit $\tau_0$ zu bestimmen, wird die Gleichung \ref{eqn:tau0} genutzt und nach $\tau_0$ umgeformt.
 Dies führt für die Temperatur $T_\t{max}$ zu 
 \begin{equation*}
  \tau_0 =   \tau(T_\t{max})\text{exp}\left(\frac{W}{k_\text{B}T_\t{max}}\right) \quad .
@@ -360,5 +367,5 @@ Dabei wurde eine halblogarithmisch Darstellung gewählt. Die Funktionen wurden d
   \includegraphics[width=0.7\textwidth]{build/plots/tau_plot.pdf}
   \caption{$\tau(T)$, für die in den einzelnen Auswertungsschritten berechneten Parameter, geplottet. 
           Dabei wurden nur die Werte für $T$ aus den Messreihen genutzt.  }
-  \label{img:pol2}
+  \label{img:tau}
 \end{figure}

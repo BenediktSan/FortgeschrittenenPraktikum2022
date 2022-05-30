@@ -139,13 +139,20 @@ def ploten_ascdesc(T_ascdesc, I_ascdesc, param, name):             #ascending-, 
 
     T_plot = np.linspace(T_ascdesc[0], T_ascdesc[-1], 500)
 
+    ylabel = r"ln(I) / pA"
+
+    if(np.size(I_ascdesc) > 16):                    #weil ich ein dulli bin und beide Plots mit einer Funktion machen wollte. 
+        ylabel = r"$ \ln \left( \frac{\int_T^\infty I(T') \mathrm{d} T'}{I(T)} \right)$"
+
+
+
     plt.figure()
     plt.plot(T_ascdesc,np.log(I_ascdesc), "x",  label = "Messwerte" )
     plt.plot(T_plot, lin(T_plot, *param), label = "Ausgleichsgerade")
     #plt.yscale('log')
     plt.rc('axes', labelsize= 12)
-    plt.ylabel(r"ln(I) / pA")
-    plt.xlabel(r"T / K")
+    plt.ylabel(ylabel)
+    plt.xlabel(r" $\frac{1}{T} $ / K")
     ##plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
     ##plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
     plt.tight_layout()
@@ -269,9 +276,8 @@ def ugly_main(T, I, start, end, peak,b, name):
 
     T_unter = slicer(T, start, end, peak)
     I_unter = slicer(I, start, end, peak)
-    print(name)
     param_unter = underground_fit(T_unter, I_unter)
-    ploten_mitunter(T, I, T_unter, I_unter, noms(param_unter), name)
+    ploten_mitunter(T, I * 10**11, T_unter, I_unter * 10**11,( noms(param_unter[0] *10**11), noms(param_unter[1])), name) #I eingabe für vernünftige Einheiten
 
     #Untergrund abziehen und weitere Bereiche erkennen
 
@@ -343,7 +349,6 @@ print("Final checkup W: ", W_speicher,"\n")
 ploten_tau(T_1, T_2)
 
 theo = 0.66
-print(W_speicher[0], W_speicher[1], W_speicher[2])
 W_speicher = W_speicher/const.e
 print(f"\n########## REL ABW ########\n")
 rel_abw(theo, W_speicher[0])
