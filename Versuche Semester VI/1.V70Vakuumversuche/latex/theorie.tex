@@ -1,77 +1,87 @@
 \section{Zielsetzung}
-
+	
+	Die Vakuumtechnik befasst sich mit der Erzeugung, Aufrechterhaltung und Messung eines Vakuums.
+	Diese Technik ist wichtig für die Industrie und Forschung um reine Produkte herzustellen und ungestörte Messungen durchzuführen.
+	Moderne Versuche erreichen Drücke, bis zu etwas unter $\SI{10e-11}{\milli\bar}$.
 	In diesem Versuch werden allgemeine theoretische Begriffe in Verbindung mit Vakua erläutert.
 	Experimentiell wird das Saugvermögen einer Drehschieberpumpe und einer Turbomolekularpumpe bestimmt.
 	Dazu werden jeweils einige Evakurierungskurven aufgenommen und Leckratenmessungen durchgeführt.
+	
 
 \section{Theorie}
 	
 	\subsection{Vakuum}
 		
-		Allgemein wird von einem Vakuum gesprochen, sobald der Druck innerhalb eines Gefäßes niedriger als sein Umgebungsdruck ist.\\
-		Da der niedrigste auf der Erde vorkommende Atmosphärendruck in großer Höhe bei $p = \SI{300}{\milli\bar}$ liegt, wird ab dann von einem Vakuum gesprochen.\\
-		Es ist in diesem Versuch eine gute Annäherung wenn wir bei dem vorliegendem Gas von idealem Gas sprechen. 
-		Dies bedeutet, dass jegliche Wechselwirkungen zwischen Teilchen nur durch vollkommen elastische Stöße passieren und die Gasteilchen keine Ausdehnung besitzen.\\
+		Allgemein wird von einem Vakuum gesprochen, sobald der Druck innerhalb eines Gefäßes niedriger als sein Umgebungsdruck ist.
+		Da der niedrigste auf der Erde vorkommende Atmosphärendruck in großer Höhe bei $p = \SI{300}{\milli\bar}$ liegt, wird ab dann von einem Vakuum gesprochen.
+		Es ist in diesem Versuch eine gute Näherung wenn wir bei dem vorliegendem Gas von idealem Gas sprechen. 
+		Dies bedeutet, dass jegliche Wechselwirkungen zwischen Teilchen nur durch vollkommen elastische Stöße passieren und die Gasteilchen keine Ausdehnung besitzen.
 		Wenn dies angenommen wird, kann das Gas auch mit der Idealen Gasgleichung
 		\begin{equation}
 			p \cdot V = N \cdot \symup k _{\symup b} \cdot T
 		\end{equation}
 		beschrieben werden.
-		Hier ist $p$ der Druck, $V$ das Volumen, $N$ die Teilchenzahl, $\symup k _{\symup b}$ die Boltzmann Konstante und $T$ die Temperatur. 
-		Ein Spezialfall dieser Gleichung ist das \textit{Gesetz von Boyle-Mariotte}. Dieses besagt, dass bei konstanter Temperatur
+		Hier ist $p$ der Druck, $V$ das Volumen, $N$ die Teilchenzahl, $\symup k _{\symup B}$ die Boltzmann Konstante und $T$ die Temperatur. 
+		Ein Spezialfall dieser Gleichung ist das Gesetz von Boyle-Mariotte. Dieses besagt, dass bei konstanter Temperatur
 		\begin{equation}
 			p \propto V^{-1}
 		\end{equation}
 		ist.
+		Der Druck ist als Kraft pro Fläche definiert, es gilt:
+		\begin{equation}
+		\SI{1}{\pascal} = \SI{0.01}{\milli\bar} = \SI{1}{\newton\per\metre\squared}.
+		\end{equation}
 
 	\subsection{Fachbegriffe}
-
-		\subsubsection{mittlere freie Weglänge}
-			\noindent
-			Die mittlere freie Weglänge beschreibt die durschnittliche Fluglänge eines Gasteilchens zwischen zwei Kollisonen mit anderen Gasteilchen.\\
+	
+		\begin{itemize}
+			\item
+			Die mittlere freie Weglänge beschreibt die durschnittliche Fluglänge eines Gasteilchens zwischen zwei Kollisonen mit anderen Gasteilchen.
+			Diese ist relevant für das Verhalten unterschiedliche Verhalten und die Funktionsweise unterschiedlicher Vakuumpumpen.
 			(Quelle: \cite{wiki:mfg})
 
-		\subsubsection{Sorption}
-			
-			\noindent
+			\item
 			Die Sorption bezeichnet den Vorgang einer Anreicherung eines Stoffes. 
-			Hier beschreibt die Absorption, wenn der Stoff innerhalb einer Phase aufgenommen wird. Ein Beispiel ist die Aufnahme einer Elektromagnetischenwelle.\\
+			Hier beschreibt die Absorption, wenn der Stoff innerhalb einer Phase aufgenommen wird. 
+			Ein Beispiel ist die Aufnahme von Neutronen in den Atomkernen eines Festkörpers.\\
 			Adsorption ist im Gegensatz zur Absortion die Anlagerung auf der Oberfläche oder Grenzfläche eines Stoffes.\\
-			Die \textit{Desorption} beschreibt gegensätzlich einen Prozess bei dem Atome oder Moleküle die Oberfläche eines Festkörpers verlassen und in die Gasphase übergehen.\\
+			Die Desorption beschreibt gegensätzlich einen Prozess bei dem Atome oder Moleküle die Oberfläche eines Festkörpers verlassen und in die Gasphase übergehen.\\
 			(Quelle: \cite{wiki:sorp})
 			
-		\subsubsection{Lecks}
-
+			\item
 			Lecks beschreiben Prozesse die das Vakuum reduzieren. Es wird dabei zwischen realen und virtuellen Lecks unterschieden.\\
 			Reale Lecks sind Prozesse die von außerhalb der Vakuumanlage messbar sind. Eine nicht korrekt verschlossene Verbindung ist zum Beispiel ein reales Leck.\\
 			Virtuelle Lecks entstehen zum Beipiel durch Einschlüsse in der Vakuumanlage, welche sich mit zunehmendem Druck freisetzten.
-			Diese Art von Lecks sind von außen nicht zu messen und müssen beim Aufbau oder in der Produktion der Teile verhindert werden.\\
+			Diese Art von Lecks sind von außen nicht zu messen und müssen beim Aufbau oder in der Produktion der Vakuumteile verhindert werden.
+			Die einzelnen Gaseinschlüsse können zum Beispiel bei der Produktion durch Ultraschall zu größeren Gasblasen diffundiert werden, welche dann an die Oberfläche steigen und austreten.\\
+			In diesem Versuch sind Lecks und Desorption mitunter dafür verantwortlich, dass nur gewisse Vakuumbereiche erreicht werden können. 
 			(Quelle: \cite{pfeiffer:grund})
+		\end{itemize}
 
 	\subsection{Vakuumbereiche}
 
-			\noindent
-		Physikalisch sind mehrere Vakuumbereiche definiert, da die verschiedenen Dichten zu stark unterschiedlichem Gasverhalten führen. 
+		\noindent
+		Physikalisch sind mehrere Vakuumbereiche definiert, da mit abnehmendem Druck die Teilchendichte in einem Volumen reduziert wird.
+		Durch die unterschiedlichen Dichte, finden zum Beispiel Stöße unter den Gasteilchen unterschiedlich häufig statt.
+		Dies bestimmt zum Beispiel wie ein Gas durch einen Leiter strömt.
+		
+		\begin{itemize}
+			\item
+			Im ersten relevanten Druckbereich wird von einem Grobvakuum gesprochen. Dieses ist zwischen $\SI{300}{\milli\bar}$ und $\SI{1}{\milli\bar}$ definiert.
+			In diesem Bereich findet allgemein viskose Strömung statt, in der der Großteil der Stöße zwischen den Gasteilchen untereinander und nicht mit der Gefäßwand stattfinden.
+			Es wird abhängig von der Teilchengeschwindigkeit, der Teilchendichte und der Gefäßgröße zwischen laminarer und turbolenter Strömung unterschieden. 
 
-		\subsubsection{Grobvakuum}
-			\noindent
-			Im ersten relevanten Druckbereich wird von einem Grobvakuum gesprochen. Dieses ist zwischen $\SI{300}{\milli\bar}$ und $\SI{1}{\milli\bar}$ definiert.\\
-			In diesem Bereich findet allgemein viskose Strömung statt, in der der Großteil der Stöße zwischen den Gasteilchen untereinander und nicht mit der Gefäßwand stattfinden.\\
-			Es muss jedoch abhängig von der Teilchengeschwindigkeit, der Teilchendichte und der Gefäßgröße zwischen laminarer oder turbolenter Strömung unterschieden. 
-			%hier könnten noch Formeln und weitere Informationen zu den Strömungsarten eingefögt werden
-
-		\subsubsection{Feinvakuum}
-
-			\noindent
+			\item
 			Das Feinvakuum ist zwischen $\SI{1}{\milli\bar}$ und $\SI{e-3}{\milli\bar}$ definiert. Hier findet Knudsen-Strömung statt.
+			Knudenströmung beschreibt Strömung bei der der Letungsdurchmesser vergleichbar mit der mittleren freien Weglänge ist.
+			Hier wechselwirken die Gasteilchen hauptsäche mit den Wänden des Gefäßes.
 
-			\noindent
-		\subsubsection{Hoch und Ultrahochvakuum} 
+			\item
 			Es wird ab einem Druck von $\SI{e-3}{\milli\bar}$ bis $\SI{e-8}{\milli\bar}$ von Hochvakuum gesprochen. Von Ultrahochvakuum ist ab $\SI{e-8}{\milli\bar}$ die Rede.	\\	
 			In diesen beiden Druckbereichen findet nur noch Molekulare-Strömung statt.\\
-			Dies bedeutet, dass die Teilchen untereinander fast nicht mehr Wechselwirken. Mathematisch ist hier die mittlere freie Weglänge größer als die Weite des Strömungskanals.
-		\\
-		\\
+			Dies bedeutet, dass die Teilchen untereinander fast nicht mehr Wechselwirken. 
+			Hier ist die mittlere freie Weglänge größer als die Weite des Strömungskanals.
+		\end{itemize}
 		Diese unterschiedlichen Strömungsarten haben hohe Relevanz bei praktischen Anwendungen, da zum Beispiel das effektive Saugvermögen von Vakuumpumpen beeinträchtigt werden kann.\\
 		Im Grobvakuum ist es wichtig einen großen Leitungsdurchmesser einzubauen, damit laminare Stömung sicher gestellt ist.
 		Im Ultrahochvakuum reichen relativ kleine Leitungsdurchmesser jedoch wieder aus.\\
