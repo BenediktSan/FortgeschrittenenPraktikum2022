@@ -29,7 +29,12 @@
         \begin{equation*}
           \sigma_{S} = \sqrt{\left(\frac{m^2}{p_g^2}\right) \cdot \sigma_{V}^2 + \left(\frac{V^2}{p_g^2}\right) \cdot \sigma_m^2 + \left(\frac{m^2 V^2}{p_g^4}\right) \cdot \sigma_p^2} \quad .
         \end{equation*}
-        Des Weiteren wird für die relative Abweichung berechneter Werte vom Theoriewert die Formel 
+        Für den Leitwert gilt die Gleichung
+        \begin{equation}
+          \sigma_{L} = \sqrt{\left( \frac{ S_0^2}{(S_{eff}- S_0)^2} \right) \cdot \sigma_{Seff}^2 + \left( \frac{S_{eff}^2}{(S_{eff}- S_0)^2} \right) \cdot \sigma_{S0}^2} \quad .
+          \label{eqn:errL}
+        \end{equation}
+        Des Weiteren wird für die relative Abweichung, berechneter Werte, vom Literaturwert die Formel 
         \begin{equation*}
           \increment x = \frac{x - x_{theo}}{x_{theo}}
         \end{equation*}
@@ -38,7 +43,7 @@
       \subsection{Volumen}
         Um das Saugvermögen der beiden Pumpen zu bestimmen wird das Volumen des Versuchsaufbaus benötigt.\\
         Für die Messungen, die für die Turbomolekularpumpe durchgeführt werden, wird ein kleineres Volumen benötigt.
-        Dort wird nämlich nur das Volumen bis zur Turbomolekularpumpe evakuiert.\\
+        Dort nur das Volumen bis zur Turbomolekularpumpe evakuiert.\\
         Dieses Volumen beträgt $V_1 = \SI{33.0(33)}{\litre}$.\\
         Für die Messungen mit der Drehschieberpumpe wird zusätzlich noch das Volumen des Schlauchs genutzt. 
         Dieses beträgt $\SI{1.0(1)}{\litre}$, wodurch sich das Volumen $V_2 = \SI{34.0(34)}{\litre}$ ergibt.\\
@@ -53,7 +58,7 @@
         \subsubsection{Evakuierungsmessung}
 
         \noindent Für diese Messung wurden über einen Zeitraum von $ T = \SI{600}{\second}$ alle $ \increment t = \SI{10}{\second}$
-        der Druck im Versuchsaufbau hinter der deaktivierten Turbomolekularpumpe abgelesen. Dies wurde dreimal wiederholt.\\
+        der Druck im Versuchsaufbau hinter der deaktivierten Turbomolekularpumpe abgelesen. Dies wurde dreimal wiederholt.
         Die Messdaten sind in der Tabelle \ref{tab:dreh_p} im Anhang, inklusive der gemittelten Messwerte mit Fehler des Mittelwerts, zu finden.
         Als Enddruck wurde $\SI{0.021}{\milli\bar}$ aufgenommen. 
         %Da allerdings nicht gewartet wurde bis sich ein Enddruck eingestellt hat, musste der Wert aus dem 
@@ -68,7 +73,7 @@
         \begin{equation*}
           \ln\left(\frac{p(t) - p_{end}}{p_0 - p_{end}}\right)
         \end{equation*}
-        folgen, angewandt. Diese Gleichung ist dabei aus Gleichung \ref{eqn:druckkurve} hergeleitet.\\
+        folgen, angewandt. Diese Gleichung ist dabei aus Gleichung \ref{eqn:druckkurve} hergeleitet.
         Allerdings ist das Saugvermögen der Pumpe nicht über alle Druckbereiche konstant, was zum Beispiel an unterschiedlichen Ströumungsarten bei unterschiedlichen Drücken liegt.\\
         Aus diesem Grund wurde der Fit für drei unterschiedliche Bereiche durchgeführt. Die Bereiche wurden aus der grafischen Darstellung abgeschätzt.\\
         Die Ergebnisse der Fits, die grafische Darstellung der Messdaten, inklusive Fehler, finden sich in Abbildung \ref{img:dreh_p}.
@@ -137,7 +142,7 @@
               \caption{Gleichgewichtsdruck $p_G = \SI{80}{\milli\bar}$.}
               \label{img:dreh_leck_4}
             \end{subfigure}
-            \caption{Die Messwerte der Leckratenmessung an der Drehschieberpumpe inklusive der dazugehörigen Ausgleichsgeraden.}
+            \caption{Die Messwerte der Leckratenmessung an der Drehschieberpumpe inklusive der dazugehörigen Ausgleichsgeraden grafisch dargestellt.}
             \label{img:1}
         \end{figure}
 
@@ -233,8 +238,8 @@
            {Bereich} & $\text{m} \mathbin{\scalebox{1.5} / } \si{\per\second}$ & $\text{n}$ & $\text{S} \mathbin{\scalebox{1.5} / } \si{\litre\per\second}$ \\
            \midrule
            $\SI{167}{\milli\bar}$ bis $\SI{2.44}{\milli\bar}$  & -0.1700 \pm 0.03266 & -0.1631 \pm 0.03266 & 5.6086 \pm 1.21505  \\
-           $\SI{2.44}{\milli\bar}$ bis $\SI{1.93}{\milli\bar}$ & -0.0066 \pm 0.00039 1/s & -4.6240 \pm 0.00039 & 0.2182 \pm 0.02525   \\
-           $\SI{1.93}{\milli\bar}$ bis $\SI{0}{\milli\bar}$    & -0.0026 \pm 0.00009  & -4.9640 \pm 0.00009 &  0.0866 \pm 0.00913 \\
+           $\SI{2.44}{\milli\bar}$ bis $\SI{1.93}{\milli\bar}$ & -0.0066 \pm 0.00039 & -4.6240 \pm 0.00039 & 0.2182 \pm 0.02525   \\
+           $\SI{1.93}{\milli\bar}$ bis $\SI{0}{\milli\bar}$    & -0.0026 \pm 0.00009 & -4.9640 \pm 0.00009 &  0.0866 \pm 0.00913 \\
           \bottomrule
           \end{tabular}
           \caption{Parameter der Ausgleichsrechnungen für die Messungen an der Pumpe und die Ergebnisse für das Saugvermögen.}
@@ -248,9 +253,9 @@
           S_{eff} &= \frac{S_0 \cdot L }{S_0 + L}\\
           \iff L &= \frac{- S_{eff}\cdot S_0}{S_{eff} -S_0}
         \end{align*}
-        genutzt.\\ Wenn dabei angenommen wird, dass das Saugvermögen am Vakuumkörper dem Idealwert entspricht und die Leistung an der Pumpe $S_{eff}$ entspricht, 
-        lässt sich damit für die einzelnen Messbereiche der Leitwert bestimmen.\\
-        Das Ergebnis dieser Rechnung ist in der folgenden Tabelle \ref{tab:leit} zu finden.
+        genutzt. Wenn dabei angenommen wird, dass das Saugvermögen am Vakuumkörper dem Idealwert entspricht und die Leistung an der Pumpe $S_{eff}$ entspricht, 
+        lässt sich damit für die einzelnen Messbereiche der Leitwert abschätzen.\\
+        Das Ergebnis dieser Rechnung ist in der folgenden Tabelle \ref{tab:leit} aufgeführt. Die Abweichungen wurden mit Gleichung \ref{eqn:errL} bestimmt.
         \begin{table}[H]
           \centering
           \small
@@ -258,11 +263,12 @@
            \toprule
            {Bereich} & $\text{L} \mathbin{\scalebox{1.5} / } \si{\litre\per\second}$  \\
            \midrule
-           $\SI{167}{\milli\bar}$ bis $\SI{2.44}{\milli\bar}$  & -282.782 \pm 5911.4814  \\
-           $\SI{2.44}{\milli\bar}$ bis $\SI{1.93}{\milli\bar}$ & -0.265 \pm 0.0815 \\
-           $\SI{1.93}{\milli\bar}$ bis $\SI{0}{\milli\bar}$    & -0.087 \pm 0.0203 \\
+           $\SI{167}{\milli\bar}$ bis $\SI{2.44}{\milli\bar}$  & -282.782 \pm 114.639  \\
+           $\SI{2.44}{\milli\bar}$ bis $\SI{1.93}{\milli\bar}$ & -0.265 \pm 0.059 \\
+           $\SI{1.93}{\milli\bar}$ bis $\SI{0}{\milli\bar}$    & -0.087 \pm  0.020 \\
           \bottomrule
           \end{tabular}
+          \caption{Die errechneten Leitwerte für die verschiedenen Messbereiche. }
           \label{tab:leit}
         \end{table} 
 
@@ -305,7 +311,7 @@
             \caption{Gleichgewichtsdruck $p_G = \SI{5e-5}{\milli\bar}$.}
             \label{img:turbo_leck_4}
           \end{subfigure}
-          \caption{Die Messwerte der Leckratenmessung an der Turbomolekularpumpe inklusive der dazugehörigen Fits. }
+          \caption{Die Messwerte der Leckratenmessung an der Turbomolekularpumpe inklusive der dazugehörigen Fits abgebildet. }
           \label{img:3}
       \end{figure}
 
