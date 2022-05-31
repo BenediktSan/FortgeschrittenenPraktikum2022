@@ -27,9 +27,9 @@ In diesem Versuch, wird die Aktivierungsenergie und die charakteristische Relaxa
 		Die Dipole stoßen sich aufgrund ihrer Ausrichtung gegenseitig ab. In dem Kristall ist jedoch nicht genug Energie um die Struktur des Gitters zu ändern.
 		Durch Aufwärmen des Kristalls können die Leerstellen genug Energie bekommen, um ihre Position innerhalb des Kristall zu ändern und somit auch den Dipol zu reorientieren.
 		Dises Strukturänderung innerhalb des Kristalls wird Leerstellendiffusion genannt und benötigt eine gewisse materialspezifische Aktivierungsenergie $W$.
-		Da die Energieverteilung im Kristall durch die Boltzmann-Statistik $\approx\text{exp}\left(-\frac{W}{k_\text{B}T}\right)$ beschreiben wird, folgt für die Relaxationszeit:\\
+		Da die Energieverteilung im Kristall durch die Boltzmann-Statistik $\propto\text{exp}\left(-\frac{W}{k_\text{B}T}\right)$ beschreiben wird, folgt für die Relaxationszeit:\\
 		\begin{equation}
-			\tau(T) = \tau_0 \text{exp}\left(\frac{-W}{k_\text{B}T}\right)
+			\tau(T) = \tau_0 \text{exp}\left(\frac{W}{k_\text{B}T}\right)
 			\label{eqn:tau0}
 		\end{equation}
 		mit der charakteristischen Relaxationszeit $\tau_0 = \tau(\infty)$.
@@ -122,6 +122,7 @@ In diesem Versuch, wird die Aktivierungsenergie und die charakteristische Relaxa
 					W = m \cdot k_\t{B}.
 					\label{eqn:W}
 				\end{equation}
+				Dieses analytische Ergebnis gilt am besten für den Bereich vor dem Maximum und wird daher in diesem Bereich ausgewertet.			
 
 		\subsubsection{Verwendung des gesamten Kurvenverlaufs}
 
