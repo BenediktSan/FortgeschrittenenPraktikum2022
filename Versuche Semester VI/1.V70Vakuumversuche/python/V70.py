@@ -402,7 +402,7 @@ def leit(vent,pump):
         L[i] = -1* pump[i] * vent[i] / (pump[i] - vent[i])
         print(f"\nDer Leitwert für den {i + 1}ten Bereich: {noms(L[i]):.4f} \pm {stds(L[i]):.5f}")
         #print(f"corr {unc.correlated_values}")
-        print(f"test für fehler {unp.sqrt(   noms(pump[i])**2 * stds(pump[i])**2 /(noms(pump[i] - vent[i]))**2  + noms(vent[i])**2 * stds(vent[i])**2 /(noms(pump[i] - vent[i]))**2 )}\n")
+        print(f"test für fehler {unp.sqrt(   noms(pump[i])**2 * stds(vent[i])**2 /(noms(pump[i] - vent[i]))**2  + noms(vent[i])**2 * stds(pump[i])**2 /(noms(pump[i] - vent[i]))**2 )}\n")
         
 
 
