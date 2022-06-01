@@ -1,13 +1,13 @@
 \section{Zielsetzung}
-In einem Ionenkristall können durch Dotierung mit stärker geladenen Ionen, Dipole erzeugt werden. 
-Durch Ausrichtung in die selbe Richtung, werden diese Dipole angeregt.
-In diesem Versuch, wird die Aktivierungsenergie und die charakteristische Relaxationszeit, der Relaxation dieser Dipole bestimmt.
+In einem Ionenkristall können durch Dotierung mit stärker geladenen Ionen Dipole erzeugt werden. 
+Durch Ausrichtung in die selbe Richtung werden diese Dipole angeregt.
+In diesem Versuch wird die Aktivierungsenergie und die charakteristische Relaxationszeit der Relaxation, dieser Dipole bestimmt.
 
 
 \section{Theorie}
 	\subsection{Dipole in dotierten Ionenkristallen}
 		Der in diesem Versuch verwendete Ionenkrstall ist eine Kaliumbromid Probe mit einem Gitter aus Kalium-Kationen und Brom-Anionen.
-		In Abbildung \ref{fig:KBr} ist eine Darstellung eines solchen Kristalles.
+		In Abbildung \ref{fig:KBr} ist eine Darstellung eines solchen Kristalles zu finden.
 		\begin{figure}
 			\centering
 			\includegraphics[]{latex/images/Kristall.PNG}
@@ -23,11 +23,11 @@ In diesem Versuch, wird die Aktivierungsenergie und die charakteristische Relaxa
 
 	\subsection{Depolarisationseffekte}
 		
-		Ohne der Durchführung zu weit vorzugreifen, gehen wir davon aus, dass alle Dipole innerhalb des Kristalles durch eine äußere Kraft in die selbe Richtung ausgerichtet wurden und der Kristall stark abegkühlt wurde.
+		Ohne der Durchführung zu weit vorzugreifen gehen wir davon aus, dass alle Dipole innerhalb des Kristalles durch eine äußere Kraft in die selbe Richtung ausgerichtet wurden und der Kristall stark abgekühlt wurde.
 		Die Dipole stoßen sich aufgrund ihrer Ausrichtung gegenseitig ab. In dem Kristall ist jedoch nicht genug Energie um die Struktur des Gitters zu ändern.
-		Durch Aufwärmen des Kristalls können die Leerstellen genug Energie bekommen, um ihre Position innerhalb des Kristall zu ändern und somit auch den Dipol zu reorientieren.
+		Durch Aufwärmen des Kristalls können die Leerstellen genug Energie bekommen um ihre Position innerhalb des Kristall zu ändern und somit auch den Dipol zu reorientieren.
 		Dises Strukturänderung innerhalb des Kristalls wird Leerstellendiffusion genannt und benötigt eine gewisse materialspezifische Aktivierungsenergie $W$.
-		Da die Energieverteilung im Kristall durch die Boltzmann-Statistik $\propto\text{exp}\left(-\frac{W}{k_\text{B}T}\right)$ beschreiben wird, folgt für die Relaxationszeit:\\
+		Da die Energieverteilung im Kristall durch die Boltzmann-Statistik $\propto\text{exp}\left(-\frac{W}{k_\text{B}T}\right)$ beschrieben wird, folgt für die Relaxationszeit:\\
 		\begin{equation}
 			\tau(T) = \tau_0 \text{exp}\left(\frac{W}{k_\text{B}T}\right)
 			\label{eqn:tau0}
@@ -45,12 +45,12 @@ In diesem Versuch, wird die Aktivierungsenergie und die charakteristische Relaxa
 			I(T) = - \frac{\text{d}P(t)}{\text{d}t}.
 		\end{equation}
 		Die Änderungsrate lässt sich auch mittels der Relaxationszeit darstellen und ergibt somit 
-		folgende Differentialgeleichung:
+		folgende Differentialgleichung:
 		\begin{equation}
 			\frac{\t{d} P(t)}{\t{d} t} = \frac{P(t)}{\tau(T)}.
 			\label{eqn:diff}
 		\end{equation}
-		Das Lösen der Differentialgeleichung mittels Seperation der Variabeln ergibt dann:
+		Das Lösen der Differentialgleichung mittels Seperation der Variabeln ergibt dann:
 		\begin{equation}
 			P(t) = P_0 \t{exp}\left(- \frac{t}{\tau(T)} \right).
 		\end{equation}
@@ -59,8 +59,8 @@ In diesem Versuch, wird die Aktivierungsenergie und die charakteristische Relaxa
 		\begin{equation}
 			I(T) = \frac{P_0}{\tau(T)} \t{exp}\left(-\frac{t}{\tau(T)}\right)
 		\end{equation}
-		Hier gibt $t$ die Zeit an, die benötigt wurde um $T$ zu erreichen, 
-		sie lässt sich auch als Integral schreiben:
+		Hier gibt $t$ die Zeit an, die benötigt wurde um $T$ zu erreichen.
+		Sie lässt sich auch als Integral schreiben:
 		\begin{equation}
 			I(T) = \frac{P_0}{\tau(T)} \t{exp}\left(-\int_0^t\frac{\t{d}t}{\tau(T)}\right)
 			\end{equation}
@@ -85,7 +85,7 @@ In diesem Versuch, wird die Aktivierungsenergie und die charakteristische Relaxa
 		\begin{equation}
 			\DIF{N(T)}{t} =- \frac{N}{\tau(T)}.
 		\end{equation}
-		Und analog zum vorherigen Kapitel ergibt sich die Lösung der Differentialgelich zu:
+		Und analog zum vorherigen Kapitel ergibt sich die Lösung der Differentialgleichung zu:
 		\begin{equation}
 			N = N_\t{P} \t{exp}\left( \frac{-1}{b}\int_{T_0}^T \frac{\t{d}T'}{\tau(T')}\right)
 		\end{equation}
@@ -101,11 +101,11 @@ In diesem Versuch, wird die Aktivierungsenergie und die charakteristische Relaxa
 
 	\subsection{Berechnung der Aktivierungsenergie $W$}
 		
-		\subsubsection{Bestimmung mithilfe des Maximums}
+		\subsubsection{Bestimmung mit Hilfe des Maximums}
 
-				Aufgrund der endlichen Anzahl an Dipolen entsteht trotz konstanter Heizrate, in der Theorie und im Experiment bei einer gewissen Temperatur $T_\t{max}$ ein Maximum des Depolarisationsstroms.
+				Aufgrund der endlichen Anzahl an Dipolen entsteht trotz konstanter Heizrate, in der Theorie und im Experiment, bei einer gewissen Temperatur $T_\t{max}$ ein Maximum des Depolarisationsstroms.
 				Dies kann dazu genutzt werden um charakteristische Eigenschaften des Kristalles zu Bestimmen.
-				Wird angenommen, dass die Aktivierungsenergie $W$ groß gegenüber der Energie $k_\t{B}T$ und der Temperaturdifferenz $T-T_0$, so wird das Integral in Gleichung \ref{eqn:long} 
+				Wird angenommen, dass die Aktivierungsenergie $W$ groß gegenüber der Energie $k_\t{B}T$ und der Temperaturdifferenz $T-T_0$ ist, so wird das Integral in Gleichung \ref{eqn:long} zu
 				\begin{equation}
 					\int_{T_0}^T\frac{\t{d}T'}{\tau(T')} \approx 0.
 				\end{equation}
@@ -113,9 +113,9 @@ In diesem Versuch, wird die Aktivierungsenergie und die charakteristische Relaxa
 				\begin{equation}
 					I(T) = \frac{P^2E}{3k_\t{B}T}\frac{N_\t{P}}{\tau_0} \t{exp}\left(-\frac{W}{k_\t{B}T}\right).
 				\end{equation}	
-				Mittes des Logarithmus entsteht hieraus eine Geradengleichung
+				Mittes des Logarithmus entsteht hieraus eine Geradengleichung der Form
 				\begin{equation}
-					\t{ln}(I(T)) = \left(\frac{P^2EN_\t{P}}{3k_\t{B}T\tau_0}\right) - \frac{W}{k_\t{B}} \frac{1}{T}.
+					\t{ln}(I(T)) = \left(\frac{P^2EN_\t{P}}{3k_\t{B}T\tau_0}\right) - \frac{W}{k_\t{B}} \frac{1}{T} \quad .
 				\end{equation}
 				Die Steigung $m$ dieser Geraden ist also $\frac{W}{k_\t{B}}$ oder
 				\begin{equation}
@@ -144,7 +144,7 @@ In diesem Versuch, wird die Aktivierungsenergie und die charakteristische Relaxa
 				\end{equation}
 				Die Änderung Polarisation entspricht dem Strom und mit $P = \int \t{d}P$ ist dann
 				\begin{equation}
-					\tau(T) = \frac{\int \DIF{P}{t}\t{d}T}{I(T)b}
+					\tau(T) = \frac{\int \DIF{P}{t}\t{d}T}{I(T)b} \quad .
 				\end{equation}
 				Hier kann nun erneut der Depolarisationsstrom identifiziert und eingesetzt werden:
 				\begin{equation}
@@ -152,14 +152,14 @@ In diesem Versuch, wird die Aktivierungsenergie und die charakteristische Relaxa
 				\end{equation}
 				und somit ergibt sich für die Aktivierungsenergie $W$:
 				\begin{equation}
-					W = k_\t{B}T\t{ln}\left( \frac{\int_T^\infty I(T')\t{d}T'}{I(T)b\tau_0}\right)
+					W = k_\t{B}T\;\t{ln}\left( \frac{\int_T^\infty I(T')\t{d}T'}{I(T)b\tau_0}\right)
 					\label{eqn:int}
 				\end{equation}
-				Die obere Grenze ist in der Praxis verschwindent da bei hohen Temperaturen keine Dipole mehr vorhanden sind, die noch relaxieren können.
+				Die obere Grenze verschwindet in der Praxis, da bei hohen Temperaturen keine Dipole mehr vorhanden sind die noch relaxieren können.
 
 	\subsection{Berechnung der charakteristischen Relaxationszeit}
 				
-		An dem Maximum der Stomstärke bei der Temperatur $T_\t{max}$, ist dessen Ableitung verschwindend, dies lässt sich nutzen um die charakteristische Relaxationszeit zu bestimmen.
+		An dem Maximum der Stomstärke, bei der Temperatur $T_\t{max}$, ist dessen Ableitung verschwindend. Dies lässt sich nutzen um die charakteristische Relaxationszeit zu bestimmen.
 		Dazu wird Gleichung \ref{eqn:long} nach der Temperatur abgeleitet:
 		\begin{equation}
 			\DIF{I(T)}{T} \approx \frac{1}{\tau_0} \left( - \frac{1}{b\tau_0}
