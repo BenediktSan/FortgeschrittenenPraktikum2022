@@ -152,7 +152,7 @@ V_hinter_turbo = unc.ufloat(33, 3.3)
 V_turbo_bis_dreh = unc.ufloat(1, 0.1)
 
 ##größe der Achenbeschriftung
-size_label = 17
+size_label = 19
 
 #####RECHNUNGEN#######
 
