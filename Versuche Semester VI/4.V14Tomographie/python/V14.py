@@ -46,6 +46,8 @@ b4_FWHM = np.array([6.20, 5.99, 5.61, 5.87, 5.90, 5.79, 5.71,  5.51, 5.69, 5.79,
 def dufloat(cnts, FWHM):
 	Amp = cnts * FWHM
 	return ufloat(Amp, np.sqrt(Amp))
+
+t_0 = 240
 I_0 = dufloat(I_0_cnts , I_0_FWHM)
 
 I_al_1 = dufloat(al_cnts[0] , al_FWHM[0])
@@ -77,6 +79,28 @@ I_b4_12 = dufloat(b4_cnts[11] , b4_FWHM[11])
 def rel_abw(theo,a):
     c = (theo - a)/theo
     print(f"Relative Abweichung in Prozent: {noms(c) * 100 :.4f} \pm {stds(c) * 100 :.5f}\n")
+
+
+# ---------------------------------Nullmessung/Spektrum----------------------------------------------------------------------------------
+pulses = np.genfromtxt('data/spektrum.txt', unpack=True)
+x_axis = np.arange(len(pulses))
+
+r_0 = np.sum(pulses)/t_0 #/per/sec
+sig_0 = np.sqrt(np.sum(pulses))/t_0
+
+R_0 = unp.uarray([r_0], [sig_0])
+
+plt.figure()
+plt.bar(x_axis, pulses)
+plt.xlim(8,220)
+plt.xlabel("Channel")
+plt.ylabel("Anzahl der Ereignisse")
+plt.grid()
+plt.tight_layout()
+plt.savefig('build/spektrum.pdf')
+
+
+
 
 
 def mittel(a,b,c):
