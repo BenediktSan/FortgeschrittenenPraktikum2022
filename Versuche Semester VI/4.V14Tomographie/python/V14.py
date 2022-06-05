@@ -50,32 +50,54 @@ def dufloat(cnts, FWHM):
 t_0 = 240
 I_0 = dufloat(I_0_cnts , I_0_FWHM)
 
-I_al_1 = dufloat(al_cnts[0] , al_FWHM[0])
-I_al_2 = dufloat(al_cnts[1] , al_FWHM[1])
-I_al_3 = dufloat(al_cnts[2] , al_FWHM[2])
+I_al_1 = dufloat(al_cnts[0] , al_FWHM[0]) # Gerade
+I_al_2 = dufloat(al_cnts[1] , al_FWHM[1]) # Diagonale
+I_al_3 = dufloat(al_cnts[2] , al_FWHM[2]) # Nebendiagonale
 
-I_b2_1 = dufloat(b2_cnts[0] , b2_FWHM[0])
-I_b2_2 = dufloat(b2_cnts[1] , b2_FWHM[1])
+I_b2_1 = dufloat(b2_cnts[0] , b2_FWHM[0]) # Gerade
+I_b2_2 = dufloat(b2_cnts[1] , b2_FWHM[1]) # Diagonale
 
-I_b3_1 = dufloat(b3_cnts[0] , b3_FWHM[0])
-I_b3_2 = dufloat(b3_cnts[1] , b3_FWHM[1])
-I_b3_3 = dufloat(b3_cnts[2] , b3_FWHM[2])
-I_b3_4 = dufloat(b3_cnts[3] , b3_FWHM[3])
-I_b3_5 = dufloat(b3_cnts[4] , b3_FWHM[4])
-I_b3_6 = dufloat(b3_cnts[5] , b3_FWHM[5])
+I_b3_1 = dufloat(b3_cnts[0] , b3_FWHM[0]) # Gerade
+I_b3_2 = dufloat(b3_cnts[1] , b3_FWHM[1]) # Gerade
+I_b3_3 = dufloat(b3_cnts[2] , b3_FWHM[2]) # Gerade
+I_b3_4 = dufloat(b3_cnts[3] , b3_FWHM[3]) # Diagonale
+I_b3_5 = dufloat(b3_cnts[4] , b3_FWHM[4]) # Diagonale
+I_b3_6 = dufloat(b3_cnts[5] , b3_FWHM[5]) # Nebendiagonale
 
-I_b4_1  = dufloat(b4_cnts[0]  , b4_FWHM[0])
-I_b4_2  = dufloat(b4_cnts[1]  , b4_FWHM[1])
-I_b4_3  = dufloat(b4_cnts[2]  , b4_FWHM[2])
-I_b4_4  = dufloat(b4_cnts[3]  , b4_FWHM[3])
-I_b4_5  = dufloat(b4_cnts[4]  , b4_FWHM[4])
-I_b4_6  = dufloat(b4_cnts[5]  , b4_FWHM[5])
-I_b4_7  = dufloat(b4_cnts[6]  , b4_FWHM[6])
-I_b4_8  = dufloat(b4_cnts[7]  , b4_FWHM[7])
-I_b4_9  = dufloat(b4_cnts[8]  , b4_FWHM[8])
-I_b4_10 = dufloat(b4_cnts[9]  , b4_FWHM[9])
-I_b4_11 = dufloat(b4_cnts[10] , b4_FWHM[10])
-I_b4_12 = dufloat(b4_cnts[11] , b4_FWHM[11])
+I_b4_1  = dufloat(b4_cnts[0]  , b4_FWHM[0]) # Gerade
+I_b4_2  = dufloat(b4_cnts[1]  , b4_FWHM[1]) # Gerade
+I_b4_3  = dufloat(b4_cnts[2]  , b4_FWHM[2]) # Gerade
+I_b4_4  = dufloat(b4_cnts[3]  , b4_FWHM[3]) # Gerade
+I_b4_5  = dufloat(b4_cnts[4]  , b4_FWHM[4]) # Gerade
+I_b4_6  = dufloat(b4_cnts[5]  , b4_FWHM[5]) # Gerade
+I_b4_7  = dufloat(b4_cnts[6]  , b4_FWHM[6]) # Diagonale
+I_b4_8  = dufloat(b4_cnts[7]  , b4_FWHM[7]) # Diagonale
+I_b4_9  = dufloat(b4_cnts[8]  , b4_FWHM[8]) # Nebendiagonale
+I_b4_10 = dufloat(b4_cnts[9]  , b4_FWHM[9]) # Nebendiagonale
+I_b4_11 = dufloat(b4_cnts[10] , b4_FWHM[10]) # Nebendiagonale
+I_b4_12 = dufloat(b4_cnts[11] , b4_FWHM[11]) # Nebendiagonale
+
+
+w = np.sqrt(2)
+a1 = np.array([(1,1,1,0,0,0,0,0,0),(0,0,0,1,1,1,0,0,0),(0,0,0,0,0,0,1,1,1)])
+a2 = np.array([(1,0,0,1,0,0,1,0,0),(0,1,0,0,1,0,0,1,0),(0,0,1,0,0,1,0,0,1)])
+a3 = np.array([(w,0,0,0,w,0,0,0,w),(0,0,w,0,w,0,w,0,0),(0,w,0,0,0,w,0,0,0)])
+a4 = np.array([(0,0,0,w,0,0,0,w,0),(0,w,0,w,0,0,0,0,0),(0,0,0,0,0,w,0,w,0)])
+A = np.vstack((a1,a2,a3,a4))
+
+def mu(I_0,I,d):
+	return unp.log(I_0/I) / d
+
+mu_b2_1 = mu(I_al_1, I_b2_1 , 3)
+print(mu_b2_1)
+
+mu_b2_2 = mu(I_al_2, I_b2_2 , 3 * w)
+print(mu_b2_2)
+
+
+
+
+
 def rel_abw(theo,a):
     c = (theo - a)/theo
     print(f"Relative Abweichung in Prozent: {noms(c) * 100 :.4f} \pm {stds(c) * 100 :.5f}\n")
