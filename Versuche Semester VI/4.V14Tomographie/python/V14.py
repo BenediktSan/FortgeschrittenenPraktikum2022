@@ -77,27 +77,58 @@ I_b4_10 = dufloat(b4_cnts[9]  , b4_FWHM[9]) # Nebendiagonale
 I_b4_11 = dufloat(b4_cnts[10] , b4_FWHM[10]) # Nebendiagonale
 I_b4_12 = dufloat(b4_cnts[11] , b4_FWHM[11]) # Nebendiagonale
 
-
+#I_b4 = np.array([I_b4_1, I_b4_2, I_b4_3, I_b4_4, I_b4_5, I_b4_6, I_b4_7, I_b4_8, I_b4_9, I_b4_10, I_b4_11, I_b4_12])
+I_b4 = np.array([I_b4_1.n, I_b4_2.n, I_b4_3.n, I_b4_4.n, I_b4_5.n, I_b4_6.n, I_b4_7.n, I_b4_8.n, I_b4_9.n, I_b4_10.n, I_b4_11.n, I_b4_12.n])
+#for i in range(0,6):
+#	I_b4[i] = unp.log(I_al_1 / I_b4[i] )
+#for i in range(5,8):
+#	I_b4[i] = unp.log(I_al_2 / I_b4[i] )
+#for i in range(8,12):
+#	I_b4[i] = unp.log(I_al_3 / I_b4[i] )
+for i in range(0,6):
+	I_b4[i] = np.log(I_al_1.n / I_b4[i] )
+for i in range(5,8):
+	I_b4[i] = np.log(I_al_2.n / I_b4[i] )
+for i in range(8,12):
+	I_b4[i] = np.log(I_al_3.n / I_b4[i] )
+print(I_b4)
 w = np.sqrt(2)
 a1 = np.array([(1,1,1,0,0,0,0,0,0),(0,0,0,1,1,1,0,0,0),(0,0,0,0,0,0,1,1,1)])
 a2 = np.array([(1,0,0,1,0,0,1,0,0),(0,1,0,0,1,0,0,1,0),(0,0,1,0,0,1,0,0,1)])
 a3 = np.array([(w,0,0,0,w,0,0,0,w),(0,0,w,0,w,0,w,0,0),(0,w,0,0,0,w,0,0,0)])
 a4 = np.array([(0,0,0,w,0,0,0,w,0),(0,w,0,w,0,0,0,0,0),(0,0,0,0,0,w,0,w,0)])
 A = np.vstack((a1,a2,a3,a4))
-
 def mu(I_0,I,d):
 	return unp.log(I_0/I) / d
-
+print("----------Block 2------------")
 mu_b2_1 = mu(I_al_1, I_b2_1 , 3)
-print(mu_b2_1)
+print("Gerade: mu_b2_1", mu_b2_1)
 
 mu_b2_2 = mu(I_al_2, I_b2_2 , 3 * w)
-print(mu_b2_2)
+print("Diagonale: mu_b2_2", mu_b2_2)
 
+print("---------Block 3------------")
+mu_b3_1 = mu(I_al_1, I_b3_1 , 3)
+mu_b3_2 = mu(I_al_1, I_b3_2 , 3)
+mu_b3_3 = mu(I_al_1, I_b3_3 , 3)
+print("Gerade: mu_b3_1: ", mu_b3_1, " mu_b3_2: ", mu_b3_2 , " mu_b3_3: ", mu_b3_3)
+mu_b3_4 = mu(I_al_2, I_b3_4 , w*3)
+mu_b3_5 = mu(I_al_2, I_b3_5 , w*3)
+print("Diagonale: mu_b3_4: ", mu_b3_4 , " mu_b3_5: ", mu_b3_5)
+mu_b3_6 = mu(I_al_3, I_b3_6 , w*2)
+print("Nebendiagonale: mu_b3_6: ", mu_b3_6)
 
-
-
-
+print("--------Block 4------------")
+mu_b4 = np.linalg.inv(A.T @ A) @ A.T @ I_b4
+print("mu_b4: ",mu_b4)
+print("--------------------------------")
+print(np.linalg.inv(A.T @ A) @ A.T )
+print("--------------------------------")
+print(np.linalg.inv(A.T @ A) )
+print("--------------------------------")
+print(A.T @ A )
+print("--------------------------------")
+print(A.round(2))
 def rel_abw(theo,a):
     c = (theo - a)/theo
     print(f"Relative Abweichung in Prozent: {noms(c) * 100 :.4f} \pm {stds(c) * 100 :.5f}\n")
