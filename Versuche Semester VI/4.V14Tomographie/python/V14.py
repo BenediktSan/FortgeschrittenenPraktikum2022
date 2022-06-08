@@ -80,14 +80,19 @@ I_0 = dufloat(I_0_cnts , I_0_FWHM)
 #I_al_2 = dufloat(al_cnts[1] , al_FWHM[1]) # Diagonale
 #I_al_3 = dufloat(al_cnts[2] , al_FWHM[2]) # Nebendiagonale
 I_al_1 = dufloat2(N_al_1) # Gerade
+print("I_al Gerade:", I_al_1)
 I_al_2 = dufloat2(N_al_2) # Diagonale
+print("I_al Diagonale:", I_al_2)
 I_al_3 = dufloat2(N_al_3) # Nebendiagonale
+print("I_al Nebendiagonale: ",I_al_3)
 
 ### Amplitude mit Block 2, mit Unsicherheiten in Ufloat:
 #I_b2_1 = dufloat(b2_cnts[0] , b2_FWHM[0]) # Gerade
 #I_b2_2 = dufloat(b2_cnts[1] , b2_FWHM[1]) # Diagonale
 I_b2_1 = dufloat2(N_b2_1) # Gerade
 I_b2_2 = dufloat2(N_b2_2) # Diagonale
+I_b2 = (I_b2_1 + I_b2_2)/2
+#print("Mittelwert I_b2: ", I_b2)
 
 ### Amplitude mit Block 3, mit Unsicherheiten in Ufloat:
 #I_b3_1 = dufloat(b3_cnts[0] , b3_FWHM[0]) # Gerade
@@ -161,14 +166,14 @@ a1 = np.array([(1,1,1,0,0,0,0,0,0),(0,0,0,1,1,1,0,0,0),(0,0,0,0,0,0,1,1,1)])
 a2 = np.array([(1,0,0,1,0,0,1,0,0),(0,1,0,0,1,0,0,1,0),(0,0,1,0,0,1,0,0,1)])
 a3 = np.array([(w,0,0,0,w,0,0,0,w),(0,0,w,0,w,0,w,0,0),(0,w,0,0,0,w,0,0,0)])
 a4 = np.array([(0,0,0,w,0,0,0,w,0),(0,w,0,w,0,0,0,0,0),(0,0,0,0,0,w,0,w,0)])
-A = np.vstack((a1,a2,a3,a4))
+A1 = np.vstack((a1,a2,a3,a4))
 
 ### Projektionsmatrix von Jana:
 a1 = np.array([(0,w,0,w,0,0,0,0,0),(0,0,w,0,w,0,w,0,0),(0,0,0,0,0,w,0,w,0)])
 a2 = np.array([(1,1,1,0,0,0,0,0,0),(0,0,0,1,1,1,0,0,0),(0,0,0,0,0,0,1,1,1)])
 a3 = np.array([(0,w,0,0,0,w,0,0,0),(w,0,0,0,w,0,0,0,w),(0,0,0,w,0,0,0,w,0)])
 a4 = np.array([(0,0,1,0,0,1,0,0,1),(0,1,0,0,1,0,0,1,0),(1,0,0,1,0,0,1,0,0)])
-A = np.vstack((a1,a2,a3,a4))
+A2 = np.vstack((a1,a2,a3,a4))
 I = I_b4
 I_ja = np.array((I[3], I[4], I[5], I[11], I[10], I[9], I[7], I[1], I[6], I[8], I[0], I[2])) 
 def mu(I_0,I,d):
@@ -180,6 +185,8 @@ print("Gerade: mu_b2_1", mu_b2_1)
 mu_b2_2 = mu(I_al_2, I_b2_2 , 3 * w)
 print("Diagonale: mu_b2_2", mu_b2_2)
 
+print("Mittelwert mu_b2: ", (mu_b2_1 + mu_b2_2)/2)
+
 print("---------Block 3------------")
 mu_b3_1 = mu(I_al_1, I_b3_1 , 3)
 mu_b3_2 = mu(I_al_1, I_b3_2 , 3)
@@ -190,11 +197,13 @@ mu_b3_5 = mu(I_al_2, I_b3_5 , w*3)
 print("Diagonale: mu_b3_4: ", mu_b3_4 , " mu_b3_5: ", mu_b3_5)
 mu_b3_6 = mu(I_al_3, I_b3_6 , w*2)
 print("Nebendiagonale: mu_b3_6: ", mu_b3_6)
+print("Mittelwert mu_b3: ", (mu_b3_1 + mu_b3_2 + mu_b3_3 + mu_b3_4 + mu_b3_5 + mu_b3_6)/6)
 
 print("--------Block 4------------")
-#mu_b4 = np.linalg.inv(A.T @ A) @ A.T @ I_b4
-mu_b4 = np.linalg.inv(A.T @ A) @ A.T @ I_ja
-print("mu_b4: \n",mu_b4)
+mu_b4_1 = np.linalg.inv(A1.T @ A1) @ A1.T @ I_b4
+mu_b4_2 = np.linalg.inv(A2.T @ A2) @ A2.T @ I_ja
+print("mu_b4_1: \n",mu_b4_1)
+print("mu_b4_2: \n",mu_b4_2)
 #print("--------------------------------")
 #print(np.linalg.inv(A.T @ A) @ A.T )
 #print("--------------------------------")
@@ -202,7 +211,8 @@ print("mu_b4: \n",mu_b4)
 #print("--------------------------------")
 #print(A.T @ A )
 #print("--------------------------------")
-print(A.round(2))
+print("A1: \n", A1.round(2))
+print("A2: \n", A2.round(2))
 def rel_abw(theo,a):
     c = (theo - a)/theo
     print(f"Relative Abweichung in Prozent: {noms(c) * 100 :.4f} \pm {stds(c) * 100 :.5f}\n")
@@ -219,7 +229,7 @@ R_0 = unp.uarray([r_0], [sig_0])
 
 plt.figure()
 plt.bar(x_axis, pulses)
-plt.xlim(8,100)
+plt.xlim(15,100)
 plt.xlabel("Channel")
 plt.ylabel("Anzahl der Ereignisse")
 plt.grid()

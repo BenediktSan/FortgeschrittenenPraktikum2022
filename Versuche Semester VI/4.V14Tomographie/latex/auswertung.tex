@@ -1,29 +1,74 @@
 \newpage 
 \section{Auswertung}
 
-        \subsection{Fehlerrechnung}
-        \noindent
-        Die Fortpflanzung von Messungenauigkeiten für mehrere unabhängige Fehler wird durch die Gaußsche Fehlerfortpflanzung
-        \begin{equation*}
-        \Delta f = \sqrt{\sum_{i \, = \, 1}^{n} \, \left(\frac{\partial f}{\partial x_i} \, \Delta x_i\right)^2}
-        \label{fehler}
-        \end{equation*}
-        beschrieben. Dabei gibt $\Delta x$ die Unsicherheit des arithmetischen Mittelwerts $\bar{x}$ einer Observablen $x$ an:
-        
-        \begin{equation*}
-        \Delta x =  \sqrt{\frac{1}{n(n-1)} \sum_{i \, = \, 1}^{n} \, \left(\bar{x}- x_i\right)^2}.
-        \end{equation*}
+  \subsection{Spektrum der $^137\text{Cs}$-Quelle}
+    Das Spektrum des Strahlers wurde in diesem Versuch mit einem NaI-Szintillationsdetektor aufgenommen. 
+    In Abbildung \ref{fig:Spektrum} sind die Ergebnisse der Aufnahme in einem Histogramm dargestellt, auf der X-Achse sind die Channels des Multichannelanalyser abgebildet.
+    \begin{figure}[H]
+      \centering  
+      \includegraphics[width = 0.4\linewidth]{python/build/spektrum.pdf}
+      \label{fig:Spektrum}
+      \caption{Das Aufgenommene Spektrum der Cs-Quelle.}
+    \end{figure}
 
-        \noindent
-        Die Zahl $n$ gibt die Anzahl der unabhängigen Messungen an.\\\\
-        Die Messwerte, die bei Messungen mit der Turbopumpe aufgenommen wurden, besitzen im Bereich $\SI{1e-8}{\milli\bar}$ bis $\SI{100}{\milli\bar}$ eine Ungenauigkeit von $30$\%.
-        Im Bereich von $\SI{100}{\milli\bar}$ bis $\SI{1000}{\milli\bar}$ sind es sogar $50$ \%.\\
-        Für die Messungen mit der Drehschieberpumpe sind es für Werte kleiner als $\SI{2e-3}{\milli\bar}$ ein Faktor $2$ vom Messwert.
-        Zusätzlich sind es von $\SI{2e-3}{\milli\bar}$ bis $\SI{10}{\milli\bar}$ $\pm\; \SI{120}{\milli\bar}$ 
-        und von $\SI{10}{\milli\bar}$ bis $\SI{1200}{\milli\bar}$ $\pm \;\SI{3.6}{\milli\bar}$.\\\\
+    \noindent In der Abbilldung \ref{fig:Spektrum} sind nur die Anzahl der Ereignisse gegen die Channel aufgetragen. 
+    Die Energie der Strahlung wird von dem Multichannelanalyser nicht vermessen. 
+    Jedoch lässt sich aus der Literatur \cite{Peak} entnehmen, dass der Photopeak des $^173\t{Cs}$-Strahlers bei $\SI{662}{\kilo\electronvolt}$ zu finden ist.
+    Dieser Photpeak der Strahlungsquelle ist in Abbildunf \ref{fig:Spektrum} ca. bei Channel 65 zu finden. Bei Channel 43 ist die Comptonkante und bei Channel 21 ist der Rückstrahlpeak.
 
-        genutzt. Des Weiteren wird für die relative Abweichung berechneter Werte vom Theoriewert die Formel 
-        \begin{equation*}
-          \increment x = \frac{x - x_{theo}}{x_{theo}}
-        \end{equation*}
-        genutzt.
+  \subsection{Würfel 1}
+    Zunächst wird die Nullrate bestimmt welche durch die Aluminiumhülle dringt und alle folgenden Würfel umgibt. 
+    Die in dieser Messreihe bestimmten Intensitäten des Photopeaks wird daher als Nullrate $N_0$ für die folgenden Messungen benutzt.
+    Hier wird dazwischen unterschieden wie der Strahl durch den Block dringt, entweder gerade, also senkrecht zu einer Zeite, oder auf einer Haupt- oder Nebendiagonalen.
+    Da es sich hier um ein Zählexperiment handelt, ist der Fehler Poissoncerteilt: $\sigma_N = \sqrt{N}$.
+    Auswertung der Netarea mit den Messdaten aus \ref{tab:M_B1} ergibt für die Nullrate die Werte aus Tabelle \ref{tab:w1}.
+    \begin{table}[H]
+    \centering
+     \caption{Die gemessene Anzahl der Ereignisse und die entsprechende Zählrate der Messung des leeren Würfel 1, der nur aus der Aluminiumhülle besteht.}
+     \label{tab:w1}
+     \begin{tabular}{c S[table-format=4.0] @{${}\pm{}$} S[table-format=2.1]} 
+         \toprule
+         {Strahlengang} & \multicolumn{2}{c}{$N$}  \\
+         \midrule
+         Gerade                 &  3704 & 190  \\ 
+         Hauptdiagonale         &  3636 & 190  \\ 
+         Nebendiagonale         &  3796 & 190  \\ 
+         \bottomrule 
+     \end{tabular}
+    \end{table}
+  
+  \subsection{Würfel 2}
+    Da Würfel 2 homogen ist, und aufgrund der geringen Dichte große Statistik erzeugt, wurden für diesen Block nur 2 Messreihen durchgeführt.
+    Mit einer Netarea von $N_G=30323$ für die Gerade und$N_D=29521$ für die Diagonale berechnen sich die Absorptionskoeffizienten zu $\mu_G = \SI{0.0699(00026)}{1\per\centi\metre}$ und $\mu_D=\SI{0.0491(00018)}{1\per\centi\metre}$.
+    Dazu wird die Formel
+    \begin{equation}
+      \mu = \frac{\t{ln}\left(\frac{N_0}{N}\right)}{d} \, \t,
+    \end{equation}
+    mit der Nullrate $N_0$ der Netarea $N$ und der Länge $d$ welche die Strahlung innerhalb des Alluminiumgehäuses durchquert.
+    Im Mittel ergibt sich für Block 2 ein Absorptionskoeffizienten von: 
+    \begin{equation}
+      \mu_\t{Würfel 2} = \SI{0.0595(00016)}{1\per\centi\metre}.
+    \end{equation}
+
+  \subsection{Würfel 3}
+    Würfel 3 ist auch homogen, jedoch ließ seine hohe Dichte bereits auch einen hohen Absorptionskoeffizienten schließen. 
+    Um bessere Werte sicherzustellen, wurden daher für diesen Block mehr MEssreihen Durchgeführt:
+    \begin{table}[H]
+     \centering
+     \caption{Die Messwerte und daraus errechneten Werte der Messung des Würfel 3.}
+     \label{tab:w2}
+     \begin{tabular}{c S[table-format=4.0] S[table-format=1.3] @{${}\pm{}$} S[table-format=1.3]}
+       \toprule
+       {Projektion} &\multicolumn{1}{c}{$N$}  & \multicolumn{2}{c}{$\mu \mathbin{/} \left(\si{\per\centi\metre}\right)$} \\
+       \midrule
+       Gerade & 1330 & 1.112 & 0.009 \\
+       Gerade & 1375 & 1.101 & 0.009 \\
+       Gerade & 1366 & 1.103 & 0.009 \\
+       Diagonale & 614 & 0.962 & 0.010 \\
+       Diagonale & 568 & 0.980 & 0.010 \\
+       Nebendiagonale & 2258 & 0.998 & 0.008 \\
+       \bottomrule  
+     \end{tabular}
+    \end{table} 
+    Im Mittel ergibt dies einen Absorptionskoeffizienten von $\mu_\t{Würfel 3} = \SI{1.045(0004)}{1\per\centi\metre}$.
+    
