@@ -213,13 +213,15 @@ print("mu_b4_2: \n",mu_b4_2)
 #print("--------------------------------")
 print("A1: \n", A1.round(2))
 print("A2: \n", A2.round(2))
+
+
 def rel_abw(theo,a):
     c = (theo - a)/theo
     print(f"Relative Abweichung in Prozent: {noms(c) * 100 :.4f} \pm {stds(c) * 100 :.5f}\n")
 
 
 # ---------------------------------Nullmessung/Spektrum----------------------------------------------------------------------------------
-pulses = np.genfromtxt('data/spektrum.txt', unpack=True)
+pulses = np.genfromtxt('python/data/spektrum.txt', unpack=True)
 x_axis = np.arange(len(pulses))
 
 r_0 = np.sum(pulses)/t_0 #/per/sec
@@ -279,7 +281,7 @@ def printer(a,b,c,name):
 
 
 #print("########## AUSWERTUNG ###############\n\n")
-
+rel_abw(0.118,0.059)
 
 ###Tabellen
 
