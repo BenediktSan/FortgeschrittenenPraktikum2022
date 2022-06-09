@@ -51,7 +51,7 @@
     \end{equation}
 
   \subsection{Würfel 3}
-    Würfel 3 ist auch homogen, jedoch ließ seine hohe Dichte bereits auch einen hohen Absorptionskoeffizienten schließen. 
+    Würfel 3 ist auch homogen, jedoch ließ seine hohe Dichte bereits auf einen hohen Absorptionskoeffizienten schließen. 
     Um bessere Werte sicherzustellen, wurden daher für diesen Block mehr MEssreihen Durchgeführt:
     \begin{table}[H]
      \centering
@@ -76,8 +76,64 @@
     Würfel 4 besteht insgesamt aus 27 kleineren jeweils homogenen Würfeln.
     In diesem Versuch wird eine horizontale Ebene mit 9 Würfeln mittels 12 Projektionen ausgewertet.
     Die Projektionen und die Zugehörige Matrix $A$ sind in der Durchführung erklärt und dargestellt.
-    Mittels dem Vektor an gemessene Intensitäten $\vec{I}$ ergeben sich nach der Formel:
+    Mittels dem Vektor an Intensitäten $\vec{I}$ ergeben sich nach der Formel des Kleinste-Quadrate Fittes:
     \begin{equation}
       \vec{\mu} = \left( A^T \cdot A \right)^-1 \cdot A^T \vec{I}
     \end{equation}
     die einezelnen Absorptionskoeffizienten für die 9 kleinen Blöcke.
+    In dieser Transformation, transformieren sich die Unsicherheiten nach der Formel:
+    \begin{equation}
+      V[\vec{\mu}] = \left( A^T \cdot A \right)^-1 \cdot A^T V[\vec{I}]A \cdot \left( \left( A^T \cdot A \right)^-1 \right)^T \,.
+    \end{equation}
+    $V[\vec{\mu}]$ ist hier eine Kovarianzmatrix welche die Unsicherheiten der einzelnen Absorptionskoeffizienten $\mu_i$ auf der Hauptdiagonalen hat.
+    In Tabelle  \ref{tab:w4} sind nun die Projektionen mit den gemessenen Events und den nach
+    \begin{equation}
+      I_i = \t{ln}\left( \frac{N_{G/D/N}{N_i}} \right)
+    \end{equation}
+    berechneten Intensitäten. $N_{G/D/N}$ steht hier für die Nullrate, je nachdem ob der Strahl gerade($G$) durch den Block geht oder eine Haupt($D$)-, oder Nebendiagonale($N$) durchstrahlt.
+    \begin{table}[H]
+    \centering
+    \caption{Die gemessenen Anzahlen der Ereignisse unter dem Photopeak und die daraus errechneten Werte $I_i$ von der Messung des Würfel 4.}
+    \label{tab:w4}
+    \begin{tabular}{c S[table-format=4.0] S[table-format=2.3] @{${}\pm{}$} S[table-format=1.3] }
+      \toprule
+      {Projektion} & \multicolumn{1}{c}{$N$} & \multicolumn{2}{c}{$I \mathbin{/} \left(\si{\per\second}\right)$} \\
+      \midrule
+      $I_1 $   &  10972 & 1.226 & 0.010 \\
+      $I_2 $   &  11123 & 1.212 & 0.010\\
+      $I_3 $   &  10915 & 1.231 & 0.010\\
+      $I_4 $   &  29942 & 0.222 & 0.007\\
+      $I_5 $   &   1475 & 3.233 & 0.026\\
+      $I_6 $   &  29503 & 11.968& 0.029 \\
+      $I_7 $   &   6745 & 1.712 & 0.013\\
+      $I_8 $   &  58814 & 1.861 & 0.014\\
+      $I_9 $   &   7040 & 1.670 & 0.012\\
+      $I_{10}$ &   7959 & 1.547 & 0.012\\
+      $I_{11}$ &   7281 & 1.636 & 0.012\\
+      $I_{12}$ &   9338 & 1.387 & 0.011\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+  Die mit diesen Werten berechneten Absorptionskoeffizienten sind in Tabelle \ref{tab:w5} zu finden.
+  Da diese Ergebnisse in Teilen unphysikalisch sind, werden erst in der Diskussion physikalische Interpretationen der Ergebnisse durchgeführt.
+
+  \begin{table}[H]
+    \centering
+    \caption{Die ermittelten Werte für die Absorptionskoeffizienten der verschiedenen kleineren Würfel.}
+    \label{tab:mu4}
+    \begin{tabular}{c S[table-format=1.4] @{${}\pm{}$} S[table-format=1.6] }
+      \toprule
+      {Würfel} & \multicolumn{2}{c}{$\mu \mathbin{/} \left(\si{\per\centi\metre}\right)$}  \\
+      \midrule
+      1 & -1.8506& 0.024145 & 0.211 & Aluminium \\
+      2 & 0.3600 & 0.023789 & 1.415 & Blei \\
+      3 & 4.0970 & 0.024831 & 0.211 & Aluminium \\
+      4 & 1.2653 & 0.020428 & 0.121 & Delrin \\
+      5 & -0.4721& 0.025784 & 1.415 & Blei \\
+      6 & 1.2207 & 0.020524 & 0.121 & Delrin \\
+      7 & -1.7298& 0.023762 & 0.121 & Delrin \\
+      8 & 0.2287 & 0.023457 & 1.415 & Blei \\
+      9 & 4.1127 & 0.023045 & 0.121 & Delrin \\
+      \bottomrule
+    \end{tabular}
+  \end{table}1.2263776058511713+\-0.010857146243594119
