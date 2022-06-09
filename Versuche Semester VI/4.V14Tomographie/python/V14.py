@@ -234,7 +234,7 @@ plt.xlabel("Channel")
 plt.ylabel("Anzahl der Ereignisse")
 plt.grid()
 plt.tight_layout()
-plt.savefig('build/spektrum.pdf')
+plt.savefig('python/build/spektrum.pdf')
 
 
 
