@@ -3,34 +3,36 @@
 
   \subsection{Spektrum der $^{137}\text{Cs}$-Quelle}
     Das Spektrum des Strahlers wurde in diesem Versuch mit einem NaI-Szintillationsdetektor aufgenommen. 
-    In Abbildung \ref{fig:Spektrum} sind die Ergebnisse der Aufnahme in einem Histogramm dargestellt, auf der X-Achse sind die Channels des Multichannelanalyser abgebildet.
+    In Abbildung \ref{fig:Spektrum} sind die Ergebnisse der Aufnahme in einem Histogramm dargestellt. Auf der $x$-Achse sind die Channels des Multichannelanalyser abgebildet.
     \begin{figure}[H]
       \centering  
-      \includegraphics[width = 0.4\linewidth]{python/build/spektrum.pdf}
+      \includegraphics[width = 0.55\linewidth]{build/plots/spektrum.pdf}
       \label{fig:Spektrum}
       \caption{Das Aufgenommene Spektrum der Cs-Quelle.}
     \end{figure}
 
-    \noindent In der Abbilldung \ref{fig:Spektrum} sind nur die Anzahl der Ereignisse gegen die Channel aufgetragen. 
+    \noindent In der Abbildung \ref{fig:Spektrum} sind nur die Anzahl der Ereignisse gegen die Channel aufgetragen. 
     Die Energie der Strahlung wird von dem Multichannelanalyser nicht vermessen. 
-    Jedoch lässt sich aus der Literatur \cite{Peak} entnehmen, dass der Photopeak des $^{173}\t{Cs}$-Strahlers bei $E_P = \SI{662}{\kilo\electronvolt}$ zu finden ist.
-    Dieser Photpeak der Strahlungsquelle ist in Abbildund \ref{fig:Spektrum} ca. bei Channel 65 zu finden. 
-    Bei Channel 43 ist die Comptonkante mit $E_C = \SI{478}{\kilo\electronvolt}$  und bei Channel 21 ist der Rückstrahlpeak.
+    Jedoch lässt sich aus der Literatur \cite{Peak} entnehmen, dass der Photopeak des $\ce{^{137}Cs}$-Strahlers bei $E_P = \SI{662}{\kilo\electronvolt}$ zu finden ist.
+    Dieser Photpeak der Strahlungsquelle ist in Abbildung \ref{fig:Spektrum} ca. bei Channel 65 zu finden. 
+    Bei Channel 43 befindet sich die Comptonkante mit $E_C = \SI{478}{\kilo\electronvolt}$ und bei Channel 21 der Rückstreupeak.
 
   \subsection{Würfel 1}
-    Zunächst wird die Nullrate bestimmt welche durch die Aluminiumhülle dringt und alle folgenden Würfel umgibt. 
+    Zunächst wird die Nullrate bestimmt, welche durch die Aluminiumhülle dringt und alle folgenden Würfel umgibt. 
     Die in dieser Messreihe bestimmten Intensitäten des Photopeaks wird daher als Nullrate $N_0$ für die folgenden Messungen benutzt.
-    Hier wird dazwischen unterschieden wie der Strahl durch den Block dringt, entweder gerade, also senkrecht zu einer Seite, oder auf einer Haupt- oder Nebendiagonalen.
-    Da es sich hier um ein Zählexperiment handelt, ist der Fehler Poissonverteilt: $\sigma_N = \sqrt{N}$.
-    Auswertung der Net-Area um den Photopeak mit den Messdaten aus \ref{tab:M_B1} ergibt für die Nullrate die Werte aus Tabelle \ref{tab:w1}.
-    Nullrate beschreibt hier und in der folgenden Auswertung das Integral des Photopeaks, also die Summe der Events welche durch den Photopeak der $^{137}\text{Cs}$-Quelle entstehen.
+    Hier wird dazwischen unterschieden wie der Strahl durch den Block dringt.
+    Dies geschieht entweder gerade, also senkrecht auf einer Seite, oder auf einer Haupt- oder Nebendiagonalen.\\
+    Da es sich hier um ein Zählexperiment handelt, ist der Fehler Poissonverteilt mit $\sigma_N = \sqrt{N}$.
+    Auswertung der Net-Area um den Photopeak mit den Messdaten aus Tabelle \ref{tab:M_B1} ergibt für die Nullrate die Werte aus Tabelle \ref{tab:w1}.
+    Nullrate beschreibt hier und in der folgenden Auswertung das Integral des Photopeaks. 
+    Also die Summe der Events welche durch den Photopeak der $^{137}\text{Cs}$-Quelle entstehen.
     Die Bezeichnung einer Rate ist im folgenden nur korrekt, da alle Messreihen über die selber Zeit von $t = \SI{240}{\second}$ aufgenommen wurden und diese somit nicht relevant ist.
     Sämtliche Größen, ob Raten, Anzahlen oder Intensitäten sind in dieser Auswertung somit identisch und einheitenlos.
     \begin{table}[H]
     \centering
      \caption{Die gemessene Anzahl der Ereignisse der Messung des leeren Würfel 1, der nur aus der Aluminiumhülle besteht.}
      \label{tab:w1}
-     \begin{tabular}{c S[table-format=4.0] @{${}\pm{}$} S[table-format=2.1]} 
+     \begin{tabular}{c S[table-format=4.0] @{${}\pm{ }$} S[table-format=3.0]} 
          \toprule
          {Strahlengang} & \multicolumn{2}{c}{$N$}  \\
          \midrule
@@ -42,22 +44,22 @@
     \end{table}
   
   \subsection{Würfel 2}
-    Da Würfel 2 homogen ist, und aufgrund der geringen Dichte, große Statistik erzeugt, wurden für diesen Block nur 2 Messreihen durchgeführt.
+    Da der Würfel 2 homogen ist, und aufgrund seiner geringen Dichte große Statistik erzeugt, wurden für diesen Block nur 2 Messreihen durchgeführt.
     Es wurde eine Net-Area von $N_G=30323$ für die Gerade und $N_D=29521$ für die Diagonale gemessen.
-    Damit berechneen sich die Absorptionskoeffizienten zu $\mu_G = \SI{0.0699(00026)}{1\per\centi\metre}$ und $\mu_D=\SI{0.0491(00018)}{1\per\centi\metre}$.
+    Damit berechnen sich die Absorptionskoeffizienten zu $\mu_G = \SI{0.0699(00026)}{1\per\centi\metre}$ und $\mu_D=\SI{0.0491(00018)}{1\per\centi\metre}$.
     Dazu wurde die Formel
     \begin{equation}
       \mu = \frac{\t{ln}\left(\frac{N_0}{N}\right)}{d} \, ,
     \end{equation}
-    mit der Nullrate $N_0$ der Net-Area $N$ und der Länge $d$ welche die Strahlung innerhalb des Alluminiumgehäuses durchquert, benutzt
+    mit der Nullrate $N_0$ der Net-Area $N$ und der Länge $d$, welche die Strahlung innerhalb des Aluminiumgehäuses durchquert, benutzt
     Im Mittel ergibt sich für Block 2 ein Absorptionskoeffizienten von: 
     \begin{equation}
       \mu_\t{Würfel 2} = \SI{0.0595(00016)}{1\per\centi\metre}.
     \end{equation}
 
   \subsection{Würfel 3}
-    Würfel 3 ist auch homogen, jedoch ließ seine hohe Dichte bereits auf einen hohen Absorptionskoeffizienten schließen. 
-    Um gute Werte sicherzustellen, wurden für diesen Block mehr Messreihen durchgeführt:
+    Würfel 3 ist auch homogen. Jedoch ließ seine hohe Dichte bereits auf einen hohen Absorptionskoeffizienten schließen. 
+    Um gute Werte sicherzustellen wurden für diesen Block mehr Messreihen durchgeführt:
     \begin{table}[H]
      \centering
      \caption{Die Messwerte und daraus errechneten Werte der Messung des Würfel 3.}
@@ -81,22 +83,22 @@
   \subsection{Würfel 4}
     Würfel 4 besteht insgesamt aus 27 kleineren jeweils homogenen Würfeln.
     In diesem Versuch wird eine horizontale Ebene mit 9 Würfeln mittels 12 Projektionen ausgewertet.
-    Die Projektionen und die Zugehörige Matrix $A$ sind in der Durchführung erklärt und dargestellt.
-    Mittels dem Vektor an skalierten Intensitäten $\vec{I}$ ergeben sich nach der Formel des Kleinste-Quadrate Fittes:
+    Die Projektionen und die zugehörige Matrix $A$ sind im Abschnitt \ref{sec:proj} erklärt und dargestellt.
+    Mittels des Vektors an skalierten Intensitäten $\vec{I}$, ergeben sich nach der Formel des Kleinste-Quadrate Fittes
     \begin{equation}
       \vec{\mu} = \left( A^T \cdot A \right)^{-1} \cdot A^T \vec{I}
     \end{equation}
-    die einezelnen Absorptionskoeffizienten für die 9 kleinen Blöcke.
-    In dieser Transformation, transformieren sich die Unsicherheiten nach der Formel:
+    die einzelnen Absorptionskoeffizienten für die 9 kleinen Blöcke.
+    In dieser Transformation, transformieren sich die Unsicherheiten nach der Formel
     \begin{equation}
       V[\vec{\mu}] = \left( A^T \cdot A \right)^{-1} \cdot A^T \, V[\vec{I}] \, A \cdot \left( \left( A^T \cdot A \right)^{-1} \right)^T \,.
     \end{equation}
-    $V[\vec{\mu}]$ ist hier eine Kovarianzmatrix welche die Unsicherheiten der einzelnen Absorptionskoeffizienten $\mu_i$ auf der Hauptdiagonalen hat.
+    $V[\vec{\mu}]$ ist hier eine Kovarianzmatrix, welche die Unsicherheiten der einzelnen Absorptionskoeffizienten $\mu_i$ auf der Hauptdiagonalen hat.
     In Tabelle  \ref{tab:w4} sind nun die Projektionen mit den gemessenen Events und den nach
     \begin{equation}
       I_i = \t{ln}\left( \frac{N_{G/D/N}}{N_i} \right)
     \end{equation}
-    berechneten Intensitäten. $N_{G/D/N}$ steht hier für die Nullrate, je nachdem ob der Strahl gerade($G$) durch den Block geht oder eine Haupt($D$)-, oder Nebendiagonale($N$) durchstrahlt.
+    berechneten Intensitäten aufgetragen. $N_{G/D/N}$ steht hier für die Nullrate, je nachdem ob der Strahl gerade ($G$) durch den Block geht oder eine Haupt ($D$)-, oder Nebendiagonale ($N$) durchstrahlt.
     \begin{table}[H]
     \centering
     \caption{Die gemessenen Anzahlen der Ereignisse unter dem Photopeak und die daraus errechneten Werte $I_i$ von der Messung des Würfel 4.}
@@ -122,7 +124,7 @@
   \end{table}
   \noindent
   Die mit diesen Werten berechneten Absorptionskoeffizienten sind in Tabelle \ref{tab:w5} zu finden.
-  Da diese Ergebnisse in Teilen unphysikalisch sind, werden erst in der Diskussion physikalische Interpretationen der Ergebnisse durchgeführt.
+  Da diese Ergebnisse in Teilen unphysikalisch sind, da teilweise negativ, werden erst in der Diskussion physikalische Interpretationen der Ergebnisse durchgeführt.
 
   \begin{table}[H]
     \centering
