@@ -18,3 +18,41 @@ In der Auswertung folgt nun zunächst der Vergleich der experimentell bestimmten
 \end{table}
 
 \noindent Der Absorptionskoeffizienten von Würfel 2 wurde zu $\mu_\t{Würfel 2} = \SI{0.059(0001)}{1\per\centi\metre}$ bestimmt.
+Aus den zur Verfügung stehenden Materialien passt Delrin mit einer Abweichung von 50\% am besten zu diesem Würfel.\\
+\noindent
+Zu dem homogenen Würfel 3 wurde ein Absorptionskoeffizienten von $\mu_\t{Würfel 3} = \SI{1.045(0004)}{1\per\centi\metre}$ berechnet.
+Dieser passt mit einer Abweichung von $\SI{16}{\percent}$ am besten zu Blei.\\
+\noindent
+Die Auswertung von Würfel 4 hat insgesamt sehr schlecht nur funktioniert. Die Absorptionskoeffizienten:
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{c S[table-format=3.4] @{${}\pm{}$} S[table-format=1.4] }
+      \toprule
+      {Würfel} & \multicolumn{2}{c}{$\mu \mathbin{/} \left(\si{\per\centi\metre}\right)$}  \\
+      \midrule
+      1 & -1.8506& 0.0088 \\
+      2 & 0.3600 & 0.0080 \\
+      3 & 4.0970 & 0.0119 \\
+      4 & 1.2653 & 0.0064 \\
+      5 & -0.4721& 0.0090 \\
+      6 & 1.2207 & 0.0063 \\
+      7 & -1.7298& 0.0089 \\
+      8 & 0.2287 & 0.0079 \\
+      9 & 4.1127 & 0.0118 \\
+      \bottomrule
+    \end{tabular}
+  \end{table} 
+\noindent
+sind nicht sehr aussagekräftig, da zum einzelne Koeffizienten negativ sind. Somit sind die Ergebnisse nicht physikalisch und nicht interpretierbar.
+Weiterhin sorgen die negativen Absorptionskoeffizienten in der Rechnung dafür, dass sie Koeffizienten der anderen kleinen Blöcke in der Projektion größer werden als sie tatsächlich sind.
+Gründe für diese schlechten Ergebnisse sind unterschiedliche systematische Fehler in diesem Versuch.
+Primär ist der Strahlengang der Quelle wesentlich breiter als die zu untersuchenden Objekte, wenn eine diagonale Projektion gewählt wird. 
+Um dies zu berücksichtigen müssten deutlich komplexere Berechnungen durchgeführt werden.\\
+Weiterhin wird zur Berechnung der Absorptionskoeffizienten eine Matrix invertiert, dies ist numerisch sehr instabil und führt schnell zu relavanten Fehlern.
+Eine Änderung der Reihenfolge der Projektionen wurde probiert, hat jedoch die selben schlechten Werte produziert und wurde daher in der Auswertung nicht aufgeführt.\\
+Zur Bestimmung der Amplitude der einzelnen Projektionen wurden unterschiedliche Ansätze gewählt.\\
+Zunächst wurde die Höhe des höchsten Peaks, mit der Breite des Peaks bei der Hälfte das Maximums(FWHM) multipliziert, um einen Wert für die Fläche des Photpeaks zu bekommen.
+Da sich der Verlauf des Photpeaks jedoch nicht großartig verändert hatte, sind die FWHM Werte zum großteil identisch geblieben. 
+Es wurde also hauptsächlich nur die Höhe des größten Bins ausgewertet, dies hat wiederum große statistische Schwankungen da sich die relevanten Energiewerte auf 2 Channel/Bins aufgeteilt haben.\\
+Um dem entgegen zu wirken, wurde die Net-Area als Maß für die Intensität gewählt. Dies ist ein vom Programm bestimmtes Integral über den Photopeak und hat zu besseren Ergebnissen geführt als die erste Methode.
+Jedoch hat das Programm noch große Teile der Comptonkante dem Photopeak zugeordnet, dies ist definitiv auch eine relevante Quelle für starke Abweichungen zu den Literaturwerten.\\

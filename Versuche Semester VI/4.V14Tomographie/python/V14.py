@@ -282,7 +282,7 @@ def printer(a,b,c,name):
 
 #print("########## AUSWERTUNG ###############\n\n")
 rel_abw(0.118,0.059)
-
+rel_abw(1.245, 1.045)
 ###Tabellen
 
 #print("####### TABELLEN #########")
