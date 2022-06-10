@@ -147,9 +147,9 @@ I_b4 = np.array([I_b4_1, I_b4_2, I_b4_3, I_b4_4, I_b4_5, I_b4_6, I_b4_7, I_b4_8,
 for i in range(0,6):
 	I_b4[i] = unp.log(I_al_1/ I_b4[i] )
 for i in range(5,8):
-	I_b4[i] = unp.log(I_al_1/ I_b4[i] )
+	I_b4[i] = unp.log(I_al_2/ I_b4[i] )
 for i in range(8,12):
-	I_b4[i] = unp.log(I_al_1/ I_b4[i] )
+	I_b4[i] = unp.log(I_al_3/ I_b4[i] )
 
 #Skalieren des Intensitäten Vektors ohne Unsicherheiten:
 #for i in range(0,6):
