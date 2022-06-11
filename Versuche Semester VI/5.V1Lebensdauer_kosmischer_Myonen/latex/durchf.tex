@@ -1,3 +1,35 @@
+\section{Aufbau und Funktionsweise}
+
+    In Abbildung \ref{fig:Aufb} ist die in diesem Versuch verwendete Schaltung gezeigt.
+    Diese Schaltung wird genutzt um zu erkennen wie viele Myonen in dem Messzeitrum in den Messkörper eintreten, wie viele dieser eingetreten Myonen inerhalb des Körpers auch zerfallen und wie viel Zeit zwischen dem Einfallen und Zerfallen liegt.
+    Der Messkörper is ein organischer Szintillationstank mit einem Volumen von ungefähr 50 Litern.
+    Bein Eintreten der Myonen in den Detektor, werden die Myonen abgebremst und erzeugen einen Lichtblitz.
+    Zerfällt das Myon innerhalb des Detektors, entsteht ein hochenergetisches Elektron welches wiederum wieder mit dem Szintillatotmaterial wechselwirkt und einen Lichtblitz erzeugt.
+    Zur Messung dieser Signale sind an beiden Enden des Tanks Photomultiplier(PMT) angebracht, diese wandeln das eingehende Lichtsignal in einen Spannungsimpuls um. 
+    Die PMT sind zur Rauschunterdrückung zunächst über einen Verzägerungsleiter an Diskriminatoren angebracht.
+    Diese dienen dazu den Großteil der thermischen Anregungen der PMT auszufiltern, welche niederenergetisch sind als die Myonen Signale.
+    Hier wird eine gewisse Spannung $U_0$ eingestellt, damit möglichst viele Rauschsignale unterdrückt werden aber auch möglichst keine "echten" Signale verloren gehen.
+    Weitergehend werden hochenergetische thermische Anregungen der PMT ausgefiltert, indem beide Diskriminatoren an eine Koinzidenzschaltung angeschlossen werden.
+    Die Koinzidenzschaltung gibt nur ein Signal weiter wenn beiden eingehenden Signale innerhalb eines Zeitraumes $t_k$ eintreffen. 
+    Mit diesen beiden Filtermethoden können die unkorrelierten Störungen nur mit einer sehr geringen Wahrschleinlichkeit ein echtes Signal erzeugen.
+    Jetzt folgt der Schaltungsteil der zählt wie viele Signale entstehen und falls das Myon innerhalb des Detektors zerfällt, wie lange es gelebt hat.
+    Dies erfolgt indem das Outputsignal der Koinzidenzschaltung in 3 Signale aufgeteilt wird.
+    Zwei dieser Signale werden jeweils an eine Seite eines AND- Gatters angeschlossen, das Dritte wird mit einer Verzögerung von ca. $\SI{30}{\nano\second}$ an einen Monoflop angeschlossen.
+    Der Monoflop gibt nach dem er durch ein Input Signal getriggert wurde für eine gewisse einstellbare Zeit $T_s$ ein Signal aus, dies ist die Suchzeit $T_s$ in der gewartet wird ob das Myon zerfällt.
+    Der Output des Monoflops ist nun invertiert an dem 1. AND-Gatter und normal an dem 2. AND-Gatter angeschlossen.
+    Wenn die Schaltung im Ruhezustand ist und das Signal eines eintretenden Myon ankommt, liegen an dem ersten AND-Gatter nun zwei HIGH Signale, da durch die Verögerung, der Monoflop noch nicht aktiviert wurde.
+    Dieses HIGH Signal wird an einen Impulszähler weitergegeben und startet den Zeit-Amplituden-Converter.
+    Am Zweiten AND-Gatter liegen aufgrund er Verzögerung jedoch ein HIGH und LOW Signal.
+    Wenn das Myon jetzt jedoch innerhalb der Suczeit $T_s$ zerfallen ist und ein weiteres Signal erzeugt, verhält sich die Schaltung anders.
+    Jetzt liegt durch den Monoflop ein LOW Signal am ersten ANd-Gatter an, der Impulszähler und der Zeit-Amplituden-Converter wird nicht erneut aktiviert.
+    An dem zweiten AND-Gatter liegen dann jedch zwei HIGH-Signale an, dieses ist an einen Impulszähler und an den Zeit-Amplituden-Converter angeschlossen und stoppt diesen.
+    Der Zeit-Amplituden-Converter gibt nun ein Signal mit einer Spannungshöhe korreliert zu der Zeitlänge an einen Multi-Channel-Analyser(MCA) weiter, welches von einem PC ausgewertet wird.
+
 \section{Durchführung}
 
-  
+    Justierung der Parameter:\\
+    -Schwellspannung der Diskiminator : 30 Signale pro Sekunde\\
+    -Pulsdauer delta t = 10ns\\
+    -Koinzidenzschaltung "so schalten, dass die Halbwertsbreite der Verteilung bestimmen lässt" - 20 Events pro Sekunde\\
+    -Verzögerung und Suchzeit \\
+    -MCA kalibrieren mit Doppelpulsgenerator\\
