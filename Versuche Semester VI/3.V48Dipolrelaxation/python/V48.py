@@ -123,7 +123,7 @@ def ploten_ohneunter(T, I_rein, start, end, max, name):
     plt.figure()
     plt.plot(T, I_rein, "x",  label = "Messwerte" )
     plt.plot(T[start:end], I_rein[start:end], "x",  label = "Messwerte Integrale-Auswertung" )
-    plt.plot(T[start:max+1], I_rein[start:max+1], "x",  label = "Messwerte Aprox" )
+    plt.plot(T[start:max+1], I_rein[start:max+1], "x",  label = "Messwerte Polarisations-Auswertung" )
     plt.fill_between(T[start:end], I_rein[start:end], color="b", alpha=0.3)
     #plt.xscale('log')
     plt.rc('axes', labelsize= 12)
@@ -169,7 +169,7 @@ def ploten_tau(T_1, T_2):
     plt.plot(T_2, exp(T_2, tau0_speicher[3], - W_speicher[3]/const.k), "b.",  label = r"Integrationsmethode $\Delta T = 2$K"  )
     plt.yscale('log')
     plt.rc('axes', labelsize= 12)
-    plt.ylabel(r"$\tau_0$ / s")
+    plt.ylabel(r"$\tau$ / s")
     plt.xlabel(r"T / K")
     ##plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
     ##plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
@@ -233,14 +233,14 @@ def W_speichern(W):
 
 def tau_stuff(T, b, W):
 
-    scale = 18
+    scale = 12
 
     tau_max = (const.k * T**2) / (b * W)
     tau_0 = tau_max * unp.exp(-W / (const.k * T)) * 10**(scale)
     
     print(f"\nRelaxationszeiten: \ntau_max = {noms(tau_max):.4f} \pm {stds(tau_max):.4f} s \ntau_0= ({noms(tau_0):.4f} \pm {stds(tau_0):.4f})e-{scale} s")
 
-    tau_speichern(noms(tau_0))
+    tau_speichern(noms(tau_0) * 10**(-1 *scale) )
 
 def ascdesc_fit(T, I, b, argmax):
 
@@ -277,7 +277,7 @@ def ugly_main(T, I, start, end, peak,b, name):
     T_unter = slicer(T, start, end, peak)
     I_unter = slicer(I, start, end, peak)
     param_unter = underground_fit(T_unter, I_unter)
-    ploten_mitunter(T, I * 10**11, T_unter, I_unter * 10**11,( noms(param_unter[0] *10**11), noms(param_unter[1])), name) #I eingabe für vernünftige Einheiten
+    ploten_mitunter(T, I * 10**12, T_unter, I_unter * 10**12,( noms(param_unter[0] *10**12), noms(param_unter[1])), name) #I eingabe für vernünftige Einheiten
 
     #Untergrund abziehen und weitere Bereiche erkennen
 
@@ -290,7 +290,7 @@ def ugly_main(T, I, start, end, peak,b, name):
     max = np.argmax(I_rein)
     print(f"\nT_max = {T[max]:.4f} K\n")
 
-    ploten_ohneunter(T, I_rein, start, end, max, name)    
+    ploten_ohneunter(T, I_rein *10**12, start, end, max, name)    
 
     #aufsteigend auswerten
     print(f"\n### AUSWERTUNG Polarisation " + name + " ###\n")
@@ -336,11 +336,11 @@ b_2 = heiz(T_2, "2 grad")
 
 print("\n\n#### AUSWERTUNG 1.5°C ####")
 
-I_rein_1 = ugly_main(T_1, I_1 , start_1, end_1, T_peak_1, b_1, "1.5grad")
+I_rein_1 = ugly_main(T_1, I_1 , start_1, end_1, T_peak_1, b_1 *1/60 , "1.5grad")
 
 print("\n\n#### AUSWERTUNG 2°C ####")
 
-I_rein_2 = ugly_main(T_2, I_2, start_2, end_2, T_peak_2, b_2, "2grad")
+I_rein_2 = ugly_main(T_2, I_2, start_2, end_2, T_peak_2, b_2 *1/60, "2grad")
 
 
 print("\nFinal checkup tau_0: ", tau0_speicher,"")
@@ -348,13 +348,25 @@ print("Final checkup W: ", W_speicher,"\n")
 
 ploten_tau(T_1, T_2)
 
-theo = 0.66
-W_speicher = W_speicher/const.e
+W_theo = 0.66
+tau_theo = 4* 10**(-14)
+W_speicher = W_speicher/const.e      #wieder umrechnen in eV
 print(f"\n########## REL ABW ########\n")
-rel_abw(theo, W_speicher[0])
-rel_abw(theo, W_speicher[1])
-rel_abw(theo, W_speicher[2])
-rel_abw(theo, W_speicher[3])
+print("\tAktivierungsenergie\n")
+rel_abw(W_theo, W_speicher[0])
+rel_abw(W_theo, W_speicher[1])
+rel_abw(W_theo, W_speicher[2])
+rel_abw(W_theo, W_speicher[3])
+print("\ttau_0\n")
+print(f"Theo: {tau_theo}\n")
+print(f"Tau_0-Wert: {tau0_speicher[0]}")
+rel_abw(tau_theo, tau0_speicher[0])
+print(f"Tau_0-Wert: {tau0_speicher[1]}")
+rel_abw(tau_theo, tau0_speicher[1])
+print(f"Tau_0-Wert: {tau0_speicher[2]}")
+rel_abw(tau_theo, tau0_speicher[2])
+print(f"Tau_0-Wert: {tau0_speicher[3]}")
+rel_abw(tau_theo, tau0_speicher[3])
 ###Tabellen
 
 print("\n####### TABELLEN #########")

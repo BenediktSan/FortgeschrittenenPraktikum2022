@@ -43,19 +43,19 @@ Die genutzten Messwerte inklusive der vom Untergrund bereinigten Werte für den 
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\textwidth]{build/plots/mitunter_1.5grad.pdf}
-  \caption{Die Messwerte für eine Heizrate von $b_1 = \SI{1.36}{\kelvin\per\minute}$. 
+  \caption{Die Messwerte des Depolarisationsstroms $I$, für eine Heizrate von $b_1 = \SI{1.36}{\kelvin\per\minute}$, gegen die Temperatur $T$ aufgetragen. 
   Außerdem sind die Werte, die für den Untergrundfit genutzt wurden, und der Untergrundfit eingezeichnet.}
   \label{img:mitunter15}
 \end{figure}
 
 \noindent
 Der Depolarisationsstrom ohne Untergrund ist in Abbildung \ref{img:ohneunter15} grafisch dargestellt. 
-Zusätzlich sind noch die Bereiche, die für die Auswertung über den Polarisations und über den Integrationsansatz hervorgehoben.
+Zusätzlich sind noch die Bereiche, die für die Auswertung über den Polarisations- und über den Integrationsansatz hervorgehoben.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\textwidth]{build/plots/ohneunter_1.5grad.pdf}
-  \caption{Die bereinigten Messwerte für eine Heizrate von $b_1 = \SI{1.36}{\kelvin\per\minute}$ 
-          mit den Bereichen, die für den Polarisations und den Integrationansatz genutzt werden, hervorgehoben.}
+  \caption{Die bereinigten Messwerte für eine Heizrate von $b_1 = \SI{1.36}{\kelvin\per\minute}$ grafisch dargestellt.
+          Dabei sind die Bereiche, die für den Polarisations- und den Integrationansatz genutzt werden, hervorgehoben.}
   \label{img:ohneunter15}
 \end{figure}
 
@@ -63,12 +63,12 @@ Zusätzlich sind noch die Bereiche, die für die Auswertung über den Polarisati
 \begin{table}[H]
   \small
   \centering
-  \begin{tabular}{S [table-format=3.0] S [table-format=3.2] S [table-format=2.3] c |S [table-format=3.0] S [table-format=3.2] S [table-format=2.3] c }
+  \begin{tabular}{S [table-format=3.0] S [table-format=3.2] S [table-format=2.3] S |S [table-format=3.0] S [table-format=3.2] S [table-format=2.3] S }
       \toprule
       \multicolumn{1}{p{1.5cm}}{\centering$\text{t} $\\$ \text{in } \si{\minute} $ } &
       \multicolumn{1}{p{1.5cm}}{\centering$\text{Temperatur } $\\$ \text{in }\si{\kelvin}$} &
       \multicolumn{1}{p{1.5cm}}{\centering$I $\\$ \text{in }\si{\pico\ampere}$} &
-      \multicolumn{1}{p{1.5cm}}{\centering$I_{\t{bereinigt}} $\\$ \text{in }\si{\pico\ampere}$} \vline&
+      \multicolumn{1}{p{1.5cm}}{\centering$\tilde{I}_{\t{bereinigt}} $\\$ \text{in }\si{\pico\ampere}$} \vline&
       \multicolumn{1}{p{1.5cm}}{\centering$\text{t} $\\$ \text{in } \si{\minute} $ } &
       \multicolumn{1}{p{1.5cm}}{\centering$\text{Temperatur } $\\$ \text{in }\si{\kelvin}$} &
       \multicolumn{1}{p{1.5cm}}{\centering$I $\\$  \text{in }\si{\pico\ampere}$} &
@@ -111,7 +111,7 @@ Zusätzlich sind noch die Bereiche, die für die Auswertung über den Polarisati
       34   & 273.95 &  0.255 &  0.030   & 69   & 323.25 &  1.95  & -5.140  \\  
       \bottomrule 
       \end{tabular}
-      \caption{Messwerte der Depolarisationsstrommessung und für die vom Untergrund bereinigten Depolarisationsströme, bei einer Heizrate von $b = \SI{1.36}{\kelvin}$. }
+      \caption{Messwerte der Depolarisationsstrommessung und für die vom Untergrund bereinigten Depolarisationsströme, bei einer Heizrate von $b = \SI{1.36}{\kelvin}$, aufgetragen.  }
       \label{tab:mess1}
 \end{table}
 
@@ -122,7 +122,7 @@ Zusätzlich sind noch die Bereiche, die für die Auswertung über den Polarisati
 \noindent
 Um die Aktivierungsenergie $W$ zu bestimmen wird eine lineare Ausgleichsrechnung auf dem Intervall des Depolarisationsstroms, vom Ende der genutzten Untergrundwerte bis zum Maximalwert der Termperatur, berechnet.
 Das Maximum liegt dabei bei $T(t_\t{max} = 20) = \SI{254.75}{\kelvin}$. 
-Zum Fitten werden die logarithmisch aufgetragenen Depolarisationsströme gegen das reziproke der Temperatur auf dem Intervall $t \in [5,20]$, mit einer linearen Funktion der Form
+Zum Fitten werden die logarithmisch aufgetragenen Depolarisationsströme gegen die reziproke Temperatur auf dem Intervall $t \in [5,20]$, mit einer linearen Funktion der Form
 \begin{equation}
   y(T) = m\cdot \frac{1}{T} + n \quad,
   \label{eqn:lin}
@@ -206,28 +206,22 @@ In der Abbildung sind ebenfalls wieder die Intervalle für die weiteren Auswertu
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.7\textwidth]{build/plots/mitunter_2grad.pdf}
-  \caption{Die Messwerte für eine Heizrate von $b_2 = \SI{1.94}{\kelvin\per\minute}$. 
+  \caption{Die Messwerte des Depolarisationsstroms $I$, für eine Heizrate von $b_2 = \SI{1.94}{\kelvin\per\minute}$, gegen die Temperatur $T$ aufgetragen. 
   Außerdem sind die Werte, die für den Untergrundfit genutzt wurden, und der Untergrundfit eingezeichnet.}
   \label{img:mitunter2}
 \end{figure}
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.7\textwidth]{build/plots/ohneunter_2grad.pdf}
-  \caption{Die bereinigten Messwerte für eine Heizrate von $b_2 = \SI{1.94}{\kelvin\per\minute}$ 
-  mit den Bereichen, die für den Polarisations und den Integrationansatz genutzt werden, hervorgehoben.}
-  \label{img:ohneunter2}
-\end{figure}
+
 
 \begin{table}[H]
   \small
   \centering
-  \begin{tabular}{S [table-format=3.0] S [table-format=3.2] S [table-format=2.3] c |S [table-format=3.0] S [table-format=3.2] S [table-format=2.3] c }
+  \begin{tabular}{S [table-format=3.0] S [table-format=3.2] S [table-format=2.3] S |S [table-format=3.0] S [table-format=3.2] S [table-format=2.3] S }
       \toprule
       \multicolumn{1}{p{1.5cm}}{\centering$\text{t} $\\$ \text{in } \si{\minute} $ } &
       \multicolumn{1}{p{1.5cm}}{\centering$\text{Temperatur } $\\$ \text{in }\si{\kelvin}$} &
       \multicolumn{1}{p{1.5cm}}{\centering$I $\\$ \text{in }\si{\pico\ampere}$} &
-      \multicolumn{1}{p{1.5cm}}{\centering$I_{\t{bereinigt}} $\\$ \text{in }\si{\pico\ampere}$} \vline&
+      \multicolumn{1}{p{1.5cm}}{\centering$\tilde{I}_{\t{bereinigt}} $\\$ \text{in }\si{\pico\ampere}$} \vline&
       \multicolumn{1}{p{1.5cm}}{\centering$\text{t} $\\$ \text{in } \si{\minute} $ } &
       \multicolumn{1}{p{1.5cm}}{\centering$\text{Temperatur } $\\$ \text{in }\si{\kelvin}$} &
       \multicolumn{1}{p{1.5cm}}{\centering$I $\\$  \text{in }\si{\pico\ampere}$} &
@@ -270,7 +264,13 @@ In der Abbildung sind ebenfalls wieder die Intervalle für die weiteren Auswertu
       \caption{Messwerte der Depolarisationsstrommessung und für die vom Untergrund bereinigten Depolarisationsströme, bei einer Heizrate von $b = \SI{1.94}{\kelvin}$. }
       \label{tab:mess2}
 \end{table}
-
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{build/plots/ohneunter_2grad.pdf}
+  \caption{Die bereinigten Messwerte für eine Heizrate von $b_1 = \SI{1.94}{\kelvin\per\minute}$ grafisch dargestellt.
+  Dabei sind die Bereiche, die für den Polarisations- und den Integrationansatz genutzt werden, hervorgehoben.}
+  \label{img:ohneunter2}
+\end{figure}
 
 \subsubsection{Ausgleichsrechnung über den Polarisationsansatz}
 
@@ -280,8 +280,8 @@ Dafür werden Werte aus dem Intervall $t \in [13,27]$ genutzt.
 Das Maximum der Messreihe liegt in diesem Intervall und bei $T(t_\t{max} = 27) = \SI{257.95}{\kelvin}$. \\
 Der Fit der Messwerte nach Gleichung \ref{eqn:lin}, auf dem logarithmierten Strom gegen $\frac{1}{T}$ aufgetragen, führt zu den Parametern
 \begin{align*}
-  m & = \SI{ -5602.33( 74537)}{\kelvin}\\
-  n & = \SI{24.71(300)}{} \quad .
+  m & = \SI{ -7504.57( 17746)}{\kelvin}\\
+  n & = \SI{5.64(073)}{} \quad .
 \end{align*}
 Das Ergebnis der Ausgleichsrechnung ist zusammen mit den beschriebenen Werten in Abbildung \ref{img:pol2} grafisch dargestellt.
 
@@ -346,15 +346,15 @@ Die einzusetzenden Werte und die dazugehörigen Ergebnisse sind in Tabelle \ref{
   \small
   \begin{tabular}{S [table-format=9.0]  c c l}
    \toprule
-   {Auswertungsverfahren} & $\text{W} \mathbin{\scalebox{1.5} / } \si{\electronvolt}$ & $\tau_{max} \mathbin{\scalebox{1.5} / } \si{\second}$  & $\text{    }\tau_0 \mathbin{\scalebox{1.5} / } \si{\atto\second}$ \\
+   {Auswertungsverfahren} & $\text{W} \mathbin{\scalebox{1.5} / } \si{\electronvolt}$ & $\tau_{max} \mathbin{\scalebox{1.5} / } \si{\second}$  & $\text{    }\tau_0 \mathbin{\scalebox{1.5} / } \si{\second}$ \\
    \midrule
-   \text{Polarisation $\SI{1.36}{\kelvin}$ }  & 0.9442 \pm 0.0168  & 4.3432 \pm 0.5285  & $\SI{0.91 (072)}{}$  \\
-   \text{Polarisation $\SI{1.94}{\kelvin}$ }  & 0.7308 \pm 0.0861  & 5.6113 \pm 0.9450  & $\SI{19.57 (7905)e3}{}$ \\
-   \text{Integration $\SI{1.36}{\kelvin}$ }   & 0.6467 \pm 0.0153  & 4.5810 \pm 0.5918  & $\SI{1.06 (077)e6}{}$  \\
-   \text{Integration $\SI{1.94}{\kelvin}$ }   & 0.4828 \pm 0.0642  & 6.1364 \pm 1.1287  & $\SI{2.27 (069)e9}{}$  \\
+   \text{Polarisation $\SI{1.36}{\kelvin}$ }  & 0.9442 \pm 0.0168  & 260.59 \pm 31.71  & $\SI{54.61 (4319)e-18}{}$   \\
+   \text{Polarisation $\SI{1.94}{\kelvin}$ }  & 0.7308 \pm 0.0861  & 336.68 \pm 56.70  & $\SI{1.17 (474)e-12}{}$     \\
+   \text{Integration $\SI{1.36}{\kelvin}$ }   & 0.6467 \pm 0.0153  & 274.86 \pm 35.51  & $\SI{63.70 (4605)e-12}{}$   \\
+   \text{Integration $\SI{1.94}{\kelvin}$ }   & 0.4828 \pm 0.0642  & 368.18 \pm 67.72  & $\SI{136.07 (41166)e-9}{}$  \\
   \bottomrule
   \end{tabular}
-  \caption{Messwerte, die für die Bestimmung der charakteristischen Relaxationszeit benötigt werden und die charakteristischen Relaxationszeiten.}
+  \caption{Messwerte, die für die Bestimmung der charakteristischen Relaxationszeit benötigt werden und die charakteristischen Relaxationszeiten $\tau_0$.}
   \label{tab:tau}
 \end{table}
 
