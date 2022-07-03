@@ -26,6 +26,20 @@
     Der Zeit-Amplituden-Converter gibt nun ein Signal mit einer Spannungshöhe korreliert zu der Zeitlänge an einen Multi-Channel-Analyser(MCA) weiter, welches von einem PC ausgewertet wird.
 
 \section{Durchführung}
+	
+	Zunächst wird die Schaltung nach Abbildung \ref{fig:Aufb} aufgebaut, dazu müssen die verschiedenen Schaltungskomponente korrekt aneinander geschalten werden.
+	Dann folgt die Justierung der Schaltung, dazu wird neben den Messgeräten des Versuches ein Oszilloskop verwendet.
+	Dazu werden zunächst die Schwellspannungen an den Diskirminatoren so eingestellt, dass auf beiden Seiten eine Signalrate von ca. $\SI{30}{\hertz}$ anliegt. 
+    Dann werden die Einstellungen der Verzögerungsleiter bei einer Pulsdauer von $\Delta t= \SI{20}{\nano\second}$ und $\Delta t= \SI{10}{\nano\second}$ optimiert.
+	Die Pulsdauern werden an den Diskriminatoren über kleine Schrauben verändert und an dem Oszillospkop abgelesen.
+	Nun werden beide Diskirimnatoren an die Koinzidenzschaltung geschalten, je einer der Verzögerungsleiter verstellt und die Signalrate gemessen.
+	Durch verstellen der Verögerungen ergibt sich eine Kurve der Signalraten, es sollten genug Werte aufgenommen werden um die Halbwertsbreite dieser Kurve zu bestimmen.
+	Jetzt wird für den restlichen Versuch bei einer Signallänge von $\Delta t= \SI{10}{\nano\second}$ die optimale Verzögerung eingestellt, es sollte eine Ereignissrate von $\SI{20}{\hetz}$ anliegen.
+	Weiterhin wird der Tac so eingestellt, dass möglichst viele Kanäle des MCA genutzt werden.
+	Dazu wird der Doppelpulsgenerator mit einem Impulsabstand von $\SI{10}{\nano\second}$ an die Koinzidenzschaltung geschalten und der TAC so eingestellt, dass ein Channel in der Mitte angesprochen wird.
+	Zuletzt wird noch der TAC und MCA so kalibriert, dass aus der Spannungshöhe bzw. dem Channel eine Lebensdauer berechnet werden kann.
+	Dazu wird wieder der Doppelpuls generator an die Koinzidenzschaltung angeschlossen, 10 unterschiedliche Impulsabstände eingestellt und jeweils der Channel vermessen.
+	Mit den Informationen der Channel und der Impulsabstände lässt sich der TAC und der MCA kalibrieren.
 
     Justierung der Parameter:\\
     -Schwellspannung der Diskiminator : 30 Signale pro Sekunde\\
