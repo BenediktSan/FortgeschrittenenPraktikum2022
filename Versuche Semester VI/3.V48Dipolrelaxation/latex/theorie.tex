@@ -1,6 +1,7 @@
 \section{Zielsetzung}
 In einem Ionenkristall können durch Dotierung mit stärker geladenen Ionen Dipole erzeugt werden. 
-Durch Ausrichtung in die selbe Richtung werden diese Dipole angeregt.
+Durch ein äußeres Feld werden die Dipole in die selbe Richtung ausgerichtet.
+Nach einfrieren und thermischer Anregung können sie zurückspringen.
 In diesem Versuch wird die Aktivierungsenergie und die charakteristische Relaxationszeit der Relaxation, dieser Dipole bestimmt.
 
 
@@ -10,22 +11,23 @@ In diesem Versuch wird die Aktivierungsenergie und die charakteristische Relaxat
 		In Abbildung \ref{fig:KBr} ist eine Darstellung eines solchen Kristalles zu finden.
 		\begin{figure}
 			\centering
-			\includegraphics[]{latex/images/Kristall.PNG}
-			\caption{Schematischer Aufbau des KBr Ionenkristalls.}
+			\includegraphics[width = 0.6\textwidth]{latex/images/Kristall2.PNG}
+			\caption{Schematischer Aufbau des KBr Ionenkristalls \cite{KBr}.
+			}
 			\label{fig:KBr}
 		\end{figure}
 		Dieser Kristall wird nun mit Strontium $Sr^{2=}$ dotiert, indem eines der Kalium-Kationen ausgetauscht wird.
 		Dies führt aber auch dazu, dass einer der anliegenden Kalium-Kationen so verschoben wird, dass an dessen Stelle eine Leerstelle entsteht.
-		Die Leerstelle muss entstehen, damit der Kristall in Summe immer noch Ladungsneutral ist.
-		Jedoch sind jetzt die vier nächsten Nachbarn negative Ladungen und die Leerstelle kann repräsentativ auch als negative Ladung betrachtet werden.\\
-		Somit bildet jetzt die zweifach positive Dotierung mit der negativen Ladung der Leerstelle einen Dipol. 
+		Die Leerstelle muss entstehen, damit der Kristall ladungsneutral bleibt.
+		Jedoch sind jetzt die vier nächsten Nachbarn negative Ladungen.\\
+		Somit bildet jetzt die zweifach positive Dotierung mit den negativen Ladungen einen Dipol. 
 		Ohne vorherige Anrgeung und bei Raumtemperatur sind diese Dipole jedoch statistisch im Raum verteilt und haben somit in Summe kein Gesamtdipolmoment. 
 
 	\subsection{Depolarisationseffekte}
 		
-		Ohne der Durchführung zu weit vorzugreifen gehen wir davon aus, dass alle Dipole innerhalb des Kristalles durch eine äußere Kraft in die selbe Richtung ausgerichtet wurden und der Kristall stark abgekühlt wurde.
+		Zunächst wird davon ausgegangen, dass alle Dipole innerhalb des Kristalles durch eine äußere Kraft in die selbe Richtung ausgerichtet wurden und der Kristall stark abgekühlt wurde.
 		Die Dipole stoßen sich aufgrund ihrer Ausrichtung gegenseitig ab. In dem Kristall ist jedoch nicht genug Energie um die Struktur des Gitters zu ändern.
-		Durch Aufwärmen des Kristalls können die Leerstellen genug Energie bekommen um ihre Position innerhalb des Kristall zu ändern und somit auch den Dipol zu reorientieren.
+		Durch Aufwärmen des Kristalls können die Leerstellen genug Energie bekommen um ihre Position innerhalb des Kristalls zu ändern und somit auch den Dipol zu reorientieren.
 		Dises Strukturänderung innerhalb des Kristalls wird Leerstellendiffusion genannt und benötigt eine gewisse materialspezifische Aktivierungsenergie $W$.
 		Da die Energieverteilung im Kristall durch die Boltzmann-Statistik $\propto\text{exp}\left(-\frac{W}{k_\text{B}T}\right)$ beschrieben wird, folgt für die Relaxationszeit:\\
 		\begin{equation}
@@ -62,9 +64,9 @@ In diesem Versuch wird die Aktivierungsenergie und die charakteristische Relaxat
 		Hier gibt $t$ die Zeit an, die benötigt wurde um $T$ zu erreichen.
 		Sie lässt sich auch als Integral schreiben:
 		\begin{equation}
-			I(T) = \frac{P_0}{\tau(T)} \t{exp}\left(-\int_0^t\frac{\t{d}t}{\tau(T)}\right)
+			I(T) = \frac{P_0}{\tau(T)} \t{exp}\left(-\int_0^t\frac{\t{d}t}{\tau(T)}\right) \quad.
 			\end{equation}
-		mittels einer konstanten Heizrate
+		Mittels einer konstanten Heizrate
 		\begin{equation}
 			b := \DIF{T}{t} = const
 		\end{equation}
@@ -85,7 +87,7 @@ In diesem Versuch wird die Aktivierungsenergie und die charakteristische Relaxat
 		\begin{equation}
 			\DIF{N(T)}{t} =- \frac{N}{\tau(T)}.
 		\end{equation}
-		Und analog zum vorherigen Kapitel ergibt sich die Lösung der Differentialgleichung zu:
+		Analog zum vorherigen Kapitel ergibt sich die Lösung der Differentialgleichung zu:
 		\begin{equation}
 			N = N_\t{P} \t{exp}\left( \frac{-1}{b}\int_{T_0}^T \frac{\t{d}T'}{\tau(T')}\right)
 		\end{equation}
@@ -93,7 +95,7 @@ In diesem Versuch wird die Aktivierungsenergie und die charakteristische Relaxat
 		\begin{align}
 			I(T) = \bar{P}(T)\DIF{N}{t}& &\t{und} & & I(T) = -\bar{P}(T) \frac{N}{\tau(T)}
 		\end{align}
-		Zusammensetzten aller dieser Terme egibt dann einen Ausdruck für den Depolarisationsstrom
+		Zusammensetzten aller dieser Terme ergibt dann einen Ausdruck für den Depolarisationsstrom
 		\begin{equation}
 			I(T) =\frac{p^2E}{3k_\t{B}T}\frac{N_\t{P}}{\tau_0}\t{exp}\left(\frac{-1}{b\tau_0}\int_{T_0}^T\frac{\t{d}T'}{\tau(T')}\right)\t{exp}\left(-\frac{W}{k_\t{B}T}\right).
 			\label{eqn:long}
