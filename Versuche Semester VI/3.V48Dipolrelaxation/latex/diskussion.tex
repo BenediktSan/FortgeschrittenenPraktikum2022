@@ -2,20 +2,25 @@
 \section{Diskussion}
 
 \noindent
-Insgesamt lief der Versuch bis auf ein paar kleine Probleme bei der Durchführung sehr gut.
-Einmal ist das Thermometer ausgefallen so, dass ein Messwert erst verspätet aufgenommen wurde.\\
+Die Durchführung des Versuchs lief größtenteils reibungslos ab.
+Das Thermometer ist in der zu den Messwerten aus Tabelle \ref{tab:mess1} gehörenden Messung einmal ausgefallen. Aus diesem Grund wurde ein Messwert erst bei $t = \SI{62.5}{\minute}$ aufgenommen.\\
 Bei der Messung für die größere Heizrate musste eine Messung abgebrochen werden, da die Probe nicht genug magnetisiert war.
 Außerdem wurde das Ziel von einer Heizrate von $b =\SI{1.5}{\kelvin\per\minute}$ mit $b_1 =\SI{1.36}{\kelvin\per\minute}$ etwas stärker verfehlt.
 Dies sollte aber keinen besonderen Einfluss auf die Auswertung haben, da so immer noch genügend Messwerte existieren und der Abstand zwischen den beiden Heizraten so sogar noch größer ist.\\
-Abgesehen davon gab es keine Probleme bei der Durchführung.\\\\
+Abgesehen davon gab es keine Probleme bei der Durchführung.\\
 
 \noindent
-Bei den Messwerten lässt sich, wie in den Abbildungen \ref{img:mitunter15} und \ref{img:mitunter2} ein Hauptmaximum, welches für die Auswertung genutzt wird, und ein Nebenmaximum bei höheren Temperaturen erkennen.
-Dies ist wie zu erwarten. Der Unterschied in der Größe des maximalen Stroms lässt sich über die unterschiedlichen Heizraten und damit unterschiedlichen Relaxationszeiten erklären.\\
+Bei den Messwerten lässt sich, wie in den Abbildungen \ref{img:mitunter15} und \ref{img:mitunter2} ein Hauptmaximum, welches für die Auswertung genutzt wird, 
+und ein Nebenmaximum, bei höheren Temperaturen, erkennen.
+Der Unterschied in der Größe des maximalen Stroms lässt sich über die unterschiedlichen Heizraten und damit unterschiedlichen Relaxationszeiten erklären.\\
+Für die Messreihe, die zur Heizrate $b_1$ gehört, ist das Nebenmaximum, wie in Abbildung \ref{img:mitunter15} zu erkennen, kleiner als erwartet. 
+Für diese Temperaturen würde ein stärkerer durch den Untergrund ausgelöster Strom erwartet werden. 
+Dies lässt sich über das Ablesen der Werte in der falschen Größenordnung oder andere thermische Effekte im Material erklären.
+Da der Untergrundfit für die Auswertung nur in der Nähe des Hauptmaximums relevant ist und das Nebenmaximum wenig Einfluss auf die annähernd lineare Form des Fits, in diesem Bereich hat, hat dieses Problem wenig Einfluss auf die Auswertungsergebnisse.  \\
 Die relevanten bestimmten Größen sind in Tabelle \ref{tab:rel} aufgetragen. 
 Dort ist auch zu erkennen, dass die einzelnen Aktivierungsenergien sich in derselben Größenordung befinden. 
 Bei dem Vergleich mit dem Literaturwert der Aktivierungsenergie, von $\ce{KBr}$ mit $W_\t{theo} = \SI{0.66}{\electronvolt}$\cite{lit}, 
-lässt sich erkennen, dass die Werte sich zwar nicht immer im Rahmen ihrer Abweichungen mit der Literatur überschneiden, sich aber doch in der richtigen Größenordnung bewegen.
+lässt sich erkennen, dass die Werte sich zwar nicht immer im Rahmen ihrer Abweichungen mit der Literatur überschneiden, sich aber doch in der richtigen Größenordnung bewegen.\\
 Die relative Abweichung, die über die Formel  
 \begin{equation*}
     \increment x = \left| \frac{x - x_\t{theo}}{x_\t{theo}} \right|
@@ -25,23 +30,26 @@ bestimmt wird, zeigt auch das die bestimmten Werte insgesamt gut sind. Die Ergeb
 \begin{table}[H]
     \centering
     \small
-    \begin{tabular}{S [table-format=9.0]  c c c}
+    \begin{tabular}{S [table-format=9.0]  S  [table-format=5.5] S[table-format=5.5] S[table-format=2.2]}
      \toprule
-     {Auswertungsverfahren} & $\text{    }\tau_0 \mathbin{\scalebox{1.5} / } \si{\atto\second}$ & $\text{W} \mathbin{\scalebox{1.5} / } \si{\electronvolt}$ & $\text{relative Abweichung} \mathbin{\scalebox{1.5} / } \si{\percent}$ \\
+     {Auswertungsverfahren} &  {$\tau_0 \mathbin{\scalebox{1.5} / } \si{\second}$} & {$\t{W} \mathbin{\scalebox{1.5} / } \si{\electronvolt}$} &{$\t{Relative Abweichung} \mathbin{\scalebox{1.5} / } \si{\percent}$} \\
      \midrule
-     \text{Polarisation $\SI{1.36}{\kelvin}$ }  & $\SI{0.91 (072)}{}$     & 0.9442 \pm 0.0168 & 43.06   \\
-     \text{Polarisation $\SI{1.94}{\kelvin}$ }  & $\SI{19.57 (7905)e3}{}$ & 0.7308 \pm 0.0861 & 10.73   \\
-     \text{Integration $\SI{1.36}{\kelvin}$ }   & $\SI{1.06 (077)e6}{}$   & 0.6467 \pm 0.0153 & 2.02    \\
-     \text{Integration $\SI{1.94}{\kelvin}$ }   & $\SI{2.27 (069)e9}{}$   & 0.4828 \pm 0.0642 & 26.85   \\
+     \text{Polarisation $\SI{1.36}{\kelvin}$ }  & $\SI{54.61 (4319)e-18}{}$  & $\num{0.9442 (00168)}$ & 43.06   \\
+     \text{Polarisation $\SI{1.94}{\kelvin}$ }  & $\SI{1.17 (474)e-12}{}$    & $\num{0.7308 (00861)}$ & 10.73   \\
+     \text{Integration $\SI{1.36}{\kelvin}$ }   & $\SI{63.70 (4605)e-12}{}$  & $\num{0.6467 (00153)}$ & 2.02    \\
+     \text{Integration $\SI{1.94}{\kelvin}$ }   & $\SI{136.07 (41166)e-9}{}$ & $\num{0.4828 (00642)}$ & 26.85   \\
     \bottomrule
     \end{tabular}
     \caption{Die wichtigsten bestimmten Werte und die relative Abweichung der Aktivierungsenergien vom Literaturwert von $W_\t{theo}= \SI{0.66}{\electronvolt}$.
-    Für die relativen Abweichungen sind keine Fehler angegeben, da sie nicht für die ersten fünf Stellen auftreten.}
+    Für die relativen Abweichungen sind keine Fehler angegeben, da sie nicht für die ersten fünf Nachkommastellen auftreten.}
     \label{tab:rel}
-  \end{table}
+\end{table}
 
-  \noindent Der große Unterschied der charakteristischen Relaxationszeiten $\tau_0$ lässt sich damit erklären, dass $\tau_0 \propto \frac{T_\t{max}^2}{W}\exp \left( \frac{W}{T_\t{max}} \right)$ gilt.
-  Kleine Änderungen in $W$ und $T_\t{max}$ führen durch den exponentiellen Zusammenhang dann zu großen Änderungen in der charakteristischen Relaxationszeit.\\
+  \noindent 
+  Der große Unterschied der charakteristischen Relaxationszeiten $\tau_0$ untereinander und zum Literaturwert $\tau_{0,theo} = \SI{4e-14}{\second}$ 
+  lässt sich damit erklären, dass $\tau_0 \propto \frac{T_\t{max}^2}{W}\exp \left( \frac{W}{T_\t{max}} \right)$ gilt.
+  Kleine Änderungen in $W$ und $T_\t{max}$ führen durch den exponentiellen Zusammenhang dann zu großen Änderungen in der charakteristischen Relaxationszeit. 
+  Dies erklärt auch warum die errechneten Werte über viele Größenordnungen von dem Literaturwert abweichen.\\
   In der Abbildung \ref{img:tau} lässt sich auch erkennen, dass die einzelnen Kurven für $\tau(T)$, halblogarithmisch aufgetragen, ähnliche Verläufe haben, was dafür spricht,
   dass die Größenordnungsunterschiede gerechtfertigt sind.\\
   Insgesamt lässt sich also sagen, dass die Messungen gute Ergebnisse geliefert haben.
