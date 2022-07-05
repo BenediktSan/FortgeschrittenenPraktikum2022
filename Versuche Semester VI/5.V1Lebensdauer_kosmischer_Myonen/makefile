@@ -33,7 +33,7 @@ clean:
 
 #Zusätzliche Ordner/Dateien löschen
 aux2:
-	rm -rf Protokoll_.aux Protokoll_.bcf Protokoll_.log Protokoll_.pdf Protokoll_.run.xml Protokoll_.toc
+	rm -rf Protokoll_V1.aux Protokoll_V1.bcf Protokoll_V1.log Protokoll_V1.pdf Protokoll_V1.run.xml Protokoll_V1.toc
 
 auxv:
 	rm -rf python/variables

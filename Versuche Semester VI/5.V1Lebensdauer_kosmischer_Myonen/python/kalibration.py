@@ -28,8 +28,8 @@ for name, value, error in zip("ab", params, errors):
     print(f"{name} = ({value*10**3:.8f} ± {error*10**3:.8f})ns")
 
 x = np.linspace(np.min(K), np.max(K))
-plt.plot(x, gerade(x, *params), "k", linewidth=1, label="lineare Regression")
-plt.plot(K, t, "r+", markersize=10, label="Daten")
+plt.plot(x, gerade(x, *params),  label="Fit")
+plt.plot(K, t, "x", markersize=10, label="Messdaten")
 plt.xlabel(r"Channel")
 plt.ylabel(r"$\Delta t$ / $ \mu s$")
 plt.legend(loc="best")
