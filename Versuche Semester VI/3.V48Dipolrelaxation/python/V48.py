@@ -152,7 +152,7 @@ def ploten_ascdesc(T_ascdesc, I_ascdesc, param, name):             #ascending-, 
     #plt.yscale('log')
     plt.rc('axes', labelsize= 12)
     plt.ylabel(ylabel)
-    plt.xlabel(r" $\frac{1}{T} $ / K")
+    plt.xlabel(r" $\frac{1}{T} $ / \frac{1}{K}")
     ##plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
     ##plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
     plt.tight_layout()
@@ -371,9 +371,9 @@ rel_abw(tau_theo, tau0_speicher[3])
 
 print("\n####### TABELLEN #########")
 
-#printer(t_1, T_1, I_1* 10**(11), I_rein_1 * 10**(11), "Messung \delta T =1.5 Grad")
+#printer(t_1, T_1, I_1* 10**(12), I_rein_1 * 10**(12), "Messung \delta T =1.5 Grad")
 
-#printer(t_2, T_2, I_2* 10**(11), (I_rein_2 * 10**(11)), "Messung \delta T =2 Grad")
+#printer(t_2, T_2, I_2* 10**(12), (I_rein_2 * 10**(12)), "Messung \delta T =2 Grad")
 
 ########Grafiken########
 
