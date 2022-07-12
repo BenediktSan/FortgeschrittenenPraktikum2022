@@ -32,7 +32,7 @@ t = a * K + b
 
 #Regression
 #params, cov = curve_fit(efunk,  noms(t_cut),  N_cut)
-params, cov = curve_fit(efunk,  noms(t[3:-57]),  N[3:-57])
+params, cov = curve_fit(efunk,  noms(t[3:-62]),  N[3:-62])
 
 print(f"\nStoppsignale: {N.sum()}")
 
@@ -45,7 +45,7 @@ for name, value, error in zip('Nl', params, errors):
 #Plot
 x=noms(np.linspace(np.min(t[2:-47]), np.max(t[2:-47])))
 plt.errorbar(noms(t),     N,     xerr=stds(t),     yerr=np.sqrt(N),color = "lime",  markersize=2.5, elinewidth=0.4, fmt='.', label="abgeschnittene Messdaten")
-plt.errorbar(noms(t[3:-47]), N[3:-47], xerr=stds(t[3:-47]), yerr=np.sqrt(N[3:-47]),color = "teal",   markersize=3.5, elinewidth=0.4, fmt='.', label="Messdaten")
+plt.errorbar(noms(t[3:-62]), N[3:-62], xerr=stds(t[3:-62]), yerr=np.sqrt(N[3:-62]),color = "teal",   markersize=3.5, elinewidth=0.4, fmt='.', label="Messdaten")
 plt.plot(x, efunk(x, params[0], params[1]),color = "purple",  label="Fit")
 plt.xlabel(r"$t $ / $\mu s$")
 plt.ylabel(r"$N $ / $\frac{1}{s}$")

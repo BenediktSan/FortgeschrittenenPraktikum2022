@@ -26,6 +26,7 @@ p=0
 for i in range(100):
     p=p+poisson(i+1,l,Ts)
 print(f"Wahrscheinlichkeit, dass mindestens ein Muon während Suchzeit eintritt liegt bei {p*100:.4}%\n")
-
+print(f"P_ges = {p}")
+print(f"P(1) = {poisson(1,l,Ts)}")
 print(f"Es wurden {N*p} Myonen falsche gemessen")
 print(f"pro Kanal also {N*p/512:.3}")

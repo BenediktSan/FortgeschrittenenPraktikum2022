@@ -2,17 +2,18 @@
 \section{Auswertung}
 
 \noindent
-Da es sich bei diesem Versuch um ein Zählexperiment handelt folgen die Messwerte einer Poisson-Verteilung. 
+Da es sich bei diesem Versuch um ein Zählexperiment mit unabhängigen Ereignissen handelt, folgen die Messwerte einer Poisson-Verteilung. 
 Daher wird für die Zählimpulse eine Poisson-Unsicherheit von $\sqrt{N}$ genutzt.
 
 \subsection{Bestimmen der optimalen Verzögerungszeit}
 
 \noindent
-Bei diesem Versuch kann es in verschiedenen Bauteilen, wie den Kabeln oder den Diskriminatoren zu Verzögerungen des Signals kommen.
+Bei diesem Versuch kann es in verschiedenen Bauteilen wie den Kabeln oder den Diskriminatoren zu Verzögerungen des Signals kommen.
 Diese können dazu führen, dass an der Koinzidenzschaltung kein Myonen-Signal gemessen wird, obwohl eins eingetroffen ist.
 Aus diesem Grund muss zuerst eine optimale Verzögerung für das Signal vor einem der beiden Diskriminatoren bestimmt werden, 
 damit die Anzahl der erkannten Signale maximal wird.\\
-Dafür werden die Myonen-Impulse simuliert in dem Pulse mit den Pulsdauern $\SI{10}{\nano\second}$ und $\SI{20}{\nano\second}$ auf die Diskriminatoren gegeben werden.
+Dafür werden die Myonen-Impulsdauern mithilfe der Diskriminatoren modifiziert.
+Dabei werden die Pulsdauern $\SI{10}{\nano\second}$ und $\SI{20}{\nano\second}$ eingestellt.
 Anschließend werden die Verzögerungszeiten vor einem der Diskriminatoren variiert. \\
 Für die Messreihe mit der Pulsdauer $ \Delta t_1 = \SI{10}{\nano\second}$ finden sich die Messwerte der Verzögerungszeit, der Messdauer $T_\t{mess}$, der gemessenen Pulsanzahl und der Pulse pro Sekunde in Tabelle \ref{tab:just10}.
 In der Tabelle \ref{tab:just20} sind die Messwerte für die Reihe mit $ \Delta t_2 =\SI{20}{\nano\second}$.
@@ -20,7 +21,7 @@ In der Tabelle \ref{tab:just20} sind die Messwerte für die Reihe mit $ \Delta t
 
 \begin{table}[ht]
   \centering
-    \caption{Die Impulszahl und Zählrate in Abhängigkeit der Verzögerungszeit bei einer Messdauer von ungefähr $\SI{20}{\second}$ mit einer Pulsdauer von $\SI{20}{\nano\second}$.}
+    \caption{Die Impulszahl und Zählrate in Abhängigkeit der Verzögerungszeit bei einer Messdauer von ungefähr $\SI{20}{\second}$ mit einer Pulsdauer von $\SI{10}{\nano\second}$.}
     \label{tab:just10}
     \begin{tabular}{S[table-format=2.0] S[table-format=2.2] S[table-format=3.0] S[table-format=2.4]}
       \toprule
@@ -77,49 +78,76 @@ In der Tabelle \ref{tab:just20} sind die Messwerte für die Reihe mit $ \Delta t
 
 
 \noindent 
-Um die optimale Verzögerungszeit zu finden wird auf den Plateaus der Zählraten  ein linearer Fit der Form
-\begin{equation}
-  y = m \cdot x +n
-  \label{eqn:lin}
-\end{equation}
-berechnet. Für diesen Fit soll der Parameter $m$ sehr klein sein, so dass der Fit des Plateaus ungefähr einer Konstante entspricht.
-Wenn dies auftritt wurde das Intervall für das Plateau so gewählt, dass eine auf diesem Intervall zentral liegende Verzögerungszeit für den Versuch genutzt werden kann.\\
+Um die optimale Verzögerungszeit zu finden, wird auf den Messwertplateaus der Zählraten eine Konstante $N_\t{Plat}$ gefitet, was der Durchschnittshöhe des Plateaus entspricht.
 Für die Pulsbreite $\SI{10}{\nano\second}$ wurde das Verzögerungszeitintervall $\Delta t \in [-2,6]$ für das Plateau identifiziert.
 Bei der Pulsbreite $\SI{20}{\nano\second}$ ist es das Intervall  $\Delta t \in [-4,9]$.\\
-Daraus ergeben sich dann für die Plateaufits die in Tabelle \ref{tab:platfit} dargestellten Fitparameter.
+Aus den Schnittpunkten der Hälfte der Durchschnittshöhe und den aufsteigenden und abfallenden Flanken lässt sich die Halbwertsbreite der Messverteilung bestimmen.
+Dafür wird die lineare Gleichung
+\begin{equation}
+  y = m \cdot x +n 
+  \label{eqn:lin}
+\end{equation}
+auf die komplementären Intervalle der Plateaus gefitet. Dies geschieht für beide Messreihen einmal an der aufsteigenden und einmal an der abfallenden Flanke.
+Daraus ergeben sich dann für die Fits die in Tabelle \ref{tab:platfit} dargestellten Fitparameter.
 \begin{table}[H]
   \centering
-    \caption{Regressionsparameter für die Plateaufits $m$ und $n$ für die Pulsdauern $\Delta t_1$ und $\Delta t_2$.}
+    \caption{Regressionsparameter für die Plateaufits und für die Flankenfits, für die Pulsdauern $\Delta t_1$ und $\Delta t_2$.}
     \label{tab:platfit}
-    \begin{tabular}{S[table-format=2.1 ] | S[table-format=5.5] S[table-format=5.5] }
+    \begin{tabular}{S[table-format=2.1 ] | S[table-format=5.5] S[table-format=5.5] S[table-format=5.5] S[table-format=5.5] S[table-format=5.5] }
       \toprule
-      {Messreihe} & {$m \mathbin{\scalebox{1.5} /} \si{\per\nano\second\squared}$}  & {$m \mathbin{\scalebox{1.5} /} \si{\per\nano\second}$ }\\
+      {Messreihe} & {$N_\t{Plat} \mathbin{\scalebox{1.5} /} \si{\per\nano\second}$} & {$m_\t{auf} \mathbin{\scalebox{1.5} /} \si{\per\nano\second\squared}$}  & 
+      {$n_\t{auf} \mathbin{\scalebox{1.5} /} \si{\per\nano\second}$ } & {$m_\t{ab} \mathbin{\scalebox{1.5} /} \si{\per\nano\second\squared}$} & {$n_\t{ab} \mathbin{\scalebox{1.5} /} \si{\per\nano\second}$}\\
       \midrule
-      \t{$\Delta t_1$} &  -0.20 \pm 0.14 & 23.29 \pm 0.44 \\
-      \t{$\Delta t_2$} &  -0.05 \pm 0.15 & 30.10 \pm 0.70 \\
+      \t{$\Delta t_1$} & $\num{22.88 (037)}$     & $\num{1.68(032)}$ & $\num{25.04 (159)}$      & $ \num{-2.97 (076)} $ & $ \num{38.13 (619)} $ \\
+      \t{$\Delta t_2$} & $\num{29.97  (055)}$    & $\num{1.09  (024)}$ & $\num{33.12 (230)}$    & $ \num{-2.80 (039)} $ & $ \num{56.34 (475)} $ \\
       \bottomrule
     \end{tabular}
 \end{table}
 
 \noindent
-Die Messdaten für $\Delta t_1$ sind inklusive der Unsicherheiten der Messdaten und der Plateaufits in Abbildung \ref{img:just10} grafisch dargestellt.
-Für $ \Delta t_2$ sind die Daten in Abbildung \ref{img:just20} aufgetragen.
-Aus den zuvor bestimmten Intervallen ergibt sich, als in beiden Plateaus zentral liegender Wert, für die zu nutzende Verzögerungszeit $\Delta t = \SI{2}{\nano\second}$.
-Da für die restliche Auswertung von diesen Messungen unabhängige Messwerte genutzt werden, kann dort alelrdings auch eine andere Verzögerung genutzt worden sein.
+Die Messdaten für $\Delta t_1$ sind inklusive der Unsicherheiten der Messdaten und der Fits in Abbildung \ref{img:just10} grafisch dargestellt.
+Für $ \Delta t_2$ sind die Daten in Abbildung \ref{img:just20} aufgetragen.\\
+Über den Zusammenhang 
+\begin{equation*}
+  \Delta t_\t{Verz} = 2\Delta t_\t{i} - \Delta S \quad ,
+\end{equation*}
+welcher die Verschiebung des Maximums berechnet, lässt sich für die einzelnen Messreihen die optimale Verzögerungszeit bestimmen.
+Die dafür errechneten Schnittpunkte $S_\t{t1}$ für $\Delta t_1$, und $S_\t{t2}$ für $\Delta t_2$, mit den Flankenfits sind Tabelle \ref{tab:schnitt} aufgetragen.
+Zusätzlich sind die errechneten Verzögerungszeiten aufgetragen.
+
+\begin{table}[H]
+  \centering
+    \caption{Die Schnittpunkte der halbierten Plateauhöhe mit den Flankenfits und die daraus errechneten Verzögerungszeiten, für die Pulsdauern $\Delta t_1$ und $\Delta t_2$.}
+    \label{tab:schnitt}
+    \begin{tabular}{S[table-format=2.1 ] | S[table-format=5.5] S[table-format=5.5] S[table-format=5.5] S[table-format=5.5] }
+      \toprule
+      {Messreihe} & {$S_\t{auf} \mathbin{\scalebox{1.5} /} \si{\nano\second}$} & {$S_\t{ab} \mathbin{\scalebox{1.5} /} \si{\nano\second}$}  & 
+      {$\Delta S \mathbin{\scalebox{1.5} /} \si{\nano\second}$} & {$\Delta t_\t{Verz} \mathbin{\scalebox{1.5} /} \si{\nano\second}$ } \\
+      \midrule
+      \t{$\Delta t_1$} & $\num{-8.1 (18)}$      & $\num{9.0 (31)}$         & $ \num{17 (4)} $      & $ \num{3 (4)} $ \\
+      \t{$\Delta t_2$} & $\num{-17 (04)}$    & $\num{14.8 (27)}$       & $ \num{31 (5)} $          & $\num{ 9 (5)} $ \\
+      \bottomrule
+    \end{tabular}
+\end{table}
+
+\noindent
+Für die weiteren Rechnungen kann dann das arithmetische Mittel der bestimmten Verzögerungszeiten $\Delta t = \SI{6}{\nano\second}$ genutzt werden.
+
+
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{build/plots/justage_10.pdf}
   \caption{Die Messwerte der Zählrate, für eine Pulsbreite von $\Delta t_1 = \SI{10}{\nano\second}$, gegen die Verzögerungszeit $\Delta t$ aufgetragen. 
-  Außerdem ist der Plateaufit eingezeichnet.}
+  Außerdem ist der Plateaufit, die Fits auf den Flanken und die Halbwertsbreite eingezeichnet.}
   \label{img:just10}
 \end{figure}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{build/plots/justage_20.pdf}
-  \caption{Die Messwerte der Zählrate, für eine Pulsbreite von $\Delta t_1 = \SI{20}{\nano\second}$, gegen die Verzögerungszeit $\Delta t$ aufgetragen. 
-  Außerdem ist der Plateaufit eingezeichnet.}
+  \caption{Die Messwerte der Zählrate, für eine Pulsbreite von $\Delta t_2 = \SI{20}{\nano\second}$, gegen die Verzögerungszeit $\Delta t$ aufgetragen. 
+  Außerdem ist der Plateaufit, die Fits auf den Flanken und die Halbwertsbreite eingezeichnet.}
   \label{img:just20}
 \end{figure}
 
@@ -128,12 +156,15 @@ Da für die restliche Auswertung von diesen Messungen unabhängige Messwerte gen
 \label{seq:MCA}
 
 \noindent
-Um den MCA zu kalibrieren wird auf ihn das Signal eines Doppelimpulsgenerators gegeben. 
-Das Bining des MCA hängt linear von der Verzögerung zweier Signale ab, wodurch über den Zusammenhang zwischen verschiedenen Verzögerungen und den angesteuerten Kanälen, den Kanälen eine Impulsdauer zugeordnet werden kann.
-Die dafür genutzten Werte der zeitlichen Abstände der vom Doppelimpulsgenerator erzeugten Pulse und die Werte der damit korrespondierenden Kanäle, sind in Tabelle \ref{tab:MCA} aufgetragen.
+Um den MCA zu kalibrieren, wird auf ihn das Signal eines Doppelimpulsgenerators gegeben. 
+Die angesteuerten Bins sind proportional zur Höhe des Spannungspulses, der vom TAC ausgesendet wird. 
+Dieser wiederum ist proportional zur Zeit zwischen dem Start- und dem Stopp-Signal.
+Dadurch lässt sich über den Zusammenhang zwischen den Verzögerungszeiten der Pulse, des Impulsgenerators und den angesteuerten Kanälen herstellen.
+Darüber werden den Kanälen eine Impulsdauer zugeordnet werden.
+Die dafür genutzten Werte der zeitlichen Abstände der vom Doppelimpulsgenerator erzeugten Pulse und die Werte der damit korrespondierenden Kanäle sind in Tabelle \ref{tab:MCA} aufgetragen.
 \begin{table}[H]
     \centering
-      \caption{Die Messwerte der Pulsdauern und der damit korrespondierenden Kanäle $K$ im MCA.}
+      \caption{Die Messwerte der Differenz der Pulse des Doppelimpulsgenerators und der damit korrespondierenden Kanäle $K$ im MCA.}
       \label{tab:MCA}
       \begin{tabular}{S[table-format=1.1] S [table-format=3.0]}
         \toprule
@@ -153,16 +184,17 @@ Die dafür genutzten Werte der zeitlichen Abstände der vom Doppelimpulsgenerato
       \end{tabular}
     \end{table}
 \noindent
-Eine lineare Regression der Form der Gleichung \ref{eqn:lin} ergibt
+Eine lineare Regression der Form der Gleichung \ref{eqn:lin} folgend, ergibt
 \begin{align*}
   m&= \SI{2.31 (002)}{\micro\second}\\
   n&= \SI{-17.01  (490)}{\micro\second}
 \end{align*}
-für die Fitparameter. Dies ist grafisch, inklusive des Messwerte, in der Abbildung \ref{img:just} dargestellt.
+für die Fitparameter. Dies ist grafisch inklusive der Messwerte in der Abbildung \ref{img:just} dargestellt.
+Die Suchzeit $T_\t{S} = \SI{10}{\micro\second}$ korrespondiert nach dieser Ausgleichsrechnung mit dem Kanal $\SI{448.95 (043)}{} \approx 449$.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{build/plots/kalibration.pdf}
-  \caption{Die Doppelimpulsdauer $\Delta t$ gegen die Kanalnummer aufgetragen.
+  \caption{Der zeitliche Abstand der Pulse $\Delta t$ gegen die Kanalnummer aufgetragen.
   Zusätzlich ist noch die auf diesen Werten berechnete Ausgleichsgerade eingezeichnet.}
   \label{img:just}
 \end{figure}
@@ -172,14 +204,15 @@ für die Fitparameter. Dies ist grafisch, inklusive des Messwerte, in der Abbild
 \subsection{Abschätzung des Untergrunds}
 
 \noindent
-Bei der Messung der Lebensdauer der Myonen kann es passieren, dass ein zusätzliches in den Tank eintretendes Myon ein Stopp-Signal auslöst.
-Dazu muss es während der Suchzeit $T_S = \SI{10}{\micro\second}$ eintreten. 
-Dieser Untergrund von Signalen verteilt sich dabei gleichmäßig über alle Kanäle, da alle Dauern zwischen ersten und zweiten Myon, aufgrund der Unabhängigkeit, gleichwahrscheinlich sind. 
+Bei der Messung der Lebensdauer der Myonen kann es passieren, dass ein zusätzliches, in den Tank eintretendes Myon ein Stopp-Signal auslöst.
+Dazu muss es während der Suchzeit $T_\t{S} = \SI{10}{\micro\second}$ eintreten. 
+Dieser Untergrund von Signalen verteilt sich dabei gleichmäßig über alle Kanäle.
+Dies liegt daran, dass alle Dauern zwischen erstem und zweiten Myon, aufgrund der Unabhängigkeit der Ereignisse gleichwahrscheinlich sind. 
 Die Wahrscheinlichkeit $P$, dass $k$ Myonen eintreten, ist über eine Poisson-Verteilung der Form 
 \begin{equation*}
   P_{\lambda}(k)=  \frac{\lambda^k}{k!} \exp({-\lambda})
 \end{equation*}
-gegeben. Der Erwartungswert $\lambda$ entspricht der durchschnittlichen Zählrate der Myonen mal der Suchzeit .
+gegeben. Der Erwartungswert $\lambda$ entspricht der durchschnittlichen Zählrate der Myonen mal der Suchzeit.
 Die durchschnittliche Zählrate lässt sich bei einer Gesamtmessdauer $T_\t{ges} = \SI{272190}{\second} \approx \SI{76}{\hour}$ 
 und einer Gesamtanzahl von Startimpulsen $N_\t{start} = \SI{3256768(1805)}{}$ zu
 \begin{equation*}
@@ -189,7 +222,11 @@ bestimmen. Daraus folgt
 \begin{equation*}
   \lambda = \frac{N_\t{start}}{T_\t{ges}} \cdot T_S = \SI{0.11965 (000007)e-3}{} \quad.
 \end{equation*}
-Die Wahrscheinlichkeit für das Eintreten mindestens eines Myons $P_\t{ges}$ mal der Gesamtmessdauer $T_\t{ges}$ ergibt die Gesamtanzahl erwarteter Untergrundmyonen
+Die Wahrscheinlichkeit für das Eintreten mindestens eines Myons $P_\t{ges}$ ergibt sich über die Summe der Wahrscheinlichkeiten mit $k \geq 1$
+\begin{equation*}
+  P_\t{ges}= \sum_{k=1}^\infty \frac{\lambda^k}{k!} \exp({-\lambda}) = \SI{0.1196 e-3}{} \quad .
+\end{equation*}
+Dies multipliziert mit der Gesamtmessdauer $T_\t{ges}$ ergibt die Gesamtanzahl der erwarteten Untergrundmyonen
 \begin{equation*}
   U_\t{ges} = P_\t{ges} \cdot T_\t{ges} = 389,65 \quad .
 \end{equation*}
@@ -200,12 +237,12 @@ Für jeden der $512$ Kanäle ergibt das einen Untergrund von $U_\t{K} = 0,761$.
 
 \noindent
 Bei der Messung der Lebensdauern wurden $26753$ Stopp-Signale gemessen. 
-Der Zerfall von Myonen folgt dem Zerfallsgesetz, weswegen sich die Anzahl der nicht zerfallenen Myonen über den exponentiellen Zusammenhang
+Um einen Fit auf die Lebensdauern zu berechnen, wird die Gleichung \ref{eqn:exp} um den zuvor berechneten Untergrund pro Kanal $U_\t{K}$ erweitert
 \begin{equation}
-  N(t)=N_0\cdot \exp({-\lambda t})+U_\t{K} \label{eqn:exp}
+  N(t)=N_0\cdot \exp({-\lambda t})+U_\t{K} \quad .
+  \label{eqn:expfit} 
 \end{equation}
-beschreiben lässt. Dabei ist $N_0$ der y-Achsenabschnitt, $\lambda $ die Zerfallskonstante und $U_\t{K} $ der zuvor berechnete Untergrund pro Kanal.
-Über die in Abschnitt \ref{seq:MCA} bestimmte Kalibrierung des MCA lassen sich die gemessenen Zerfälle pro Bin in gemessenen Zerfälle pro Zeit im Tank umrechnen.\\
+Über die in Abschnitt \ref{seq:MCA} bestimmte Kalibrierung des MCA lassen sich die gemessenen Zerfälle pro Bin in gemessene Zerfälle pro Zeit im Tank umrechnen.\\
 Diese Messdaten sind mit dem auf ihnen nach Gleichung \ref{eqn:exp} berechneten Fit in Abbildung \ref{img:lebensdauer} grafisch dargestellt.
 
 \begin{figure}[H]
@@ -217,13 +254,14 @@ Diese Messdaten sind mit dem auf ihnen nach Gleichung \ref{eqn:exp} berechneten 
 \noindent
 Die Parameter der Ausgleichsrechnung ergeben sich zu
 \begin{align*}
-  N_0    &=\SI{283.783 (1876)}{} \\
+  N_0    &=\SI{283.806 (1884)}{} \\
   \lambda&=\SI{0.470(0004)}{\per\micro\second} \quad .
 \end{align*}
 Die Ausgleichsrechnung findet allerdings nicht auf allen Messwerten statt, da Messwerte entfernt wurden.
 Dies geschah für Messdauern, für welche $N=0$ gemessen wurde.
-Für späte Messwerte liegt das daran, dass sie zu Bins gehören, die mit Zeiten größer der Suchrate korrespondieren. 
-Die frühen gehhören zu Bins, welche nach der Kalibrierung zu negativen $\Delta t$ gehören würden.  
+Für späte Messwerte liegt das daran, dass sie zu Bins gehören, die mit Zeiten größer der Suchzeit korrespondieren.
+Dies ist nach der in Abschnitt \ref{seq:MCA} durchgeführten Ausgleichsrechnung ab dem Bin $449$ der Fall. 
+Die frühen entfernten Messwerte gehören zu Bins, welche nach der Kalibrierung zu negativen $\Delta t$ gehören würden.  
 Da dies beides unphysikalische Werte sind, wurden sie in den Rechnungen ignoriert.\\
 Aus den Fitparametern lässt sich die mittlere Lebensdauer $\tau$ der Myonen errechnen.
 \begin{equation*}

@@ -21,6 +21,8 @@ if os.path.exists("build/plots") == False:
 def gerade(x, m, b):
     return m*x+b
 
+
+
 dt,T, N = np.genfromtxt('python/data/justage_10.dat', unpack=True)
 
 N_print =N
@@ -33,21 +35,74 @@ dt_cut = dt[3:10]
 print(dt_cut[0])
 print(dt_cut[-1])
 
-params, covariance_matrix = np.polyfit(dt_cut, N_cut, deg=1, cov=True)
-uncertainties = np.sqrt(np.diag(covariance_matrix))
+params1, covariance_matrix1 = np.polyfit(dt_cut, N_cut, deg=0, cov=True)
+uncertainties1 = np.sqrt(np.diag(covariance_matrix1))
 
 #Ausgeben der Parameter
 print("\nRegressionsparameter für Platau für justage 10ns in ns")
-errors = np.sqrt(np.diag(covariance_matrix))
-for name, value, error in zip('ab', params, errors):
+errors1 = np.sqrt(np.diag(covariance_matrix1))
+for name, value, error in zip('ab', params1, errors1):
     print(f'{name} = {value:.8f} ± {error:.8f}')
 
-halfmax = params[0]/2
+halfmax = params1[0]/2
+
+x_halbw = np.linspace(dt[0] - 0.25, dt[-1] + 0.25)
+
+
+
+#i hate my life
+
+N_cut_before=N[:5]
+dt_cut_before = dt[:5]
+
+N_cut_after=N[9:]
+dt_cut_after = dt[9:]
+
+
+params2, covariance_matrix2 = np.polyfit(dt_cut_before, N_cut_before, deg=1, cov=True)
+uncertainties2 = np.sqrt(np.diag(covariance_matrix2))
+
+#Ausgeben der Parameter
+print("\nRegressionsparameter für Platau für justage 10ns in ns")
+errors2 = np.sqrt(np.diag(covariance_matrix2))
+for name, value, error in zip('ab', params2, errors2):
+    print(f'{name} = {value:.8f} ± {error:.8f}')
+
+
+
+params3, covariance_matrix3 = np.polyfit(dt_cut_after, N_cut_after, deg=1, cov=True)
+uncertainties3 = np.sqrt(np.diag(covariance_matrix3))
+
+#Ausgeben der Parameter
+print("\nRegressionsparameter für Platau für justage 10ns in ns")
+errors3 = np.sqrt(np.diag(covariance_matrix3))
+for name, value, error in zip('ab', params3, errors3):
+    print(f'{name} = {value:.8f} ± {error:.8f}')
+
 
 x = np.linspace(np.min(dt_cut), np.max(dt_cut))
 y = np.ones(len(x))
-plt.plot(x, gerade(x, *params),  linewidth=1, label="Plateaufit")
-plt.errorbar(dt, N, xerr=0, yerr=np.sqrt(N),  fmt='.', label="Messdaten")
+
+x_auf = np.linspace(dt[0] - 1, dt[5] + 1)
+x_ab = np.linspace(dt[8] - 1, dt[-1] +1)
+
+
+
+halbw = params1[0]/2
+
+uparams2 = unp.uarray(params2, errors2)
+print(f"\nSchnittpunkt links = {(halbw - uparams2[1])/uparams2[0]}")
+
+uparams3 = unp.uarray(params3, errors3)
+print(f"Schnittpunkt rechts = {(halbw - uparams3[1])/uparams3[0]}")
+print(f"Differenz = {(halbw - uparams3[1])/uparams3[0] - (halbw - uparams2[1])/uparams2[0]} ")
+print(f"komische Formel = {2*10 - ((halbw - uparams3[1])/uparams3[0] - (halbw - uparams2[1])/uparams2[0])}\n")
+
+plt.plot(x, gerade(x,0, *params1), "b",  linewidth=1, label="Plateaufit")
+plt.plot(x_halbw, gerade(x_halbw, 0,params1[0]/2),"b--", linewidth=1, label="Halbwertsbreite")
+plt.plot(x_auf, gerade(x_auf, *params2), "g",  linewidth=1, label="Fit aufsteigende Flanke")
+plt.plot(x_ab, gerade(x_ab, *params3), "g",  linewidth=1, label="Fit abfallende Flanke")
+plt.errorbar(dt, N, xerr=0, yerr=np.sqrt(N),color = "orange",  fmt='.', label="Messdaten")
 #plt.hlines(np.mean(N_cut)/2, np.min(dt_cut)-5, np.max(dt_cut)+6, color='green', linestyles='dashed', label='Plataumittelwert/2')
 plt.xlabel(r"$\Delta t_{Delay}$ / $ ns$")
 plt.ylabel(r"$\frac{N}{T}$ / $ \frac{1}{s}$")

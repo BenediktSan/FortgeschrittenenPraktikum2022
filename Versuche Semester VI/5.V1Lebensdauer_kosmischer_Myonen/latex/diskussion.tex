@@ -1,4 +1,4 @@
-\
+\newpage
 \section{Diskussion}
 
 \noindent
@@ -6,17 +6,24 @@ Bei der Durchführung des Versuchs sind ein paar Probleme aufgetreten.
 Die Bestimmung der optimalen Verzögerung lief reibungslos ab. 
 Für die Kalibrierung des MCA gab es allerdings Probleme mit der Schaltung, weswegen keine Messwerte mehr aufgenommen werden konnten.
 Aus diesem Grund wurden alle weiteren Messwerte bereitgestellt und die Abschnitte ab dem Abschnitt \ref{seq:MCA} sind unabhängig von unseren Messungen.
-Deswegen lässt sich der Verlauf der weiteren Messungen auch nicht diskutieren.\\
+Bei den weiteren Messungen sind allerdings keine weiteren Probleme aufgetreten.\\
 Die Lebensdauer der Myonen wurde über einen geeignet langen Zeitraum von ungefähr drei Tagen aufgenommen und liefert als Ergebnis die mittlere Lebensdauer $\tau = \SI{2.126(0019)}{\micro\second}$.
-Der Literaturwert für die Lebensdauer ist $\tau_\t{theo} = \SI{2.1969811(00000022)}{\micro\second}$ \cite{PDG}.
+Der Literaturwert für die Lebensdauer ist \\$\tau_\t{theo} = \SI{2.1969811(00000022)}{\micro\second}$ \cite{PDG}.
 Die relative Abweichung zwischen Literaturwert und errechnetem Wert lässt sich über die Formel
 \begin{equation*}
     \Delta x = \left| \frac{x - x_\t{theo}}{x_\t{theo}} \right|
 \end{equation*}
-bestimmen. Sie ergibt sich zu $\Delta \tau =\SI{-3.2(09)}{\percent} $. Daraus lässt sich erkennen, dass der errechnete Wert im Rahmen der Standardabweichung sehr gut mit dem Literaturwert übereinstimmt.
+bestimmen. Sie ergibt sich zu $\Delta \tau =\SI{3.2(09)}{\percent} $. Daraus lässt sich erkennen, dass der errechnete Wert im Rahmen der Standardabweichung sehr gut mit dem Literaturwert übereinstimmt.
 Dies lässt sich über die lange Messdauer und die damit im Verhältnis kleine Unsicherheit nach Poisson erklären. 
-Außerdem tritt nur ein sehr kleiner Untergrund von Myonenzerfällen auf, welcher zu $U_\t{K} = 0.761$ bestimmt wurde.
-Die trotzdem auftretende Abweichung lässt sich unter anderem über die Einstellung der Verzögerungszeit vor einem der Diskriminatoren erklären. 
-Dies wird während der Durchführung nur abgeschätzt und muss nicht den optimalen Wert ergeben. 
-Des Weiteren ließe sich noch die Suchrate $T_S$ des Monoflops weiter feinjustieren, um den Untergrund zu minimieren.\\ 
+Außerdem tritt nur ein sehr kleiner Untergrund von Myonenzerfällen auf, welcher zu $U_\t{K} = 0,761$ bestimmt wurde.
+Die trotzdem auftretende Abweichung lässt sich unter anderem Suchzeit $T_\t{S}$ des Monoflops erklären, welcher weiter feinjustiert werden kann 
+um den Untergrund zu minimieren. Außerdem wurden für die Berechnung Bins ignoriert, in denen sich Messwerte befanden, weil sie in Bins lagen, 
+die mit errechneten Zeiten größer der Suchzeit korrespondieren. Bei $460$ nicht leeren Bins haben 10 Bins am Ende der Kurve allerdings einen zu vernachlässigbaren Einfluss auf die Ausgleichsrechnung.   \\ 
+Bei der Bestimmung der idealen Verzögerungszeit wurden die Zeiten $\Delta t_\t{Verz,1} = \SI{3 (4)}{\nano\second}$ und  $\Delta t_\t{Verz,2} = \SI{9 (5)}{\nano\second}$ bestimmt.
+Diese besitzen eine große Unsicherheit und weichen in ihren Nennwerten stark voneinander ab. 
+Der Wert $\Delta t_\t{Verz,2}$ liegt auch am Rande seines Plateaus, was ihn zu einer schlechten Wahl für eine Verzögerungszeit macht, da bei leichten Abweichungen die Zählraten stark schwanken können.
+Durch Abschätzen aus den Grafiken lässt sich eine Verzögerungszeit, die zentral auf dem Plateau liegt, zu $\Delta t = \SI{2}{\nano\second}$ bestimmen.
+$\Delta t_\t{Verz,1}$ stimmt im Rahmen der Messunsicherheiten mit diesem Wert überein. Der Wert $\Delta t_\t{Verz,2}$ nicht. 
+Allerdings ist $\Delta t = \SI{2}{\nano\second}$ auch kein Theoriewert, sondern nur eine grafische Abschätzung. 
+Da vermutlich mit einem vollkommen anderen Verzögerungszeit die weiteren Messungen durchgeführt wurden, haben die schlechten Ergebnisse dieser Auswertung keinen Einfluss auf die weiteren Messungen.\\
 Insgesamt liefert der Versuch aber sehr gute Ergebnisse und die errechnete Lebensdauer stimmt sehr gut mit dem Literaturwert überein.
