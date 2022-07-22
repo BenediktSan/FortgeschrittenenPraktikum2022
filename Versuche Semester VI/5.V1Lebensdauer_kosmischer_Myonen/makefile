@@ -1,4 +1,4 @@
-all: build/Protokoll_V1.pdf
+all: build/Protokoll_V01.pdf
 
 
 
@@ -11,10 +11,10 @@ build/plots/lebensdauer.pdf:	|plots
 
 
 # hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-build/Protokoll_V1.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex build/plots/lebensdauer.pdf| build
-	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V1.tex
-	biber build/Protokoll_V1.bcf
-	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V1.tex
+build/Protokoll_V01.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex build/plots/lebensdauer.pdf| build
+	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V01.tex
+	biber build/Protokoll_V01.bcf
+	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V01.tex
 
 plots:
 	python python/justage_10.py
@@ -33,7 +33,7 @@ clean:
 
 #Zusätzliche Ordner/Dateien löschen
 aux2:
-	rm -rf Protokoll_V1.aux Protokoll_V1.bcf Protokoll_V1.log Protokoll_V1.pdf Protokoll_V1.run.xml Protokoll_V1.toc
+	rm -rf Protokoll_V01.aux Protokoll_V01.bcf Protokoll_V01.log Protokoll_V01.pdf Protokoll_V01.run.xml Protokoll_V01.toc
 
 auxv:
 	rm -rf python/variables
